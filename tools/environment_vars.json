@@ -1,11 +1,11 @@
 {
   "development":{
     "NODE_ENV": "'\"development\"'",
-    "PORT": 3339,
-    "BACKEND_HOST": "'\"http://localhost:3340/api\"'"
+    "PORT": 3341,
+    "BACKEND_HOST": "'\"http://localhost:3342/\"'"
   },
   "production":{
     "NODE_ENV": "'\"production\"'",
-    "PORT": 3339
+    "PORT": 3341
   }
 }

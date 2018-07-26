@@ -12,7 +12,7 @@
           sm6 
           pa-5>
           <v-card>
-            <h1>お客さんはようこそ</h1>
+            <h1>Buildev</h1>
           </v-card>
         </v-flex>
       </v-layout>

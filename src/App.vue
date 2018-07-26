@@ -19,11 +19,10 @@
 
 <script>
 import API from './utils/API';
+import Navmenu from './components/shared/Navmenu';
 
 export default {
   name: 'App',
-  components: {
-  },
   data() {
     return {
       loading: true,
@@ -32,11 +31,13 @@ export default {
     };
   },
   created() {
-    console.log('a');
     this.loading = false;
     this.post = true;
   },
   methods: {
+  },
+  components: {
+    appNavmenu: Navmenu
   }
 };
 </script>
