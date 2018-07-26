@@ -18,12 +18,21 @@
           <v-container grid-list-md>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-layout wrap>
+                <v-flex xs12>
+                  <v-alert
+                    :value="error"
+                    type="error"
+                  >
+                    {{ error }}
+                  </v-alert>
+                </v-flex>
                 <v-flex xs12 v-if="signUp">
                   <v-text-field
                   v-model="name"
                   label="First name" 
                   :rules="nameRules"
                   type="name"
+                  validate-on-blur=true
                   required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
@@ -32,7 +41,7 @@
                   label="Email"
                   :rules="emailRules"
                   type="email"
-                  validate-on-blur="true"
+                  validate-on-blur=true
                   required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
@@ -41,6 +50,7 @@
                   label="Password"
                   :rules="passwordRules" 
                   type="password" 
+                  validate-on-blur=true
                   required></v-text-field>
                 </v-flex>
               </v-layout>
@@ -56,19 +66,20 @@
           <v-btn color="blue darken-1" flat @click.native="submit" :disabled="!valid" v-if="!signUp">Sign in</v-btn>
         </v-card-actions>
       </v-card>
-      
     </v-dialog>
-
 </template>
 
 <script>
+import API from '../utils/API';
 
 export default {
   name: 'Login',
   data() {
     return {
+      dialog: false,
       signUp: false,
       valid: true,
+      error: false,
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
@@ -89,7 +100,23 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
+        this.error = false;
+        const path = this.signUp ? '/auth/sign_up' : '/auth/sign_in';
+        const { name, email, password } = this;
+        const body = this.signUp ? { name, email, password } : { email, password };
+        API
+          .post(
+            path,
+            body
+          )
+          .then(response => {
+            this.dialog = false;
+          })
+          .catch(err => {
+            if (err.response) {
+              this.error = err.response.data.msg;
+            }
+          });
       }
     }
   }

@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import API from './utils/API';
 import Navmenu from './components/shared/Navmenu';
 
 export default {
