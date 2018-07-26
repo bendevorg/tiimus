@@ -19,20 +19,25 @@
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-layout wrap>
                 <v-flex xs12 v-if="signUp">
-                  <v-text-field 
-                  label="Name" 
+                  <v-text-field
+                  v-model="name"
+                  label="First name" 
                   :rules="nameRules"
+                  type="name"
                   required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field 
+                  v-model="email"
                   label="Email"
                   :rules="emailRules"
                   type="email"
+                  validate-on-blur="true"
                   required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field 
+                  v-model="password"
                   label="Password"
                   :rules="passwordRules" 
                   type="password" 
@@ -47,8 +52,8 @@
           <v-btn color="blue darken-1" flat @click.native="signUp = false" v-if="signUp">Sign in</v-btn>   
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false" v-if="signUp">Sign up</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="submit" v-if="!signUp">Sign in</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false" :disabled="!valid" v-if="signUp">Sign up</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="submit" :disabled="!valid" v-if="!signUp">Sign in</v-btn>
         </v-card-actions>
       </v-card>
       
@@ -71,8 +76,8 @@ export default {
       ],
       name: '',
       nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+        v => !!v || 'First name is required',
+        v => (v && v.length <= 10) || 'First name must be less than 20 characters'
       ],
       password: '',
       passwordRules: [
