@@ -3,7 +3,13 @@
     <v-toolbar fixed app>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-
+      <v-flex xs12 sm6 md3>
+        <v-text-field
+          label="Solo"
+          placeholder="Placeholder"
+          solo
+        ></v-text-field>
+      </v-flex>
     </v-toolbar>
     <v-content>
       <v-container>
