@@ -14,7 +14,27 @@ const actions = {
   },
   signIn({ commit }, userData) {
     return new Promise((resolve, reject)  => {
-      const path = this.signUp ? '/auth/sign_up' : '/auth/sign_in';
+      const path = '/auth/sign_in';
+      API
+        .post(
+          path,
+          userData
+        )
+        .then(response => {
+          commit('setLogin', true);
+          return resolve(response);
+        })
+        .catch(err => {
+          if (err.response) {
+            return reject(err.response.data.msg);
+          }
+          return reject(err);
+        });
+    });
+  },
+  signUp({ commit }, userData) {
+    return new Promise((resolve, reject)  => {
+      const path = '/auth/sign_up';
       API
         .post(
           path,
