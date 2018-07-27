@@ -29,6 +29,7 @@
     "express": "^4.16.3",
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
+    "vue-cookie": "1.1.4",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.18",

@@ -19,6 +19,7 @@
 
 <script>
 import Navmenu from './components/shared/Navmenu';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -30,10 +31,14 @@ export default {
     };
   },
   created() {
+    this.checkSession(this.$cookie.get('session'));
     this.loading = false;
     this.post = true;
   },
   methods: {
+    ...mapActions('auth', [
+      'checkSession'
+    ])
   },
   components: {
     appNavmenu: Navmenu

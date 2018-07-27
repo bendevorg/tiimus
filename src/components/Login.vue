@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import API from '../utils/API';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Login',
@@ -98,24 +98,20 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', [
+      'signIn'
+    ]),
     submit () {
       if (this.$refs.form.validate()) {
         this.error = false;
-        const path = this.signUp ? '/auth/sign_up' : '/auth/sign_in';
         const { name, email, password } = this;
         const body = this.signUp ? { name, email, password } : { email, password };
-        API
-          .post(
-            path,
-            body
-          )
+        this.signIn(body)
           .then(response => {
             this.dialog = false;
           })
           .catch(err => {
-            if (err.response) {
-              this.error = err.response.data.msg;
-            }
+            this.error = err;
           });
       }
     }
