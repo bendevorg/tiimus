@@ -16,7 +16,7 @@
         </v-card-title>
         <v-card-text>
           <v-container grid-list-md>
-            <v-form ref="form" v-model="valid" lazy-validation>
+            <v-form ref="form" v-model="valid" @submit="submit" lazy-validation>
               <v-layout wrap>
                 <v-flex xs12>
                   <v-alert
@@ -62,8 +62,8 @@
           <v-btn color="blue darken-1" flat @click.native="isSignUp = false" v-if="isSignUp">Sign in</v-btn>   
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="submit" :disabled="!valid" v-if="isSignUp">Sign up</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="submit" :disabled="!valid" v-if="!isSignUp">Sign in</v-btn>
+          <v-btn color="blue darken-1" flat type="submit" @click.native="submit" :disabled="!valid" v-if="isSignUp">Sign up</v-btn>
+          <v-btn color="blue darken-1" flat type="submit" @click.native="submit" :disabled="!valid" v-if="!isSignUp">Sign in</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
