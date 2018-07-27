@@ -13,7 +13,7 @@
     <v-list-tile
       v-for="(item, index) in items"
       :key="index"
-      @click="item.click"
+      @click=item.click
     >
       <v-list-tile-title>{{ item.title }}</v-list-tile-title>
     </v-list-tile>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
   name: 'UserMenu',
@@ -34,10 +35,15 @@ export default {
         },
         {
           title: 'Sign out',
-          click: ''
+          click: this.signOut
         }
       ]
     }
+  },
+  methods: {
+    ...mapActions('auth', [
+      'signOut'
+    ])
   }
 }
 </script>

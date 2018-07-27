@@ -51,6 +51,25 @@ const actions = {
           return reject(err);
         });
     });
+  },
+  signOut({ commit }) {
+    return new Promise((resolve, reject) => {
+      const path = '/auth/sign_out';
+      API
+        .get(
+          path
+        )
+        .then(response => {
+          commit('setLogin', false);
+          return resolve(response);
+        })
+        .catch(err => {
+          if (err.response) {
+            return reject(err.response.data.msg);
+          }
+          return reject(err);
+        });
+    })
   }
 }
 
