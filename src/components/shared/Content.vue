@@ -1,21 +1,19 @@
 <template>
   <v-content>
-    <v-container 
-      fluid 
-      fill-height>
-      <v-layout
-        justify-center
-        align-center
-      >
-        <v-flex 
-          text-xs-center 
-          sm6 
-          pa-5>
-          <v-card>
-            <h1>Buildev</h1>
-          </v-card>
-        </v-flex>
-      </v-layout>
+    <app-navmenu/>
+    <v-container fluid>
+      <router-view/>
     </v-container>
   </v-content>
 </template>
+
+<script>
+import Navmenu from './Navmenu';
+
+export default {
+  name: 'Content',
+  components: {
+    appNavmenu: Navmenu,
+  }
+}
+</script>

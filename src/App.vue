@@ -11,14 +11,13 @@
       {{ error }}
     </div>
     <div v-if="post">
-      <app-navmenu/>
-      <router-view/>
+      <app-content/>
     </div>
   </v-app>
 </template>
 
 <script>
-import Navmenu from './components/shared/Navmenu';
+import Content from './components/shared/Content';
 import { mapActions } from 'vuex';
 
 export default {
@@ -41,7 +40,7 @@ export default {
     ])
   },
   components: {
-    appNavmenu: Navmenu
+    appContent: Content
   }
 };
 </script>
