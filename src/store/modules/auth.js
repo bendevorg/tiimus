@@ -74,7 +74,7 @@ const actions = {
 }
 
 const mutations = {
-  setLogin (state, isLogged) {
+  setLogin(state, isLogged) {
     state.isLogged = isLogged;
   }
 }
