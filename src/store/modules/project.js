@@ -29,7 +29,8 @@ const state = {
     all: [],
     filtered: []
   },
-  tags: []
+  tags: [],
+  skills: []
 }
 
 const getters = {
@@ -77,7 +78,17 @@ const actions = {
       'Strategy',
       '2D',
       '3D'
-    ])
+    ]);
+  },
+  listSkills({ commit }) {
+    // TODO: Retrieve list from API
+    commit('setSkills', [
+      'Artist',
+      'Developer',
+      'Musician',
+      'Writer',
+      'Audio Mixer'
+    ]);
   }
 }
 
@@ -87,6 +98,9 @@ const mutations = {
   },
   setTags(state, tags) {
     state.tags = tags;
+  },
+  setSkills(state, skills) {
+    state.skills = skills;
   }
 }
 

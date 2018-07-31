@@ -69,7 +69,8 @@ export default {
       project: {
         name: '',
         description: '',
-        skills: ''
+        tags: [],
+        skills: []
       }
     }
   },

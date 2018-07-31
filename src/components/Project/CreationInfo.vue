@@ -13,7 +13,7 @@
       </v-flex>
       <v-flex xs8>
         <v-combobox
-          v-model="select"
+          v-model="project.tags"
           :items="tags"
           label="Some tags about your game"
           multiple
