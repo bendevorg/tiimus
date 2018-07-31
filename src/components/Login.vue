@@ -88,7 +88,7 @@ export default {
       name: '',
       nameRules: [
         v => !!v || 'First name is required',
-        v => (v && v.length <= 10) || 'First name must be less than 20 characters'
+        v => (v && v.length <= 20) || 'First name must be less than 20 characters'
       ],
       password: '',
       passwordRules: [

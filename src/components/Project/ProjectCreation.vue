@@ -1,51 +1,103 @@
 <template>
-  <v-stepper v-model="e1">
-    <v-stepper-header>
-      <template v-for="n in 1">
-        <v-stepper-step
-          :complete="e1 > n"
-          :key="`${n}-step`"
-          :step="n"
-          editable
+
+  <v-container fluid>
+    <v-stepper v-model="e1">
+      <v-stepper-header>
+        <template v-for="(step, index) in steps">
+          <v-stepper-step
+            :complete="e1 > index"
+            :key="`${index + 1}-step`"
+            :step="index + 1"
+            editable
+          >
+            {{ step.name }}
+          </v-stepper-step>
+
+          <v-divider
+            v-if="index + 1 !== steps.length"
+            :key="index + 1"
+          ></v-divider>
+        </template>
+      </v-stepper-header>
+
+      <v-stepper-items>
+        <v-stepper-content
+          v-for="(step, index) in steps"
+          :key="`${index + 1}-content`"
+          :step="index + 1"
         >
-          Project Info
-        </v-stepper-step>
+          <component 
+            v-if="true"
+            project="project"
+            :is="step.component"/>
 
-        <v-divider
-          v-if="n !== steps"
-          :key="n"
-        ></v-divider>
-      </template>
-    </v-stepper-header>
-
-    <v-stepper-items>
-      <v-stepper-content
-        v-for="n in steps"
-        :key="`${n}-content`"
-        :step="n"
-      >
-        <v-card
-          class="mb-5"
-          color="grey lighten-1"
-          height="200px"
-        ></v-card>
-
-        <v-btn
-          color="primary"
-          @click="nextStep(n)"
-        >
-          Continue
-        </v-btn>
-
-        <v-btn flat>Cancel</v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
+          <v-btn
+            color="primary"
+            @click="nextStep(index + 1)"
+          >
+            Continue
+          </v-btn>
+          <v-btn flat @click="previousPage">Cancel</v-btn>
+        </v-stepper-content>
+      </v-stepper-items>
+    </v-stepper>
+  </v-container>
 </template>
 
 <script>
+import CreationInfo from './CreationInfo';
+import SkillsInfo from './SkillsInfo';
+
 export default {
-  
+  data() {
+    return {
+      e1: 1,
+      steps: [
+        {
+          name: 'Information',
+          component: CreationInfo
+        },
+        {
+          name: 'Skills',
+          component: SkillsInfo 
+        }, 
+        {
+          name: 'Users',
+          component: CreationInfo 
+        },
+        {
+          name: 'Resume',
+          component: CreationInfo
+        }
+      ],
+      project: {
+        name: '',
+        description: '',
+        skills: ''
+      }
+    }
+  },
+  components: {
+    appCreationInfo: CreationInfo
+  },
+  methods: {
+    nextStep (n) {
+      if (n === this.steps.length) {
+        this.e1 = 1
+      } else {
+        this.e1 = n + 1
+      }
+    },
+    previousPage() {
+      this.$router.go(-1);
+    }
+  }
 }
 </script>
 
+<style lang="stylus" scoped>
+  >>> .nav-link {
+    text-decoration: none;
+    color: rgba(0,0,0,.87);
+  }
+</style>

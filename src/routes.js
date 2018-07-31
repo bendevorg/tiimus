@@ -12,7 +12,7 @@ const routes = [
     }
   },
   {
-    path: '/project/creation',
+    path: '/project/create',
     name: 'Project creation',
     components: {
       default: ProjectCreation
