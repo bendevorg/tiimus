@@ -62,10 +62,6 @@ export default {
           component: SkillsInfo 
         }, 
         {
-          name: 'Users',
-          component: CreationInfo 
-        },
-        {
           name: 'Resume',
           component: CreationInfo
         }

@@ -28,7 +28,8 @@ const state = {
   projects: {
     all: [],
     filtered: []
-  }
+  },
+  tags: []
 }
 
 const getters = {
@@ -68,12 +69,24 @@ const actions = {
         flex: 3 
       }
     ]);
+  },
+  listTags({ commit }) {
+    // TODO: Retrieve list from API
+    commit('setTags', [
+      'Action',
+      'Strategy',
+      '2D',
+      '3D'
+    ])
   }
 }
 
 const mutations = {
   setProjects(state, projects) {
     state.projects.all = projects;
+  },
+  setTags(state, tags) {
+    state.tags = tags;
   }
 }
 

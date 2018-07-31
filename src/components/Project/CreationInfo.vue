@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
+  <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
-      <v-flex xs6>
+      <v-flex xs8>
         <v-text-field
           v-model="project.name"
           label="Name" 
@@ -10,6 +10,15 @@
           validate-on-blur=true
           required>
         </v-text-field>
+      </v-flex>
+      <v-flex xs8>
+        <v-combobox
+          v-model="select"
+          :items="tags"
+          label="Some tags about your game"
+          multiple
+          chips
+        ></v-combobox>
       </v-flex>
       <v-flex xs8>
         <v-textarea
@@ -27,6 +36,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -37,10 +48,23 @@ export default {
       descriptionRules: [
         v => !!v || 'Project description is required',
         v => (v && v.length >= 5) || 'Project name must have at least than 5 characters'
-      ],
+      ]
     }
   },
-  props: ['project']
+  props: ['project'],
+  computed: {
+    ...mapState('project', {
+      tags: state => state.tags
+    })
+  },
+  methods: {
+    ...mapActions('project', [
+      'listTags'
+    ])
+  },
+  created() {
+    this.listTags();
+  }
 }
 </script>
 
