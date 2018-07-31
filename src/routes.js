@@ -1,4 +1,5 @@
 import Home from './components/Home';
+import ProjectCreation from './components/Project/ProjectCreation';
 
 const routes = [
   {
@@ -8,6 +9,13 @@ const routes = [
       // 'menu-top': Navmenu,
       default: Home
       // 'foot-compo': Footer
+    }
+  },
+  {
+    path: '/project/creation',
+    name: 'Project creation',
+    components: {
+      default: ProjectCreation
     }
   }
 ];

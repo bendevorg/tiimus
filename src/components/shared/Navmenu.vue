@@ -4,7 +4,10 @@
     <v-toolbar-title>Buildev</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Link One</v-btn>
+      <v-btn 
+      v-if="isLogged" 
+      :to="{ path: '/project/create'} "
+      flat>Create a project</v-btn>
       <v-btn flat>Link Two</v-btn>
       <app-user-menu v-if="isLogged"/>
       <app-login v-else/>
