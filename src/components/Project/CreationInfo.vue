@@ -1,19 +1,22 @@
 <template>
-  <v-container grid-list-md text-xs-center>
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
+      <v-flex xs12>
+        <h1>Tell us a little about your project</h1>
+      </v-flex>
+    </v-layout>
     <v-layout row wrap>
       <v-flex xs8>
         <v-text-field
-          v-model="project.name"
           label="Name" 
           :rules="nameRules"
+          :validate-on-blur="true"
           type="name"
-          validate-on-blur=true
           required>
         </v-text-field>
       </v-flex>
       <v-flex xs8>
         <v-combobox
-          v-model="project.tags"
           :items="tags"
           label="Some tags about your game"
           multiple
@@ -22,12 +25,11 @@
       </v-flex>
       <v-flex xs8>
         <v-textarea
-          v-model="project.description"
           label="Description"
           :rules="descriptionRules"
           height=50
-          validate-on-blur=true
-          auto-grow=true
+          :validate-on-blur="true"
+          :auto-grow="true"
           required
         ></v-textarea>
       </v-flex>
@@ -64,6 +66,9 @@ export default {
   },
   created() {
     this.listTags();
+  },
+  destroyed() {
+    console.log('Destructive finish');
   }
 }
 </script>

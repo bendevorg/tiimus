@@ -28,16 +28,38 @@
         >
           <component 
             v-if="true"
-            project="project"
+            v-bind="project"
             :is="step.component"/>
-
-          <v-btn
-            color="primary"
-            @click="nextStep(index + 1)"
-          >
-            Continue
-          </v-btn>
-          <v-btn flat @click="previousPage">Cancel</v-btn>
+          <v-layout wrap>
+            <v-btn
+              v-if="index < steps.length - 1"
+              color="primary"
+              @click="nextStep(index + 1)"
+            >
+              Continue
+            </v-btn>
+            <v-btn
+              v-else
+              color="primary"
+              @click="createProject"
+            >
+              Create
+            </v-btn>
+            <v-btn
+              v-if="index > 0"
+              flat
+              @click="nextStep(index - 1)"
+            >
+              Previous
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn 
+              flat
+              @click="previousPage"
+            >
+              Cancel
+            </v-btn>
+          </v-layout>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -47,6 +69,7 @@
 <script>
 import CreationInfo from './CreationInfo';
 import SkillsInfo from './SkillsInfo';
+import ResumeInfo from './ResumeInfo';
 
 export default {
   data() {
@@ -63,19 +86,16 @@ export default {
         }, 
         {
           name: 'Resume',
-          component: CreationInfo
+          component: ResumeInfo
         }
       ],
       project: {
-        name: '',
+        name: 'aeae',
         description: '',
         tags: [],
         skills: []
       }
     }
-  },
-  components: {
-    appCreationInfo: CreationInfo
   },
   methods: {
     nextStep (n) {
@@ -87,6 +107,9 @@ export default {
     },
     previousPage() {
       this.$router.go(-1);
+    },
+    createProject() {
+      console.log('Kassino');
     }
   }
 }

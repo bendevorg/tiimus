@@ -1,9 +1,14 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
+      <v-flex xs6>
+        <h1>Which skills you want?</h1>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap>
       <v-flex
         xs4
-        v-for="skill in skills"
+        v-for="(skill) in skills"
         :key="skill"
       >
         <v-checkbox
