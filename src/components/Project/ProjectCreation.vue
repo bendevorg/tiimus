@@ -120,10 +120,7 @@ export default {
       this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
     },
     createProject() {
-      API.get('/users')
-        .then(function(response) {
-          console.log(response.data);
-        });
+      console.log('ae');
     }
   }
 }

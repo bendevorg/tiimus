@@ -44,51 +44,34 @@ const getters = {
 
 const actions = {
   listProjects({ commit }) {
-    // TODO: Retrieve list from API
-    commit('setProjects', [
-      { 
-        title: 'Brawll', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 
-        skills: ['Developer', 'Artist', 'Musician'],
-        description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
-        flex: 3
-      },
-      { 
-        title: 'Jacto Rally', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', 
-        skills: ['Writer'],
-        description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
-        flex: 3 
-      },
-      { 
-        title: 'Into the light', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-        skills: ['Developer', 'Audio Mixer'],
-        description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
-        flex: 3 },
-      { 
-        title: 'Disk Overdrive', src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', 
-        skills: ['Artist'],
-        description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
-        flex: 3 
-      }
-    ]);
+    API
+      .get('/projects')
+      .then(response => {
+        commit('setProjects', response.data.msg.projects);
+      })
+      .catch(error => {
+        //  TODO: Handle the error
+      });
   },
   listTags({ commit }) {
-    // TODO: Retrieve list from API
-    commit('setTags', [
-      'Action',
-      'Strategy',
-      '2D',
-      '3D'
-    ]);
+    API
+      .get('/tags')
+      .then(response => {
+        commit('setTags', response.data.msg.tags);
+      })
+      .catch(error => {
+        //  TODO: Handle the error
+      });
   },
   listSkills({ commit }) {
-    // TODO: Retrieve list from API
-    commit('setSkills', [
-      'Artist',
-      'Developer',
-      'Musician',
-      'Writer',
-      'Audio Mixer'
-    ]);
+    API
+      .get('/skills')
+      .then(response => {
+        commit('setSkills', response.data.msg.skills);
+      })
+      .catch(error => {
+        //  TODO: Handle the error
+      });
   }
 }
 
