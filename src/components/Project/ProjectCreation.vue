@@ -1,4 +1,4 @@
-<template>
+<template v-on:update-project-create-form="test">
 
   <v-container fluid>
     <v-stepper v-model="e1">
@@ -28,7 +28,11 @@
         >
           <component 
             v-if="true"
-            v-bind="project"
+            v-on:update-project-info="updateProjectInfo"
+            v-bind:name="project.name"
+            v-bind:tags="project.tags"
+            v-bind:description="project.description"
+            v-bind:skills="project.skills"
             :is="step.component"/>
           <v-layout wrap>
             <v-btn
@@ -90,9 +94,9 @@ export default {
         }
       ],
       project: {
-        name: 'aeae',
-        description: '',
+        name: '',
         tags: [],
+        description: '',
         skills: []
       }
     }
@@ -108,8 +112,14 @@ export default {
     previousPage() {
       this.$router.go(-1);
     },
+    updateProjectInfo(projectInfo) {
+      this.project.name = projectInfo.name ? projectInfo.name : this.project.name;
+      this.project.tags = projectInfo.tags ? projectInfo.tags : this.project.tags;
+      this.project.description = projectInfo.description ? projectInfo.description : this.project.description;
+      this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
+    },
     createProject() {
-      console.log('Kassino');
+      console.log(this.project);
     }
   }
 }

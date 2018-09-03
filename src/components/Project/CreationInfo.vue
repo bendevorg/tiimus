@@ -8,29 +8,35 @@
     <v-layout row wrap>
       <v-flex xs8>
         <v-text-field
+          v-model="name"
           label="Name" 
           :rules="nameRules"
           :validate-on-blur="true"
           type="name"
+          @blur="saveInfo"
           required>
         </v-text-field>
       </v-flex>
       <v-flex xs8>
         <v-combobox
+          v-model="selectedTags"
           :items="tags"
           label="Some tags about your game"
           multiple
           chips
+          @blur="saveInfo"
         ></v-combobox>
       </v-flex>
       <v-flex xs8>
         <v-textarea
+          v-model="description"
           label="Description"
           :rules="descriptionRules"
           height=50
           :validate-on-blur="true"
           :auto-grow="true"
           required
+          @blur="saveInfo"
         ></v-textarea>
       </v-flex>
     </v-layout>
@@ -50,10 +56,12 @@ export default {
       descriptionRules: [
         v => !!v || 'Project description is required',
         v => (v && v.length >= 5) || 'Project name must have at least than 5 characters'
-      ]
+      ],
+      name: '',
+      selectedTags: [],
+      description: ''
     }
   },
-  props: ['project'],
   computed: {
     ...mapState('project', {
       tags: state => state.tags
@@ -62,14 +70,18 @@ export default {
   methods: {
     ...mapActions('project', [
       'listTags'
-    ])
+    ]),
+    saveInfo() {
+      const creationInfo = {
+        name: this.name,
+        tags: this.selectedTags,
+        description: this.description
+      };
+      this.$emit('update-project-info', creationInfo)
+    }
   },
   created() {
     this.listTags();
-  },
-  destroyed() {
-    console.log('Destructive finish');
   }
 }
 </script>
-
