@@ -1,5 +1,5 @@
-'use strict'
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 const utils = require('./utils');

@@ -74,6 +74,7 @@
 import CreationInfo from './CreationInfo';
 import SkillsInfo from './SkillsInfo';
 import ResumeInfo from './ResumeInfo';
+import API from '../../utils/API';
 
 export default {
   data() {
@@ -119,7 +120,10 @@ export default {
       this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
     },
     createProject() {
-      console.log(this.project);
+      API.get('/users')
+        .then(function(response) {
+          console.log(response.data);
+        });
     }
   }
 }
