@@ -29,28 +29,31 @@
                 <v-flex xs12 v-if="isSignUp">
                   <v-text-field
                   v-model="name"
-                  label="First name" 
+                  label="First name"
                   :rules="nameRules"
                   type="name"
                   validate-on-blur=true
+                  @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field 
+                  <v-text-field
                   v-model="email"
                   label="Email"
                   :rules="emailRules"
                   type="email"
                   validate-on-blur=true
+                  @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field 
+                  <v-text-field
                   v-model="password"
                   label="Password"
-                  :rules="passwordRules" 
-                  type="password" 
+                  :rules="passwordRules"
+                  type="password"
                   validate-on-blur=true
+                  @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
               </v-layout>
@@ -59,7 +62,7 @@
         </v-card-text>
         <v-card-actions>
           <v-btn color="blue darken-1" flat @click.native="isSignUp = true" v-if="!isSignUp">Sign up</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="isSignUp = false" v-if="isSignUp">Sign in</v-btn>   
+          <v-btn color="blue darken-1" flat @click.native="isSignUp = false" v-if="isSignUp">Sign in</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
           <v-btn color="blue darken-1" flat type="submit" @click.native="submit" :disabled="!valid" v-if="isSignUp">Sign up</v-btn>
