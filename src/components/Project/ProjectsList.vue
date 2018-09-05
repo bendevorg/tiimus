@@ -2,22 +2,22 @@
   <v-layout row justify-center
       align-center>
     <v-flex xs12 sm12>
-      <v-card>
-        <v-container
-          fluid
-          grid-list-md
-        >
-          <v-layout row wrap>
-            <v-flex
-              xs3
-              v-for="project in projects"
-              :key="project.title"
-            >
-              <app-project-card v-bind:project="project"/>   
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
+
+      <v-container
+        fluid
+        grid-list-md
+      >
+        <div class="headline">Willing to join a project?</div>
+        <v-layout row wrap>
+          <v-flex
+            xs3
+            v-for="project in projects"
+            :key="project.title"
+          >
+            <app-project-card v-bind:project="project"/>   
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-flex>
   </v-layout>
 </template>
@@ -52,4 +52,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  >>> .headline {
+    margin-bottom: 24px;
+  }
 </style>

@@ -1,9 +1,5 @@
 <template>
-  <v-container 
-      fluid 
-      fill-height>
-    <app-projects-list/>
-  </v-container>
+  <app-projects-list/>
 </template>
 
 <script>
