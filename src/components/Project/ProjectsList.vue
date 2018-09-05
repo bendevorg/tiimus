@@ -39,9 +39,13 @@ export default {
   methods: {
     ...mapActions('project', [
       'listProjects'
+    ]),
+    ...mapActions('skill', [
+      'listSkills'
     ])
   },
   created() {
+    this.listSkills();
     this.listProjects();
   }
 }
