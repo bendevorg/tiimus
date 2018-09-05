@@ -38,7 +38,7 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   props: ['name', 'description', 'tags', 'skills'],
   methods: {
-    ...mapGetters('project', {
+    ...mapGetters('skill', {
       retrieveSkillColor: 'retrieveSkillColor',
       retrieveSkillTextColor: 'retrieveSkillTextColor'
     })

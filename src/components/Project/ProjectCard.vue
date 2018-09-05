@@ -43,7 +43,7 @@ export default {
     show: false
   }),
   methods: {
-    ...mapGetters('project', {
+    ...mapGetters('skill', {
       retrieveSkillColor: 'retrieveSkillColor',
       retrieveSkillTextColor: 'retrieveSkillTextColor'
     })

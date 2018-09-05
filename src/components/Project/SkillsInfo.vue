@@ -9,12 +9,12 @@
       <v-flex
         xs4
         v-for="skill in skills"
-        :key="skill"
+        :key="skill.name"
       >
         <v-checkbox
           v-model="selectedSkills"
-          :label=skill
-          :value=skill
+          :label=skill.name
+          :value=skill.name
           @click.native="saveInfo"
         >
         </v-checkbox>
@@ -33,12 +33,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('project', {
+    ...mapState('skill', {
       skills: state => state.skills
     })
   },
   methods: {
-    ...mapActions('project', [
+    ...mapActions('skill', [
       'listSkills'
     ]),
     saveInfo() {

@@ -1,21 +1,18 @@
 import API from '../../utils/API';
 
 const state = {
-  projects: {
-    all: [],
-    filtered: []
-  }
+  tags: []
 };
 
 const getters = {
 };
 
 const actions = {
-  listProjects({ commit }) {
+  listTags({ commit }) {
     API
-      .get('/projects')
+      .get('/tags')
       .then(response => {
-        commit('setProjects', response.data.msg);
+        commit('setTags', response.data.msg);
       })
       .catch(error => {
         //  TODO: Handle the error
@@ -24,8 +21,8 @@ const actions = {
 };
 
 const mutations = {
-  setProjects(state, projects) {
-    state.projects.all = projects;
+  setTags(state, tags) {
+    state.tags = tags;
   }
 };
 

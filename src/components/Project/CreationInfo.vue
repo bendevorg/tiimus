@@ -63,12 +63,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('project', {
+    ...mapState('tag', {
       tags: state => state.tags
     })
   },
   methods: {
-    ...mapActions('project', [
+    ...mapActions('tag', [
       'listTags'
     ]),
     saveInfo() {
