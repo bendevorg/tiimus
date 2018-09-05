@@ -9,8 +9,8 @@
         >
           <v-layout row wrap>
             <v-flex
+              xs3
               v-for="project in projects"
-              v-bind="{ [`xs${project.flex}`]: true }"
               :key="project.title"
             >
               <app-project-card v-bind:project="project"/>   
