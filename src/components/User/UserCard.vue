@@ -51,7 +51,7 @@ export default {
 <style lang="stylus" scoped>
   >>> .v-avatar {
     margin-top: 7px;
-    margin-left: 10px;
+    margin-left: 18px;
   }
 </style>
 
