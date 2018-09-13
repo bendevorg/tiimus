@@ -10,7 +10,9 @@
         <div class="headline">Willing to join a project?</div>
         <v-layout row wrap>
           <v-flex
-            xs3
+            xs12
+            sm6
+            md3
             v-for="project in projects"
             :key="project.title"
           >
