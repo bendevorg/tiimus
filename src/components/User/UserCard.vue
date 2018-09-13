@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card :to="'/users/' + user.name">
     <v-layout justify-center>
       <v-flex xs5>
         <v-layout row align-center>
