@@ -25,12 +25,17 @@
         
       </v-flex>
     </v-layout>
+    <app-user-projects-list/>
   </v-container>
 </template>
 
 <script>
+import UserProjectsList from './UserProjectsList';
 
 export default {
-  name: 'UserPage'
+  name: 'UserPage',
+  components: {
+    appUserProjectsList: UserProjectsList
+  }
 }
 </script>

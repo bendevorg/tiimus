@@ -16,7 +16,7 @@
             v-for="project in projects"
             :key="project.title"
           >
-            <app-project-card v-bind:project="project"/>   
+            <app-user-project-card v-bind:project="project"/>   
           </v-flex>
         </v-layout>
       </v-container>
@@ -25,13 +25,13 @@
 </template>
 
 <script>
-import ProjectCard from './ProjectCard';
+import UserProjectCard from './UserProjectCard';
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  name: 'ProjectsList',
+  name: 'UserProjectsList',
   components: {
-    appProjectCard: ProjectCard
+    appUserProjectCard: UserProjectCard
   },
   computed: {
     ...mapState('project', {
