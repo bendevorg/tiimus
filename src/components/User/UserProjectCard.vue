@@ -9,11 +9,11 @@
     <v-card-title>
       <div>
         <h3>{{ project.title }}</h3>
-        <v-chip v-for="tag in project.tags"
+        <!-- <v-chip v-for="tag in project.tags"
           v-bind:key="tag"
           :color="retrieveSkillColor()(tag)" 
           :text-color="retrieveSkillTextColor()(tag)" 
-          small>{{ skill }}</v-chip>
+          small>{{ skill }}</v-chip> -->
       </div>
     </v-card-title>
 

@@ -7,18 +7,21 @@
         fluid
         grid-list-md
       >
-        <div class="headline">Projects</div>
-        <v-layout row wrap>
-          <v-flex
-            xs12
-            sm6
-            md3
-            v-for="project in projects"
-            :key="project.title"
-          >
-            <app-user-project-card v-bind:project="project"/>   
-          </v-flex>
-        </v-layout>
+      <div class="headline">Projects</div>
+        <div v-if="projects.length > 0">
+          <v-layout row wrap>
+            <v-flex
+              xs12
+              sm6
+              md3
+              v-for="project in projects"
+              :key="project.title"
+            >
+              <app-user-project-card v-bind:project="project"/>   
+            </v-flex>
+          </v-layout>
+        </div>
+        <div class="headline" v-else>This user haven't joined a project yet</div>
       </v-container>
     </v-flex>
   </v-layout>
@@ -34,21 +37,18 @@ export default {
     appUserProjectCard: UserProjectCard
   },
   computed: {
-    ...mapState('project', {
+    ...mapState('user', {
       projects: state => state.projects.all
     })
   },
   methods: {
-    ...mapActions('project', [
+    ...mapActions('user', [
       'listProjects'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
     ])
   },
   created() {
-    this.listSkills();
-    this.listProjects();
+    //  Todo: Use the actual user id
+    this.listProjects('test');
   }
 }
 </script>
