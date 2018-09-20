@@ -10,7 +10,7 @@
         grid-list-md
       >
       <div class="headline">Skills</div>
-        <div v-if="skills.length > 0">
+        <div v-if="skills && skills.length > 0">
           <v-layout row wrap>
             <v-flex
               xs12
@@ -31,26 +31,21 @@
 
 <script>
 import UserSkillCard from './UserSkillCard';
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
+  props: ['skills'],
   name: 'UserSkillsList',
   components: {
     appUserSkillCard: UserSkillCard
   },
-  computed: {
-    ...mapState('user', {
-      skills: state => state.skills.all
-    })
-  },
   methods: {
-    ...mapActions('user', [
+    ...mapActions('skill', [
       'listSkills'
     ])
   },
-  created() {
-    //  Todo: Use the actual user id
-    this.listSkills('test');
+  mounted() {
+    this.listSkills();
   }
 }
 </script>

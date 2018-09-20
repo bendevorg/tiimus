@@ -12,7 +12,8 @@ const state = {
   skills: {
     all: [],
     filtered: []
-  }
+  },
+  currentUser: {}
 };
 
 const getters = {
@@ -29,6 +30,16 @@ const actions = {
         //  TODO: Handle the error
       });
   },
+  userInfo({ commit }, userId) {
+    API
+      .get(`/users/${userId}`)
+      .then(response => {
+        commit('setCurrentUser', response.data.msg);
+      })
+      .catch(error => {
+        //  TODO: Handle the error
+      })
+  },
   listProjects({ commit }, userId) {
     API
       .get(`/users/${userId}/projects`)
@@ -38,22 +49,15 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
-  },
-  listSkills({ commit }, userId) {
-    API
-      .get(`/users/${userId}/skills`)
-      .then(response => {
-        commit('setSkills', response.data.msg);
-      })
-      .catch(error => {
-        //  TODO: Handle the error
-      })
   }
 };
 
 const mutations = {
   setUsers(state, users) {
     state.users.all = users;
+  },
+  setCurrentUser(state, user) {
+    state.currentUser = user
   },
   setProjects(state, projects) {
     state.projects.all = projects;

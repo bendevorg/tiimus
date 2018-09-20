@@ -18,12 +18,12 @@
             </v-avatar>
           </v-flex>
           <v-flex xs4>
-            <div class="headline">Majimbo Monteiro</div>
+            <div class="headline">{{ user.name }}</div>
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex sm12 md4>
-        <app-user-skills-list/>
+      <v-flex sm12 md8>
+        <app-user-skills-list :skills="user.skills"/>
       </v-flex>
     </v-layout>
     <app-user-projects-list/>
@@ -33,12 +33,26 @@
 <script>
 import UserSkillsList from './UserSkillsList';
 import UserProjectsList from './UserProjectsList';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
   components: {
     appUserSkillsList: UserSkillsList,
     appUserProjectsList: UserProjectsList
+  },
+  methods: {
+    ...mapActions('user', [
+      'userInfo'
+    ]),
+  },
+  computed: {
+    ...mapState('user', {
+      user: state => state.currentUser
+    })
+  },
+  created() {
+    this.userInfo('test');
   }
 }
 </script>

@@ -173,16 +173,20 @@ export default axios => {
       });
 
     mock
-      .onGet('/users/test/skills')
+      .onGet('/users/test')
       .reply(200, {
-        msg: [
-          {
-            'name': 'Developer'
-          },
-          {
-            'name': 'Artist'
-          }
-        ]
+        msg: {
+          name: 'Majimbo Monteiro',
+          email: 'majimbo_monteiro@teste.com.br',
+          skills: [
+            {
+              'name': 'Developer'
+            },
+            {
+              'name': 'Artist'
+            }
+          ]
+        }
       });
 
 };

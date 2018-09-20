@@ -9,7 +9,7 @@
         grid-list-md
       >
       <div class="headline">Projects</div>
-        <div v-if="projects.length > 0">
+        <div v-if="projects && projects.length > 0">
           <v-layout row wrap>
             <v-flex
               xs12

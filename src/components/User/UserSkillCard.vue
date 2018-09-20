@@ -3,7 +3,7 @@
     <v-card-title>
       <div>
         <v-icon large>
-          {{ skill.icon }}
+          {{ retrieveSkillIcon()(skill.name) }}
         </v-icon>
       </div>
       <div>
@@ -19,16 +19,11 @@ import { mapGetters } from 'vuex';
 export default {
   props: ['skill'],
   name: 'UserSkillCard',
-  data() {
-    return {
-      icon: this.retrieveSkillIcon(this.skill.name)
-    }
-  },
   methods: {
     ...mapGetters('skill', {
       retrieveSkillIcon: 'retrieveSkillIcon'
     })
-  },
+  }
 }
 </script>
 
