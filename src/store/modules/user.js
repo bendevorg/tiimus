@@ -8,6 +8,10 @@ const state = {
   projects: {
     all: [],
     filtered: []
+  },
+  skills: {
+    all: [],
+    filtered: []
   }
 };
 
@@ -34,6 +38,16 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
+  },
+  listSkills({ commit }, userId) {
+    API
+      .get(`/users/${userId}/skills`)
+      .then(response => {
+        commit('setSkills', response.data.msg);
+      })
+      .catch(error => {
+        //  TODO: Handle the error
+      })
   }
 };
 
@@ -43,6 +57,9 @@ const mutations = {
   },
   setProjects(state, projects) {
     state.projects.all = projects;
+  },
+  setSkills(state, skills) { 
+    state.skills.all = skills;
   }
 };
 

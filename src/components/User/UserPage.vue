@@ -5,8 +5,9 @@
   >
     <v-layout row 
       align-center
+      wrap
     >
-      <v-flex xs3>
+      <v-flex sm12 md3>
         <v-layout column align-center>
           <v-flex xs8>
             <v-avatar
@@ -21,8 +22,8 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs4>
-        
+      <v-flex sm12 md4>
+        <app-user-skills-list/>
       </v-flex>
     </v-layout>
     <app-user-projects-list/>
@@ -30,11 +31,13 @@
 </template>
 
 <script>
+import UserSkillsList from './UserSkillsList';
 import UserProjectsList from './UserProjectsList';
 
 export default {
   name: 'UserPage',
   components: {
+    appUserSkillsList: UserSkillsList,
     appUserProjectsList: UserProjectsList
   }
 }

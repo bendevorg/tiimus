@@ -107,27 +107,32 @@ export default axios => {
           {
             name: 'Developer',
             color: 'grey lighten-1',
-            text: 'black'
+            text: 'black',
+            icon: 'code'
           },
           {
-            name:'Artist',
+            name: 'Artist',
             color: 'grey darken-1',
-            text: 'white'
+            text: 'white',
+            icon: 'photo'
           },
           {
             name: 'Musician',
             color: 'grey darken-2',
-            text: 'white'
+            text: 'white',
+            icon: 'music_note'
           },
           {
             name: 'Writer',
             color: 'grey darken-3',
-            text: 'white'
+            text: 'white',
+            icon: 'create'
           },
           {
             name: 'Audio Mixer',
             color: 'grey darken-4',
-            text: 'white'
+            text: 'white',
+            icon: 'headset'
           }
         ]
       });
@@ -165,6 +170,19 @@ export default axios => {
             description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
           }
         ]
-      })
+      });
+
+    mock
+      .onGet('/users/test/skills')
+      .reply(200, {
+        msg: [
+          {
+            'name': 'Developer'
+          },
+          {
+            'name': 'Artist'
+          }
+        ]
+      });
 
 };

@@ -7,11 +7,15 @@ const state = {
 const getters = {
   retrieveSkillColor: state => skill => {
     const skillIndex = state.skills.findIndex(currentSkill => currentSkill.name === skill);
-    return skillIndex !== -1 ? state.skills[skillIndex].color : 'black'
+    return skillIndex !== -1 ? state.skills[skillIndex].color : 'black';
   },
   retrieveSkillTextColor: state => skill => {
     const skillIndex = state.skills.findIndex(currentSkill => currentSkill.name === skill);
-    return skillIndex !== -1 ? state.skills[skillIndex].text : 'white'
+    return skillIndex !== -1 ? state.skills[skillIndex].text : 'white';
+  },
+  retrieveSkillIcon: state => skill => {
+    const skillIndex = state.skills.findIndex(currentSkill => currentSkill.name == skill);
+    return skillIndex !== -1 ? state.skills[skillIndex].icon : 'help_outline';
   }
 };
 

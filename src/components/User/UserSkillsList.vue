@@ -2,54 +2,55 @@
   <v-layout 
       row 
       justify-center
-      align-center>
-    <v-flex xs12 sm12>
+      align-center
+    >
+    <v-flex xs12>
       <v-container
         fluid
         grid-list-md
       >
-      <div class="headline">Projects</div>
-        <div v-if="projects.length > 0">
+      <div class="headline">Skills</div>
+        <div v-if="skills.length > 0">
           <v-layout row wrap>
             <v-flex
               xs12
               sm6
               md3
-              v-for="project in projects"
-              :key="project.title"
+              v-for="skill in skills"
+              :key="skill.name"
             >
-              <app-user-project-card v-bind:project="project"/>   
+              <app-user-skill-card v-bind:skill="skill"/>   
             </v-flex>
           </v-layout>
         </div>
-        <div class="headline" v-else>This user haven't joined a project yet</div>
+        <div class="headline" v-else>This user does not have any skills yet.</div>
       </v-container>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import UserProjectCard from './UserProjectCard';
+import UserSkillCard from './UserSkillCard';
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  name: 'UserProjectsList',
+  name: 'UserSkillsList',
   components: {
-    appUserProjectCard: UserProjectCard
+    appUserSkillCard: UserSkillCard
   },
   computed: {
     ...mapState('user', {
-      projects: state => state.projects.all
+      skills: state => state.skills.all
     })
   },
   methods: {
     ...mapActions('user', [
-      'listProjects'
+      'listSkills'
     ])
   },
   created() {
     //  Todo: Use the actual user id
-    this.listProjects('test');
+    this.listSkills('test');
   }
 }
 </script>
