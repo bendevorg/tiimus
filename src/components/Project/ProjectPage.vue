@@ -8,12 +8,12 @@
 
       wrap
     >
-      <v-flex sm12 md3>
+      <v-flex sm12 md4>
         <v-layout column align-center>
           <v-flex xs8>
             <v-avatar
               color="grey lighten-4"
-              size="250px"
+              :size="imageSize"
               tile
             >
               <img :src="project.src">
@@ -59,7 +59,10 @@ export default {
   computed: {
     ...mapState('project', {
       project: state => state.currentProject
-    })
+    }),
+    imageSize() {
+      return this.$vuetify.breakpoint.smAndDown ? '250px' : '450px'
+    }
   },
   created() {
     this.projectInfo('test');
