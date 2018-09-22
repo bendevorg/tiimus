@@ -1,6 +1,10 @@
 <template>
   <div>
-    <app-projects-list/>
+    <app-projects-list
+    title="Willing to join a project?"
+    :projects="projects"
+    noProject="There is no project looking for user at the moment"
+    />
     <app-users-list
       title="Looking for a skilled user?"
       :users="users"
@@ -23,9 +27,15 @@ export default {
   computed: {
     ...mapState('user', {
       users: state => state.users.all
+    }),
+    ...mapState('project', {
+      projects: state => state.projects.all
     })
   },
   methods: {
+    ...mapActions('project', [
+      'listProjects'
+    ]),
     ...mapActions('user', [
       'listUsers'
     ]),
@@ -35,6 +45,7 @@ export default {
   },
   created() {
     this.listSkills();
+    this.listProjects();
     this.listUsers();
   }
 }

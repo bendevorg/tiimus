@@ -7,7 +7,7 @@
         fluid
         grid-list-md
       >
-        <div class="headline">Willing to join a project?</div>
+        <div class="headline">{{ title }}</div>
         <div v-if="projects && projects.length > 0">
           <v-layout row wrap>
             <v-flex
@@ -17,7 +17,7 @@
               v-for="project in projects"
               :key="project.title"
             >
-              <app-project-card v-bind:project="project"/>   
+              <app-project-card :project="project" :reduced="reduced"/>   
             </v-flex>
           </v-layout>
         </div>
@@ -29,29 +29,12 @@
 
 <script>
 import ProjectCard from './ProjectCard';
-import { mapActions, mapState } from 'vuex';
 
 export default {
+  props: ['title', 'projects', 'noProjects', 'reduced'],
   name: 'ProjectsList',
   components: {
     appProjectCard: ProjectCard
-  },
-  computed: {
-    ...mapState('project', {
-      projects: state => state.projects.all
-    })
-  },
-  methods: {
-    ...mapActions('project', [
-      'listProjects'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ])
-  },
-  created() {
-    this.listSkills();
-    this.listProjects();
   }
 }
 </script>

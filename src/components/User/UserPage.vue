@@ -30,20 +30,25 @@
           />
       </v-flex>
     </v-layout>
-    <app-user-projects-list/>
+    <app-projects-list
+      title="Projects"  
+      :projects="user.projects"
+      noProjects="This user haven't joined a project yet"
+      reduced=true
+    />
   </v-container>
 </template>
 
 <script>
 import SkillsList from '../Skill/SkillsList';
-import UserProjectsList from './UserProjectsList';
+import ProjectsList from '../Project/ProjectsList';
 import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
   components: {
     appSkillsList: SkillsList,
-    appUserProjectsList: UserProjectsList
+    appProjectsList: ProjectsList
   },
   methods: {
     ...mapActions('user', [

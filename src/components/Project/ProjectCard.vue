@@ -9,7 +9,7 @@
     <v-card-title>
       <div>
         <h3>{{ project.title }}</h3>
-        <v-chip v-for="skill in project.skills"
+        <v-chip v-if="!reduced" v-for="skill in project.skills"
           v-bind:key="skill"
           :color="retrieveSkillColor()(skill)" 
           :text-color="retrieveSkillTextColor()(skill)" 
@@ -17,18 +17,20 @@
       </div>
     </v-card-title>
 
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn icon @click="show = !show">
-        <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
+    <div v-if="!reduced">
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn icon @click="show = !show">
+          <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+        </v-btn>
+      </v-card-actions>
 
-    <v-slide-y-transition>
-      <v-card-text v-show="show">
-        {{ project.description }}
-      </v-card-text>
-    </v-slide-y-transition>
+      <v-slide-y-transition>
+        <v-card-text v-show="show">
+          {{ project.description }}
+        </v-card-text>
+      </v-slide-y-transition>
+    </div>
 
   </v-card>
 </template>
@@ -38,7 +40,7 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ProjectCard',
-  props: ['project'],
+  props: ['project', 'reduced'],
   data: () => ({
     show: false
   }),
