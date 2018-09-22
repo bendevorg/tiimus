@@ -206,6 +206,18 @@ export default axios => {
               'name': 'Musician'
             }
           ],
+          users: [
+            { 
+              name: 'Leonardo', 
+              image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+              skills: ['Developer', 'Artist']
+            },
+            { 
+              name: 'Lucas', 
+              image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+              skills: ['Developer', 'Musician']
+            }
+          ],
           tags: ['Action'],
           description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
         }

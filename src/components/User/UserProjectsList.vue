@@ -22,7 +22,7 @@
             </v-flex>
           </v-layout>
         </div>
-        <div class="headline" v-else>This user haven't joined a project yet</div>
+        <div class="title" v-else>This user haven't joined a project yet</div>
       </v-container>
     </v-flex>
   </v-layout>

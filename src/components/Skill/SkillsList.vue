@@ -23,7 +23,7 @@
             </v-flex>
           </v-layout>
         </div>
-        <div class="headline" v-else>{{ noSkills }}</div>
+        <div class="title" v-else>{{ noSkills }}</div>
       </v-container>
     </v-flex>
   </v-layout>

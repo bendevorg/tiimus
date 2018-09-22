@@ -32,19 +32,24 @@
           />
       </v-flex>
     </v-layout>
-    <!--<app-user-projects-list/>!-->
+    <app-users-list
+      title="Users in this project"
+      :users="project.users"
+      noUsers="This project does not have any users yet"
+    />
   </v-container>
 </template>
 
 <script>
 import SkillsList from '../Skill/SkillsList';
+import UsersList from '../User/UsersList';
 import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
   components: {
     appSkillsList: SkillsList,
-    //appProjectUsersList: ProjectUsersList
+    appUsersList: UsersList
   },
   methods: {
     ...mapActions('project', [

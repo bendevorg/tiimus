@@ -8,17 +8,20 @@
         grid-list-md
       >
         <div class="headline">Willing to join a project?</div>
-        <v-layout row wrap>
-          <v-flex
-            xs12
-            sm6
-            md3
-            v-for="project in projects"
-            :key="project.title"
-          >
-            <app-project-card v-bind:project="project"/>   
-          </v-flex>
-        </v-layout>
+        <div v-if="projects && projects.length > 0">
+          <v-layout row wrap>
+            <v-flex
+              xs12
+              sm6
+              md3
+              v-for="project in projects"
+              :key="project.title"
+            >
+              <app-project-card v-bind:project="project"/>   
+            </v-flex>
+          </v-layout>
+        </div>
+        <div class="title" v-else>{{ noProjects }}</div>
       </v-container>
     </v-flex>
   </v-layout>
