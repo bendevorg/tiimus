@@ -23,7 +23,11 @@
         </v-layout>
       </v-flex>
       <v-flex sm12 md8>
-        <app-user-skills-list :skills="user.skills"/>
+        <app-skills-list 
+          title="Skills" 
+          :skills="user.skills"
+          noSkills="This user does not have any skills yet."
+          />
       </v-flex>
     </v-layout>
     <app-user-projects-list/>
@@ -31,14 +35,14 @@
 </template>
 
 <script>
-import UserSkillsList from './UserSkillsList';
+import SkillsList from '../Skill/SkillsList';
 import UserProjectsList from './UserProjectsList';
 import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
   components: {
-    appUserSkillsList: UserSkillsList,
+    appSkillsList: SkillsList,
     appUserProjectsList: UserProjectsList
   },
   methods: {

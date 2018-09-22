@@ -38,7 +38,7 @@ const actions = {
       })
       .catch(error => {
         //  TODO: Handle the error
-      })
+      });
   },
   listProjects({ commit }, userId) {
     API

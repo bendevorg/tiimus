@@ -4,7 +4,8 @@ const state = {
   projects: {
     all: [],
     filtered: []
-  }
+  },
+  currentProject: {}
 };
 
 const getters = {
@@ -20,12 +21,25 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
+  },
+  projectInfo({ commit }, projectId) {
+    API
+      .get(`/projects/${projectId}`)
+      .then(response => {
+        commit('setCurrentProject', response.data.msg)
+      })
+      .catch(error => {
+        //  TODO: Handle the error
+      });
   }
 };
 
 const mutations = {
   setProjects(state, projects) {
     state.projects.all = projects;
+  },
+  setCurrentProject(state, project) {
+    state.currentProject = project;
   }
 };
 

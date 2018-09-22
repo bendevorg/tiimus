@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   props: ['skill'],
-  name: 'UserSkillCard',
+  name: 'SkillCard',
   methods: {
     ...mapGetters('skill', {
       retrieveSkillIcon: 'retrieveSkillIcon'

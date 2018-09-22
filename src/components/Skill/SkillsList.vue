@@ -9,7 +9,7 @@
         fluid
         grid-list-md
       >
-      <div class="headline">Skills</div>
+      <div class="headline">{{ title }}</div>
         <div v-if="skills && skills.length > 0">
           <v-layout row wrap>
             <v-flex
@@ -19,25 +19,25 @@
               v-for="skill in skills"
               :key="skill.name"
             >
-              <app-user-skill-card v-bind:skill="skill"/>   
+              <app-skill-card v-bind:skill="skill"/>   
             </v-flex>
           </v-layout>
         </div>
-        <div class="headline" v-else>This user does not have any skills yet.</div>
+        <div class="headline" v-else>{{ noSkills }}</div>
       </v-container>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import UserSkillCard from './UserSkillCard';
+import SkillCard from './SkillCard';
 import { mapActions } from 'vuex';
 
 export default {
-  props: ['skills'],
-  name: 'UserSkillsList',
+  props: ['title', 'skills', 'noSkills'],
+  name: 'SkillsList',
   components: {
-    appUserSkillCard: UserSkillCard
+    appSkillCard: SkillCard
   },
   methods: {
     ...mapActions('skill', [

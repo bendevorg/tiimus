@@ -189,4 +189,26 @@ export default axios => {
         }
       });
 
+    mock
+      .onGet('/projects/test')
+      .reply(200, {
+        msg: {
+          title: 'Brawll',
+          src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 
+          skills: [
+            {
+              'name': 'Developer'
+            },
+            {
+              'name': 'Artist'
+            },
+            {
+              'name': 'Musician'
+            }
+          ],
+          tags: ['Action'],
+          description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
+        }
+      })
+
 };
