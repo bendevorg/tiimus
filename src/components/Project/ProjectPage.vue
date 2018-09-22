@@ -20,7 +20,7 @@
             </v-avatar>
           </v-flex>
           <v-flex xs4>
-            <div class="headline">{{ project.title }}</div>
+            <div class="headline">{{ project.name }}</div>
           </v-flex>
         </v-layout>
       </v-flex>

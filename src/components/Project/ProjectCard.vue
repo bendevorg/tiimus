@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="'/projects/' + project.title">
+  <v-card :to="'/projects/' + project.name">
     <v-card-media
       :src="project.src"
       height="200px"
@@ -8,7 +8,7 @@
 
     <v-card-title>
       <div>
-        <h3>{{ project.title }}</h3>
+        <h3>{{ project.name }}</h3>
         <v-chip v-if="!reduced" v-for="skill in project.skills"
           v-bind:key="skill"
           :color="retrieveSkillColor()(skill)" 

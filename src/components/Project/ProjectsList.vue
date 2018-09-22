@@ -15,7 +15,7 @@
               sm6
               md3
               v-for="project in projects"
-              :key="project.title"
+              :key="project.name"
             >
               <app-project-card :project="project" :reduced="reduced"/>   
             </v-flex>
