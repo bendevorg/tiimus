@@ -22,31 +22,47 @@ export default axios => {
     .onGet('/auth/sign_out')
     .reply(200, {});
 
-    mock
+  mock
+    .onGet('/user')
+    .reply(200, {
+      msg: {
+        id: 'teste',
+        name: 'Guilherme',
+        image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+        skills: ['Developer']
+      }
+    });
+
+  mock
     .onGet('/users')
     .reply(200, {
       msg: [
         { 
+          id: 'teste',
           name: 'Guilherme', 
           image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', 
           skills: ['Developer']
         },
         { 
+          id: 'teste',
           name: 'Leonardo', 
           image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Artist']
         },
         { 
+          id: 'teste',
           name: 'Lucas', 
           image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Musician']
         },
         { 
+          id: 'teste',
           name: 'Michel', 
           image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Artist']
         },
         { 
+          id: 'teste',
           name: 'Siqueira', 
           image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Writer']
@@ -59,6 +75,7 @@ export default axios => {
     .reply(200, {
       msg: [
         { 
+          id: 'teste',
           name: 'Brawll', 
           src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 
           skills: ['Developer', 'Artist', 'Musician'],
@@ -66,6 +83,7 @@ export default axios => {
           description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
         },
         { 
+          id: 'teste',
           name: 'Jacto Rally', 
           src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', 
           skills: ['Writer'],
@@ -73,6 +91,7 @@ export default axios => {
           description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
         },
         { 
+          id: 'teste',
           name: 'Into the light', 
           src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
           skills: ['Developer', 'Audio Mixer'],
@@ -80,6 +99,7 @@ export default axios => {
           description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
         },
         { 
+          id: 'teste',
           name: 'Disk Overdrive', 
           src: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg', 
           skills: ['Artist'],

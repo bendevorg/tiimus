@@ -6,7 +6,7 @@
     <v-avatar
       color="grey lighten-4"
     >
-      <img src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg" alt="avatar">
+      <img :src=user.image alt="avatar">
     </v-avatar>
   </v-btn>
   <v-list>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserMenu',
@@ -30,7 +30,7 @@ export default {
     return {
       items: [
         {
-          title: 'To be implemented',
+          title: 'My profile',
           click: ''
         },
         {
@@ -43,7 +43,18 @@ export default {
   methods: {
     ...mapActions('auth', [
       'signOut'
+    ]),
+    ...mapActions('user', [
+      'loggedInfo'
     ])
+  },
+  computed: {
+    ...mapState('user', {
+      user: state => state.loggedUser
+    })
+  },
+  mounted() {
+    this.loggedInfo();
   }
 }
 </script>

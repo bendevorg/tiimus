@@ -13,6 +13,7 @@ const state = {
     all: [],
     filtered: []
   },
+  loggedUser: {},
   currentUser: {}
 };
 
@@ -26,7 +27,17 @@ const actions = {
       .then(response => {
         commit('setUsers', response.data.msg);
       })
-      .catch(error => {
+      .catch(err => {
+        //  TODO: Handle the error
+      });
+  },
+  loggedInfo({ commit }) {
+    API
+      .get('/user')
+      .then(response => {
+        commit('setLoggedUser', response.data.msg);
+      })
+      .catch(err => {
         //  TODO: Handle the error
       });
   },
@@ -55,6 +66,9 @@ const actions = {
 const mutations = {
   setUsers(state, users) {
     state.users.all = users;
+  },
+  setLoggedUser(state, user) {
+    state.loggedUser = user;
   },
   setCurrentUser(state, user) {
     state.currentUser = user
