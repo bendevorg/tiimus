@@ -34,6 +34,10 @@ export default {
           click: this.goToUserPage
         },
         {
+          title: 'Edit profile',
+          click: this.goToUserEdit
+        },
+        {
           title: 'Sign out',
           click: this.signOut
         }
@@ -48,7 +52,10 @@ export default {
       'loggedInfo'
     ]),
     goToUserPage() {
-      this.$router.push({ name: 'User page', params: { id: this.user.id } })
+      this.$router.push({ name: 'User page', params: { id: this.user.id } });
+    },
+    goToUserEdit() {
+      this.$router.push({ name: 'User edit' });
     }
   },
   computed: {
