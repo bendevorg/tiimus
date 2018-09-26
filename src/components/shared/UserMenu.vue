@@ -31,7 +31,7 @@ export default {
       items: [
         {
           title: 'My profile',
-          click: ''
+          click: this.goToUserPage
         },
         {
           title: 'Sign out',
@@ -46,7 +46,10 @@ export default {
     ]),
     ...mapActions('user', [
       'loggedInfo'
-    ])
+    ]),
+    goToUserPage() {
+      this.$router.push({ name: 'User page', params: { id: this.user.id } })
+    }
   },
   computed: {
     ...mapState('user', {
