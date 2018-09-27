@@ -54,11 +54,32 @@
                   ></v-combobox>
                 </v-flex>
                 <v-flex sm12 md4>
-                  <v-btn large block>
+                  <v-btn large block @click="dialog = true">
                     Update my info
                   </v-btn>
                 </v-flex>
               </v-layout>
+              <v-dialog
+                v-model="dialog"
+                max-width="290"
+              >
+                <v-card>
+                  <v-card-text class="headline">
+                    Update complete!
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                      flat="flat"
+                      @click="dialog = false"
+                    >
+                      Done
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </v-container>
           </v-form>
         </v-card>
@@ -71,6 +92,11 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      dialog: false
+    }
+  },
   methods: {
     ...mapActions('user', [
       'loggedInfo'
