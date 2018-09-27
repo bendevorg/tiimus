@@ -53,7 +53,7 @@ export default {
   methods: {
     ...mapActions('user', [
       'userInfo'
-    ]),
+    ])
   },
   computed: {
     ...mapState('user', {
