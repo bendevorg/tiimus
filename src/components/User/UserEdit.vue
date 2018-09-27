@@ -11,10 +11,9 @@
               <v-layout
                 row
                 align-start
-             
                 wrap
               >
-                <v-flex xs12>
+                <v-flex xs12 class="text-xs-center">
                   <v-avatar
                     :tile=false
                     size=200
