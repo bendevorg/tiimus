@@ -260,14 +260,18 @@ export default axios => {
           ],
           users: [
             { 
-              name: 'Leonardo', 
+              id: 'teste',
+              name: 'Leonardo',
               image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
-              skills: ['Developer', 'Artist']
+              skills: ['Developer', 'Artist'],
+              role: 'owner'
             },
             { 
+              id: 'teste',
               name: 'Lucas', 
               image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
-              skills: ['Developer', 'Musician']
+              skills: ['Developer', 'Musician'],
+              role: 'user'
             }
           ],
           tags: ['Action'],

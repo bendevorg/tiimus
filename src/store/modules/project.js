@@ -39,6 +39,10 @@ const mutations = {
     state.projects.all = projects;
   },
   setCurrentProject(state, project) {
+    let owner = project.users.find(user => {
+      return user.role === 'owner';
+    });
+    project.ownerId = owner ? owner.id : null;
     state.currentProject = project;
   }
 };

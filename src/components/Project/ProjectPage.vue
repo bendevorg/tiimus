@@ -5,7 +5,6 @@
   >
     <v-layout row 
       align-center
-
       wrap
     >
       <v-flex sm12 md4>
@@ -20,7 +19,7 @@
             </v-avatar>
           </v-flex>
           <v-flex xs4>
-            <div class="headline">{{ project.name }}</div>
+            <div class="display-1">{{ project.name }}</div>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -30,6 +29,24 @@
           :skills="project.skills"
           noSkills="This project does not need any skills at the moment."
           />
+        <v-layout 
+          row 
+          justify-start
+          align-start
+          v-if="user.id == project.ownerId"
+        >
+          <v-flex xs12 md6>
+            <v-container fluid>
+              <v-layout>
+                <v-flex xs12>
+                  <v-btn large block>
+                    EDIT PROJECT
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
     <app-users-list
@@ -55,16 +72,23 @@ export default {
     ...mapActions('project', [
       'projectInfo'
     ]),
+    ...mapActions('user', [
+      'loggedInfo'
+    ])
   },
   computed: {
     ...mapState('project', {
       project: state => state.currentProject
+    }),
+    ...mapState('user', {
+      user: state => state.loggedUser
     }),
     imageSize() {
       return this.$vuetify.breakpoint.smAndDown ? '250px' : '450px'
     }
   },
   created() {
+    this.loggedInfo();
     this.projectInfo('test');
   }
 }
