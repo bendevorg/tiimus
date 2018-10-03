@@ -39,7 +39,7 @@
             <v-container fluid>
               <v-layout>
                 <v-flex xs12>
-                  <v-btn large block>
+                  <v-btn large block :to="'/projects/' + project.id + '/edit'">
                     EDIT PROJECT
                   </v-btn>
                 </v-flex>

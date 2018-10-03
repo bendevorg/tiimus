@@ -3,6 +3,7 @@ import UserPage from './components/User/UserPage';
 import UserEdit from './components/User/UserEdit';
 import ProjectCreation from './components/Project/ProjectCreation';
 import ProjectPage from './components/Project/ProjectPage';
+import ProjectEdit from './components/Project/ProjectEdit';
 
 const routes = [
   {
@@ -38,6 +39,13 @@ const routes = [
     name: 'Project page',
     components: {
       default: ProjectPage
+    }
+  },
+  {
+    path: '/projects/:id/edit',
+    name: 'Project edit',
+    components: {
+      default: ProjectEdit
     }
   }
 ];
