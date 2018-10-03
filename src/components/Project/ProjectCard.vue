@@ -16,7 +16,7 @@
           small>{{ skill }}</v-chip>
       </div>
     </v-card-title>
-
+<!--
     <div v-if="!reduced">
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -31,6 +31,7 @@
         </v-card-text>
       </v-slide-y-transition>
     </div>
+    !-->
 
   </v-card>
 </template>

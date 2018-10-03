@@ -32,7 +32,7 @@
                   label="First name"
                   :rules="nameRules"
                   type="name"
-                  validate-on-blur=true
+                  :validate-on-blur=true
                   @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
@@ -42,7 +42,7 @@
                   label="Email"
                   :rules="emailRules"
                   type="email"
-                  validate-on-blur=true
+                  :validate-on-blur=true
                   @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
@@ -52,7 +52,7 @@
                   label="Password"
                   :rules="passwordRules"
                   type="password"
-                  validate-on-blur=true
+                  :validate-on-blur=true
                   @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
