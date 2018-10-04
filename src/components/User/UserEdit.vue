@@ -53,7 +53,7 @@
                     chips
                   ></v-combobox>
                 </v-flex>
-                <v-flex sm12 md4>
+                <v-flex xs12>
                   <v-btn large block @click="dialog = true">
                     Update my info
                   </v-btn>
