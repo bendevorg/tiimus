@@ -245,6 +245,7 @@ export default axios => {
       .onGet('/projects/test')
       .reply(200, {
         msg: {
+          id: 'test',
           name: 'Brawll',
           src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 
           skills: [

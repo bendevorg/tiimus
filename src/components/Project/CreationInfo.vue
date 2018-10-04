@@ -32,9 +32,9 @@
           v-model="description"
           label="Description"
           :rules="descriptionRules"
-          height=50
-          :validate-on-blur="true"
-          :auto-grow="true"
+          rows=1
+          validate-on-blur
+          auto-grow
           required
           @blur="saveInfo"
         ></v-textarea>
