@@ -16,7 +16,6 @@
           flat>Create a project
         </v-btn>
       </router-link>
-      <v-btn flat>Link Two</v-btn>
       <app-user-menu v-if="isLogged"/>
       <app-login v-else/>
     </v-toolbar-items>
