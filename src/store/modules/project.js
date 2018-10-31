@@ -9,6 +9,15 @@ const state = {
 };
 
 const getters = {
+  isUserInProject: state => userId => {
+    if (userId && state.currentProject.users) {
+      const userInProject = state.currentProject.users.includes(user => {
+        return userId === user.id;
+      });
+      return !userInProject ? userId === state.currentProject.ownerId : userInProject;
+    }
+    return false;
+  }
 };
 
 const actions = {

@@ -28,25 +28,35 @@
           title="Needed skills"
           :skills="project.skills"
           noSkills="This project does not need any skills at the moment."
-          />
-        <v-layout 
-          row 
-          justify-start
-          align-start
-          v-if="user.id == project.ownerId"
-        >
-          <v-flex xs12 md6>
-            <v-container fluid>
-              <v-layout>
-                <v-flex xs12>
-                  <v-btn large block :to="'/projects/' + project.id + '/edit'">
-                    EDIT PROJECT
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-flex>
-        </v-layout>
+        />
+        <v-container>
+          <v-layout 
+            row 
+            justify-start
+            align-start
+            v-if="!isUserInProject()(user.id)"
+          >
+            <v-flex xs12 md6>
+              <v-btn large block :to="'/projects/' + project.id + '/edit'">
+                ASK TO JOIN
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
+        <v-container>
+          <v-layout 
+            row 
+            justify-start
+            align-start
+            v-if="user.id == project.ownerId"
+          >
+            <v-flex xs12 md6>
+              <v-btn large block :to="'/projects/' + project.id + '/edit'">
+                EDIT PROJECT
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
       </v-flex>
     </v-layout>
     <app-users-list
@@ -60,15 +70,18 @@
 <script>
 import SkillsList from '../Skill/SkillsList';
 import UsersList from '../User/UsersList';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'UserPage',
+  name: 'ProjectPage',
   components: {
     appSkillsList: SkillsList,
     appUsersList: UsersList
   },
   methods: {
+    ...mapGetters('project', [
+      'isUserInProject'
+    ]),
     ...mapActions('project', [
       'projectInfo'
     ]),
