@@ -58,6 +58,27 @@
           </v-layout>
         </v-container>
       </v-flex>
+      <v-dialog
+        v-model="dialog"
+        max-width="400"
+      >
+        <v-card>
+          <v-card-text class="headline">
+            The project owner has received your request! Now you just have to wait for the owner approval
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              flat="flat"
+              @click="dialog = false"
+            >
+              Done
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-layout>
     <app-users-list
       title="Users in this project"
@@ -74,6 +95,11 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ProjectPage',
+  data() {
+    return {
+      dialog: false
+    }
+  },
   components: {
     appSkillsList: SkillsList,
     appUsersList: UsersList
@@ -89,8 +115,9 @@ export default {
     ...mapActions('user', [
       'loggedInfo'
     ]),
-    askToJoinProject() {
-      this.askToJoin(this.project.id);
+    async askToJoinProject() {
+      await this.askToJoin(this.project.id);
+      this.dialog = true;
     }
   },
   computed: {
