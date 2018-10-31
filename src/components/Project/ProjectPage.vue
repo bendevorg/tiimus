@@ -37,7 +37,7 @@
             v-if="!isUserInProject()(user.id)"
           >
             <v-flex xs12 md6>
-              <v-btn large block :to="'/projects/' + project.id + '/edit'">
+              <v-btn large block @click="askToJoin(project.id)">
                 ASK TO JOIN
               </v-btn>
             </v-flex>
@@ -83,7 +83,8 @@ export default {
       'isUserInProject'
     ]),
     ...mapActions('project', [
-      'projectInfo'
+      'projectInfo',
+      'askToJoin'
     ]),
     ...mapActions('user', [
       'loggedInfo'

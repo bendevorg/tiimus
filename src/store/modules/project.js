@@ -40,6 +40,17 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
+  },
+  askToJoin({ commit }, projectId) {
+    API
+      .post(`/projects/${projectId}/ask_join`)
+      .then(response => {
+        return true;
+      })
+      .catch(err => {
+        //   TOOD: Handle the error
+        return false;
+      })
   }
 };
 
