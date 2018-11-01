@@ -1,9 +1,10 @@
 <template>
   <v-card :to="'/projects/' + project.name">
-    <v-card-media
+    <v-img
       :src="project.src"
       height="200px"
-    />
+    >
+    </v-img>
 
     <v-card-title>
       <div>
