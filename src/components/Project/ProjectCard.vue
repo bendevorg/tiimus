@@ -9,8 +9,10 @@
     <v-card-title>
       <div>
         <h3>{{ project.name }}</h3>
-        <v-chip v-if="!reduced" v-for="skill in project.skills"
-          v-bind:key="skill"
+        <v-chip 
+          v-for="skill in project.skills"
+          v-if="!reduced"
+          :key="skill"
           :color="retrieveSkillColor()(skill)" 
           :text-color="retrieveSkillTextColor()(skill)" 
           small>{{ skill }}</v-chip>

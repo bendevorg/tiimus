@@ -9,6 +9,15 @@ const state = {
 };
 
 const getters = {
+  isUserInProject: state => userId => {
+    if (userId && state.currentProject.users) {
+      const userInProject = state.currentProject.users.includes(user => {
+        return userId === user.id;
+      });
+      return !userInProject ? userId === state.currentProject.ownerId : userInProject;
+    }
+    return false;
+  }
 };
 
 const actions = {
@@ -31,6 +40,17 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
+  },
+  askToJoin({ commit }, projectId) {
+    API
+      .post(`/projects/${projectId}/ask_join`)
+      .then(response => {
+        return true;
+      })
+      .catch(err => {
+        //   TOOD: Handle the error
+        return false;
+      })
   }
 };
 

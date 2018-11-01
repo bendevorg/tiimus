@@ -26,7 +26,7 @@ export default axios => {
     .onGet('/user')
     .reply(200, {
       msg: {
-        id: 'teste',
+        id: 'testa',
         name: 'Guilherme',
         email: 'guilherme@teste.com.br',
         lookingForProject: true,
@@ -282,6 +282,12 @@ export default axios => {
           tags: ['Action'],
           description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.'
         }
+      });
+
+    mock
+      .onPost('/projects/test/ask_join')
+      .reply(200, {
+        msg: 'Invite done.'
       });
 
 };
