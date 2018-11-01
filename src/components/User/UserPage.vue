@@ -27,13 +27,13 @@
           title="Skills" 
           :skills="user.skills"
           noSkills="This user does not have any skills yet."
-          />
+        />
           <v-container>
           <v-layout 
             row 
             justify-start
             align-start
-            v-if="true"
+            v-if="ownedProjects && ownedProjects.length > 0"
           >
             <v-flex xs12 md6>
               <v-btn large block>
@@ -66,15 +66,18 @@ export default {
   },
   methods: {
     ...mapActions('user', [
+      'loggedInfo',
       'userInfo'
     ])
   },
   computed: {
     ...mapState('user', {
-      user: state => state.currentUser
+      user: state => state.currentUser,
+      ownedProjects: state => state.loggedUser.ownedProjects
     })
   },
   created() {
+    this.loggedInfo();
     this.userInfo('test');
   }
 }
