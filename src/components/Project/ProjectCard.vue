@@ -6,8 +6,13 @@
     />
 
     <v-card-title>
-      <div>
+      <div class='card-content'>
         <h3>{{ project.name }}</h3>
+        <div class="description">
+          <div class="text-truncate">
+            {{ project.description }}
+          </div>
+        </div>
         <v-chip 
           v-for="skill in project.skills"
           v-if="!reduced"
@@ -54,4 +59,10 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+  .card-content{
+    width: 100%
+  }
+</style>
 
