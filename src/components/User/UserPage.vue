@@ -28,6 +28,20 @@
           :skills="user.skills"
           noSkills="This user does not have any skills yet."
           />
+          <v-container>
+          <v-layout 
+            row 
+            justify-start
+            align-start
+            v-if="true"
+          >
+            <v-flex xs12 md6>
+              <v-btn large block>
+                INVITE TO PROJECT
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
       </v-flex>
     </v-layout>
     <app-projects-list
