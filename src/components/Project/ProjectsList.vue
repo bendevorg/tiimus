@@ -4,18 +4,16 @@
     <v-flex xs12 sm12>
 
       <v-container
-        fluid
         grid-list-md
+        fluid
       >
         <div class="headline">{{ title }}</div>
         <div v-if="projects && projects.length > 0">
           <v-layout row wrap>
             <v-flex
-              xs12
-              sm6
-              md3
               v-for="project in projects"
               :key="project.name"
+              :class="'md'+flexCardSize"
             >
               <app-project-card :project="project" :reduced="reduced"/>   
             </v-flex>
@@ -32,9 +30,21 @@ import ProjectCard from './ProjectCard';
 
 export default {
   props: ['title', 'projects', 'noProjects', 'reduced'],
-  name: 'ProjectsList',
   components: {
     appProjectCard: ProjectCard
+  },
+  name: 'ProjectsList',
+  computed: {
+    flexCardSize: function (){
+      let projLen = 0;
+      if (this.projects.length > 4){
+        projLen = 3;
+      } else {
+        projLen = 12/this.projects.length;
+      }
+      console.log(projLen)
+      return projLen;
+    } 
   }
 }
 </script>
