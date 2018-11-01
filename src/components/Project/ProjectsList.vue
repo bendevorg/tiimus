@@ -14,6 +14,7 @@
               v-for="project in projects"
               :key="project.name"
               :class="'md'+flexCardSize"
+              xs12
             >
               <app-project-card :project="project" :reduced="reduced"/>   
             </v-flex>
