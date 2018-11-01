@@ -1,21 +1,26 @@
 <template>
-  <v-container fluid grid-list-md>
-    <v-layout row wrap>
+  <v-container 
+    fluid 
+    grid-list-md>
+    <v-layout 
+      row 
+      wrap>
       <v-flex xs12>
         <h1>Tell us a little about your project</h1>
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
+    <v-layout 
+      row 
+      wrap>
       <v-flex xs8>
         <v-text-field
           v-model="name"
-          label="Name" 
-          :rules="nameRules"
+          :rules="nameRules" 
           :validate-on-blur="true"
+          label="Name"
           type="name"
-          @blur="saveInfo"
-          required>
-        </v-text-field>
+          required
+          @blur="saveInfo"/>
       </v-flex>
       <v-flex xs8>
         <v-combobox
@@ -25,19 +30,19 @@
           multiple
           chips
           @blur="saveInfo"
-        ></v-combobox>
+        />
       </v-flex>
       <v-flex xs8>
         <v-textarea
           v-model="description"
-          label="Description"
           :rules="descriptionRules"
-          rows=1
+          label="Description"
+          rows="1"
           validate-on-blur
           auto-grow
           required
           @blur="saveInfo"
-        ></v-textarea>
+        />
       </v-flex>
     </v-layout>
   </v-container>

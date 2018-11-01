@@ -1,26 +1,34 @@
 <template>
-  <v-layout row justify-center
-      align-center>
-    <v-flex xs12 sm12>
+  <v-layout 
+    row 
+    justify-center
+    align-center>
+    <v-flex 
+      xs12 
+      sm12>
       <v-container
         fluid
         grid-list-md
       >
         <div class="headline">{{ title }}</div>
         <div v-if="users && users.length > 0">
-          <v-layout row wrap>
+          <v-layout 
+            row 
+            wrap>
             <v-flex
+              v-for="user in users"
+              :key="user.name"
               xs12
               sm6
               md3
-              v-for="user in users"
-              :key="user.name"
             >
-              <app-user-card v-bind:user="user"/>   
+              <app-user-card :user="user"/>   
             </v-flex>
           </v-layout>
         </div>
-        <div class="title" v-else>{{ noUsers }}</div>
+        <div 
+          v-else 
+          class="title">{{ noUsers }}</div>
       </v-container>
     </v-flex>
   </v-layout>
@@ -31,11 +39,11 @@ import UserCard from './UserCard';
 import { mapActions, mapState } from 'vuex';
 
 export default {
-  props: ['title', 'users', 'noUsers'],
   name: 'UsersList',
   components: {
     appUserCard: UserCard
-  }
+  },
+  props: ['title', 'users', 'noUsers'],
 }
 </script>
 

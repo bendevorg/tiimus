@@ -1,28 +1,34 @@
 <template>
-  <v-container fluid grid-list-md>
-    <v-layout row wrap>
+  <v-container 
+    fluid 
+    grid-list-md>
+    <v-layout 
+      row 
+      wrap>
       <v-flex xs8>
         <h1>
-          {{name}}
+          {{ name }}
         </h1>
         <p>
-          {{description}}
+          {{ description }}
         </p>
         <h2>
           A game about
         </h2>
-        <v-chip v-for="tag in tags"
-          v-bind:key="tag"
+        <v-chip 
+          v-for="tag in tags"
+          :key="tag"
           :color="retrieveSkillColor()(tag)" 
           :text-color="retrieveSkillTextColor()(tag)" 
           small>{{ tag }}
         </v-chip>
-        <br/>
+        <br>
         <h2>
           Is looking for 
         </h2>
-        <v-chip v-for="skill in skills"
-          v-bind:key="skill"
+        <v-chip 
+          v-for="skill in skills"
+          :key="skill"
           :color="retrieveSkillColor()(skill)" 
           :text-color="retrieveSkillTextColor()(skill)" 
           small>{{ skill }}

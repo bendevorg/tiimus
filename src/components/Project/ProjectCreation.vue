@@ -1,4 +1,4 @@
-<template v-on:update-project-create-form="test">
+<template @update-project-create-form="test">
 
   <v-container fluid>
     <v-stepper v-model="e1">
@@ -16,7 +16,7 @@
           <v-divider
             v-if="index + 1 !== steps.length"
             :key="index + 1"
-          ></v-divider>
+          />
         </template>
       </v-stepper-header>
 
@@ -28,12 +28,12 @@
         >
           <component 
             v-if="true"
-            v-on:update-project-info="updateProjectInfo"
-            v-bind:name="project.name"
-            v-bind:tags="project.tags"
-            v-bind:description="project.description"
-            v-bind:skills="project.skills"
-            :is="step.component"/>
+            :name="project.name"
+            :tags="project.tags"
+            :description="project.description"
+            :skills="project.skills"
+            :is="step.component"
+            @update-project-info="updateProjectInfo"/>
           <v-layout wrap>
             <v-btn
               v-if="index < steps.length - 1"
@@ -56,7 +56,7 @@
             >
               Previous
             </v-btn>
-            <v-spacer></v-spacer>
+            <v-spacer/>
             <v-btn 
               flat
               @click="previousPage"

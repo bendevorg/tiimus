@@ -1,14 +1,14 @@
 <template>
   <div>
     <app-projects-list
-    title="Willing to join a project?"
-    :projects="projects"
-    noProject="There is no project looking for user at the moment"
+      :projects="projects"
+      title="Willing to join a project?"
+      no-project="There is no project looking for user at the moment"
     />
     <app-users-list
-      title="Looking for a skilled user?"
       :users="users"
-      noUsers="There is no users looking for a project right now"
+      title="Looking for a skilled user?"
+      no-users="There is no users looking for a project right now"
     />
   </div>
 </template>

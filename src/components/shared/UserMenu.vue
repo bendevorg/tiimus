@@ -1,23 +1,25 @@
 <template>
   <v-menu offset-y>
-  <v-btn 
-  slot="activator"
-  flat>
-    <v-avatar
-      color="grey lighten-4"
-    >
-      <img :src=user.image alt="avatar">
-    </v-avatar>
-  </v-btn>
-  <v-list>
-    <v-list-tile
-      v-for="(item, index) in items"
-      :key="index"
-      @click=item.click
-    >
-      <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-    </v-list-tile>
-  </v-list>
+    <v-btn 
+      slot="activator"
+      flat>
+      <v-avatar
+        color="grey lighten-4"
+      >
+        <img 
+          :src="user.image" 
+          alt="avatar">
+      </v-avatar>
+    </v-btn>
+    <v-list>
+      <v-list-tile
+        v-for="(item, index) in items"
+        :key="index"
+        @click="item.click"
+      >
+        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+      </v-list-tile>
+    </v-list>
   </v-menu>
 </template>
 

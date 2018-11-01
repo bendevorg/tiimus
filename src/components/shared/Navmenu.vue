@@ -1,16 +1,20 @@
 <template>
   <v-toolbar>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar-side-icon/>
 
-      <router-link class="nav-link" to="/">
-        <v-toolbar-title>
-          Buildev
-        </v-toolbar-title>
-      </router-link>
+    <router-link 
+      class="nav-link" 
+      to="/">
+      <v-toolbar-title>
+        Buildev
+      </v-toolbar-title>
+    </router-link>
 
-    <v-spacer></v-spacer>
+    <v-spacer/>
     <v-toolbar-items class="hidden-sm-and-down">
-      <router-link class="nav-link" to="/project/create">
+      <router-link 
+        class="nav-link" 
+        to="/project/create">
         <v-btn 
           v-if="isLogged" 
           flat>Create a project
@@ -29,11 +33,11 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Navmenu',
-  data() {
-  },
   components: {
     appLogin: Login,
     appUserMenu: UserMenu
+  },
+  data() {
   },
   computed: {
     ...mapState('auth', {

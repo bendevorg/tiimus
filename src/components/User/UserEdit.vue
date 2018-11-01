@@ -4,7 +4,9 @@
       align-center
       justify-center
     >
-      <v-flex sm12 md6>
+      <v-flex 
+        sm12 
+        md6>
         <v-card>
           <v-form>
             <v-container fluid>
@@ -13,13 +15,15 @@
                 align-start
                 wrap
               >
-                <v-flex xs12 class="text-xs-center">
+                <v-flex 
+                  xs12 
+                  class="text-xs-center">
                   <v-avatar
-                    :tile=false
-                    size=200
+                    :tile="false"
+                    size="200"
                     color="grey lighten-4"
                   >
-                    <img :src="user.image"/>
+                    <img :src="user.image">
                   </v-avatar>
                 </v-flex>
                 <v-flex xs12>
@@ -27,21 +31,21 @@
                     v-model="user.name"
                     label="Name"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
                     v-model="user.email"
                     label="E-mail"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-checkbox
                     v-model="user.lookingForProject"
                     label="Are you open to join new projects?"
                     required
-                  ></v-checkbox>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-combobox
@@ -51,10 +55,13 @@
                     label="Select your skills"
                     multiple
                     chips
-                  ></v-combobox>
+                  />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="dialog = true">
+                  <v-btn 
+                    large 
+                    block 
+                    @click="dialog = true">
                     Update my info
                   </v-btn>
                 </v-flex>
@@ -69,7 +76,7 @@
                   </v-card-text>
 
                   <v-card-actions>
-                    <v-spacer></v-spacer>
+                    <v-spacer/>
 
                     <v-btn
                       flat="flat"

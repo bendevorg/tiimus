@@ -2,14 +2,17 @@
   <v-card :to="'/users/' + user.id">
     <v-layout justify-center>
       <v-flex xs5>
-        <v-layout row align-center>
-        <v-avatar
-          color="grey lighten-4"
-          size="95px"
-        >
-          <img 
-            :src="user.image" alt="avatar"/>
-        </v-avatar>
+        <v-layout 
+          row 
+          align-center>
+          <v-avatar
+            color="grey lighten-4"
+            size="95px"
+          >
+            <img 
+              :src="user.image" 
+              alt="avatar">
+          </v-avatar>
         </v-layout>
       </v-flex>
       <v-flex xs7>
@@ -20,11 +23,12 @@
         </v-card-title>
       </v-flex>
     </v-layout>
-    <v-divider light></v-divider>
+    <v-divider light/>
     <v-card-actions>
       <div>
-        <v-chip v-for="skill in user.skills"
-          v-bind:key="skill"
+        <v-chip 
+          v-for="skill in user.skills"
+          :key="skill"
           :color="retrieveSkillColor()(skill)" 
           :text-color="retrieveSkillTextColor()(skill)" 
           small>{{ skill }}</v-chip>

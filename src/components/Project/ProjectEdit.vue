@@ -4,7 +4,9 @@
       align-center
       justify-center
     >
-      <v-flex sm12 md6>
+      <v-flex 
+        sm12 
+        md6>
         <v-card>
           <v-form>
             <v-container fluid>
@@ -13,13 +15,15 @@
                 align-start
                 wrap
               >
-                <v-flex xs12 class="text-xs-center">
+                <v-flex 
+                  xs12 
+                  class="text-xs-center">
                   <v-avatar
-                    :tile=true
-                    size=300
+                    :tile="true"
+                    size="300"
                     color="grey lighten-4"
                   >
-                    <img :src="project.src"/>
+                    <img :src="project.src">
                   </v-avatar>
                 </v-flex>
                 <v-flex xs12>
@@ -27,18 +31,18 @@
                     v-model="project.name"
                     label="Name"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-textarea
                     v-model="project.description"
+                    :rules="descriptionRules"
                     label="Description"
                     required
-                    :rules="descriptionRules"
                     validate-on-blur
                     auto-grow
-                    rows=1
-                  ></v-textarea>
+                    rows="1"
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-combobox
@@ -48,7 +52,7 @@
                     label="Select some tags for your project"
                     multiple
                     chips
-                  ></v-combobox>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-combobox
@@ -58,10 +62,13 @@
                     label="Select the skills you need"
                     multiple
                     chips
-                  ></v-combobox>
+                  />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="dialog = true">
+                  <v-btn 
+                    large 
+                    block 
+                    @click="dialog = true">
                     Update project
                   </v-btn>
                 </v-flex>
@@ -76,7 +83,7 @@
                   </v-card-text>
 
                   <v-card-actions>
-                    <v-spacer></v-spacer>
+                    <v-spacer/>
 
                     <v-btn
                       flat="flat"
