@@ -31,7 +31,40 @@ export default axios => {
         email: 'guilherme@teste.com.br',
         lookingForProject: true,
         image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
-        skills: ['Developer']
+        skills: ['Developer'],
+        projects: [
+          { 
+            id: 'teste',
+            name: 'Brawll', 
+            src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', 
+            skills: ['Developer', 'Artist', 'Musician'],
+            tags: [],
+            description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
+            projects_users: {
+              role: 'owner'
+            }
+          },
+          { 
+            name: 'Jacto Rally', 
+            src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', 
+            skills: ['Writer'],
+            tags: [],
+            description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
+            projects_users: {
+              role: 'user'
+            }
+          },
+          { 
+            name: 'Into the light', 
+            src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
+            skills: ['Developer', 'Audio Mixer'],
+            tags: [],
+            description: 'Brawll is an action 3D game where your goal is to send the other players to outer space.',
+            projects_users: {
+              role: 'owner'
+            }
+          },
+        ]
       }
     });
 

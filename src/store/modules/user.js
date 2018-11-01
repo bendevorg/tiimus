@@ -35,7 +35,17 @@ const actions = {
     API
       .get('/user')
       .then(response => {
-        commit('setLoggedUser', response.data.msg);
+        let userInfo = response.data.msg;
+        if (userInfo && userInfo.projects) {
+          const ownedProjects = [];
+          userInfo.projects.forEach(project => {
+            if (project.projects_users.role === 'owner') {
+              ownedProjects.push(project);
+            }
+          });
+          userInfo = { ...userInfo, ownedProjects };
+        }
+        commit('setLoggedUser', userInfo);
       })
       .catch(err => {
         //  TODO: Handle the error
