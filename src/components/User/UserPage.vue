@@ -36,13 +36,59 @@
             v-if="ownedProjects && ownedProjects.length > 0"
           >
             <v-flex xs12 md6>
-              <v-btn large block>
+              <v-btn large block @click="dialog = true">
                 INVITE TO PROJECT
               </v-btn>
             </v-flex>
           </v-layout>
         </v-container>
       </v-flex>
+      <v-dialog
+        v-model="dialog"
+        max-width="290"
+      >
+        <v-card  v-if="step == 0" >
+          <v-card-text class="headline">
+            <v-combobox
+              v-model="projectInvites"
+              :items="ownedProjects"
+              item-text="name"
+              label="Select which projects"
+              multiple
+              chips
+            ></v-combobox>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              flat="flat"
+              @click="step = 1"
+            >
+              Invite
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+
+        <v-card  v-if="step == 1" >
+          <v-card-text class="headline">
+            Invite sent!
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              flat="flat"
+              @click="sendInvites()"
+            >
+              Done
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+
+      </v-dialog>
     </v-layout>
     <app-projects-list
       title="Projects"  
@@ -60,6 +106,13 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
+  data() {
+    return {
+      dialog: false,
+      step: 0,
+      projectInvites: []
+    }
+  },
   components: {
     appSkillsList: SkillsList,
     appProjectsList: ProjectsList
@@ -68,7 +121,12 @@ export default {
     ...mapActions('user', [
       'loggedInfo',
       'userInfo'
-    ])
+    ]),
+    sendInvites() {
+      step = 0;
+      //  TODO: Call API
+      done = 0;
+    }
   },
   computed: {
     ...mapState('user', {
