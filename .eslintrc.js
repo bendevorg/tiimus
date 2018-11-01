@@ -45,6 +45,7 @@ module.exports = {
         ]
       }
     ],
+    'no-shadow': ['error', { allow: ['state'] }],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': [
       'error',
