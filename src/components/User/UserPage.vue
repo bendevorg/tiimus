@@ -46,8 +46,9 @@
       <v-dialog
         v-model="dialog"
         max-width="290"
+        @input="v => v || closeDialog()"
       >
-        <v-card  v-if="step == 0" >
+        <v-card v-if="step == 0" >
           <v-card-text class="headline">
             <v-combobox
               v-model="projectInvites"
@@ -58,24 +59,6 @@
               chips
             ></v-combobox>
           </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn
-              flat="flat"
-              @click="step = 1"
-            >
-              Invite
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-
-        <v-card  v-if="step == 1" >
-          <v-card-text class="headline">
-            Invite sent!
-          </v-card-text>
-
           <v-card-actions>
             <v-spacer></v-spacer>
 
@@ -83,11 +66,25 @@
               flat="flat"
               @click="sendInvites()"
             >
-              Done
+              Invite
             </v-btn>
           </v-card-actions>
         </v-card>
 
+        <v-card v-if="step == 1">
+          <v-card-text class="headline">
+            Invite sent!
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              flat="flat"
+              @click="closeDialog()"
+            >
+              Done
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-dialog>
     </v-layout>
     <app-projects-list
@@ -120,12 +117,16 @@ export default {
   methods: {
     ...mapActions('user', [
       'loggedInfo',
-      'userInfo'
+      'userInfo',
+      'inviteUserToProject'
     ]),
     sendInvites() {
-      step = 0;
-      //  TODO: Call API
-      done = 0;
+      this.inviteUserToProject(this.user.Id, this.projectInvites);
+      this.step = 1;
+    },
+    closeDialog() {
+      this.dialog = false;
+      this.step = 0;
     }
   },
   computed: {

@@ -323,4 +323,10 @@ export default axios => {
         msg: 'Invite done.'
       });
 
+    mock
+      .onPost('/users/test/invite')
+      .reply(200, {
+        msg: 'Invite done.'
+      });
+
 };
