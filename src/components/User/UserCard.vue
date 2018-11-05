@@ -18,6 +18,16 @@
             <div class="headline">{{ user.name }}</div>
           </div>
         </v-card-title>
+        <div>
+          <v-icon
+            small
+            :color=user.rgb>
+            sentiment_satisfied
+          </v-icon>
+          <span>
+            {{ user.description }}
+          </span>
+        </div>
       </v-flex>
     </v-layout>
     <v-divider light></v-divider>
