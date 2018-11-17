@@ -52,6 +52,6 @@ export default {
     margin-left: 20px
   }
   >>> .v-btn--flat {
-    height: 100%;
+    height: 100% !important;
   }
 </style>
