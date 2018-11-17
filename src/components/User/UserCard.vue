@@ -18,7 +18,7 @@
             <div class="headline">{{ user.name }}</div>
           </div>
         </v-card-title>
-        <div>
+        <!-- <div>
           <v-icon
             small
             :color=user.rgb>
@@ -27,7 +27,7 @@
           <span>
             {{ user.description }}
           </span>
-        </div>
+        </div> -->
       </v-flex>
     </v-layout>
     <v-divider light></v-divider>
