@@ -2,6 +2,9 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs8>
+        <img :src="imageUrl" height="150" v-if="imageUrl"/>
+      </v-flex>
+      <v-flex xs8>
         <h1>
           {{name}}
         </h1>
@@ -36,7 +39,7 @@
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  props: ['name', 'description', 'tags', 'skills'],
+  props: ['name', 'description', 'tags', 'skills', 'imageUrl'],
   methods: {
     ...mapGetters('skill', {
       retrieveSkillColor: 'retrieveSkillColor',

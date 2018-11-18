@@ -39,6 +39,24 @@
           @blur="saveInfo"
         ></v-textarea>
       </v-flex>
+      <v-flex xs8>
+        <v-text-field 
+          label="Select Image" 
+          @click="pickFile"
+          validate-on-blur
+          @blur="saveInfo"
+          v-model="imageName"
+          prepend-icon="attach_file"
+        >
+        </v-text-field>
+        <input
+          ref="image"
+          type="file"
+          style="display: none"
+          accept="image/*"
+          @change="onFilePicked"
+        >
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -59,7 +77,10 @@ export default {
       ],
       name: '',
       selectedTags: [],
-      description: ''
+      description: '',
+      imageName: '',
+      imageFile: '',
+      imageUrl: ''
     }
   },
   computed: {
@@ -75,10 +96,34 @@ export default {
       const creationInfo = {
         name: this.name,
         tags: this.selectedTags,
-        description: this.description
+        description: this.description,
+        imageUrl: this.imageUrl,
+        imageFile: this.imageFile
       };
       this.$emit('update-project-info', creationInfo)
-    }
+    },
+    pickFile() {
+      this.$refs.image.click();
+    },
+    onFilePicked(e) {
+			const files = e.target.files;
+			if(files[0] !== undefined) {
+				this.imageName = files[0].name;
+				if(this.imageName.lastIndexOf('.') <= 0) {
+					return;
+				}
+				const fileReader = new FileReader();
+				fileReader.readAsDataURL(files[0]);
+				fileReader.addEventListener('load', () => {
+					this.imageUrl = fileReader.result;
+					this.imageFile = files[0];
+				});
+			} else {
+				this.imageName = '';
+				this.imageFile = '';
+				this.imageUrl = '';
+			}
+		}
   },
   created() {
     this.listTags();
