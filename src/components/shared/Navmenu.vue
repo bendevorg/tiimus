@@ -47,16 +47,7 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Navmenu',
-  data() {
-    return {
-      drawer: false,
-      menu: [
-        { icon: 'home', title: 'Link A' },
-        { icon: 'info', title: 'Link B' },
-        { icon: 'warning', title: 'Link C' }
-      ]
-    }
-  },
+  data() {},
   components: {
     appLogin: Login,
     appUserMenu: UserMenu

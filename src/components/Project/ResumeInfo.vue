@@ -6,12 +6,12 @@
       </v-flex>
       <v-flex offset-md5 md6 xs12>
         <h1>
-          {{name}}
+          {{ name }}
         </h1>
       </v-flex>
       <v-flex xs8>
         <p>
-          {{description}}
+          {{ description }}
         </p>
         <h2>
           A game about

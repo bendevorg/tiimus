@@ -123,7 +123,6 @@ export default {
       this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
       this.project.imageUrl = projectInfo.imageUrl ? projectInfo.imageUrl : this.project.imageUrl;
       this.project.imageFile = projectInfo.imageFile ? projectInfo.imageFile : this.project.imageFile;
-      console.log(this.project);
     },
     createProject() {
       console.log('ae');
