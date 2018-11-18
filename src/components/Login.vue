@@ -56,6 +56,16 @@
                   @keyup.enter="submit"
                   required></v-text-field>
                 </v-flex>
+                <v-flex xs12 v-if="isSignUp">
+                  <v-combobox
+                    v-model="selectedSkills"
+                    :items="skills"
+                    item-text="name"
+                    label="Select your skills"
+                    multiple
+                    chips
+                  ></v-combobox>
+                </v-flex>
               </v-layout>
             </v-form>
           </v-container>
@@ -73,7 +83,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Login',
@@ -97,13 +107,17 @@ export default {
       passwordRules: [
         v => !!v || 'Password is required',
         v => (v && v.length >= 5) || 'Password must have at least 5 characters'
-      ]
+      ],
+      selectedSkills: []
     }
   },
   methods: {
     ...mapActions('auth', [
       'signIn',
       'signUp'
+    ]),
+    ...mapActions('skill', [
+      'listSkills'
     ]),
     submit () {
       if (this.$refs.form.validate()) {
@@ -129,6 +143,14 @@ export default {
         }
       }
     }
+  },
+  computed: {
+    ...mapState('skill', {
+      skills: state => state.skills
+    })
+  },
+  created() {
+    this.listSkills();
   }
 }
 
