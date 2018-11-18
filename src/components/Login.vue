@@ -123,7 +123,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.error = false;
         const { name, email, password } = this;
-        const body = this.isSignUp ? { name, email, password } : { email, password };
+        const body = this.isSignUp ? { name, email, password, selectedSkills } : { email, password };
         if (this.isSignUp) {
           this.signUp(body)
             .then(response => {
