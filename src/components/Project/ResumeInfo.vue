@@ -1,13 +1,15 @@
 <template>
   <v-container fluid grid-list-md>
     <v-layout row wrap>
-      <v-flex xs8>
+      <v-flex offset-md5 md6 xs12>
         <img :src="imageUrl" height="150" v-if="imageUrl"/>
       </v-flex>
-      <v-flex xs8>
+      <v-flex offset-md5 md6 xs12>
         <h1>
           {{name}}
         </h1>
+      </v-flex>
+      <v-flex xs8>
         <p>
           {{description}}
         </p>
