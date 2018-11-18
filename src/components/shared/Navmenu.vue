@@ -1,12 +1,30 @@
 <template>
   <v-toolbar>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-menu class="hidden-md-and-up">
+      <v-toolbar-side-icon slot="activator"/>
+      <v-list>
+        <v-list-tile v-if="isLogged">
+          <v-list-tile-content>
+            <router-link class="nav-link" to="/project/create">
+              <v-btn 
+                flat>Create a project
+              </v-btn>
+            </router-link>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-else>
+          <v-list-tile-content>
+            <app-login/>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
 
-      <router-link class="nav-link" to="/">
-        <v-toolbar-title>
-          Buildev
-        </v-toolbar-title>
-      </router-link>
+    <router-link class="nav-link" to="/">
+      <v-toolbar-title>
+        Buildev
+      </v-toolbar-title>
+    </router-link>
 
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
@@ -30,6 +48,14 @@ import { mapState } from 'vuex';
 export default {
   name: 'Navmenu',
   data() {
+    return {
+      drawer: false,
+      menu: [
+        { icon: 'home', title: 'Link A' },
+        { icon: 'info', title: 'Link B' },
+        { icon: 'warning', title: 'Link C' }
+      ]
+    }
   },
   components: {
     appLogin: Login,
