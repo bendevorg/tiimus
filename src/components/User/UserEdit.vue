@@ -133,8 +133,8 @@ export default {
 				const fileReader = new FileReader();
 				fileReader.readAsDataURL(files[0]);
 				fileReader.addEventListener('load', () => {
-					this.imageUrl = fileReader.result;
-					this.imageFile = files[0];
+					this.user.image = fileReader.result;
+					this.user.imageFile = files[0];
 				});
 			} else {
 				this.imageName = '';
