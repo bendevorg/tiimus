@@ -19,7 +19,16 @@
                     size=200
                     color="grey lighten-4"
                   >
-                    <img :src="user.image"/>
+                    <v-img :src="user.image">
+                      <v-layout pa-2 column fill-height>
+                        <v-spacer></v-spacer>
+                        <v-flex shrink>
+                          <v-btn fab dark small color="white" @click="pickFile">
+                            <v-icon color="black">edit</v-icon>
+                          </v-btn>
+                        </v-flex>
+                      </v-layout>
+                    </v-img>
                   </v-avatar>
                 </v-flex>
                 <v-flex xs12>
@@ -58,6 +67,13 @@
                     Update my info
                   </v-btn>
                 </v-flex>
+                <input
+                  ref="image"
+                  type="file"
+                  style="display: none"
+                  accept="image/*"
+                  @change="onFilePicked"
+                >
               </v-layout>
               <v-dialog
                 v-model="dialog"
@@ -103,7 +119,29 @@ export default {
     ]),
     ...mapActions('skill', [
       'listSkills'
-    ])
+    ]),
+    pickFile() {
+      this.$refs.image.click();
+    },
+    onFilePicked(e) {
+			const files = e.target.files;
+			if(files[0] !== undefined) {
+				this.imageName = files[0].name;
+				if(this.imageName.lastIndexOf('.') <= 0) {
+					return;
+				}
+				const fileReader = new FileReader();
+				fileReader.readAsDataURL(files[0]);
+				fileReader.addEventListener('load', () => {
+					this.imageUrl = fileReader.result;
+					this.imageFile = files[0];
+				});
+			} else {
+				this.imageName = '';
+				this.imageFile = '';
+				this.imageUrl = '';
+			}
+		}
   },
   computed: {
     ...mapState('skill', {

@@ -8,7 +8,9 @@
           size="95px"
         >
           <img 
-            :src="user.image" alt="avatar"/>
+            :src="user.image" 
+            alt="avatar"
+          />
         </v-avatar>
         </v-layout>
       </v-flex>
