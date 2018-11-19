@@ -22,7 +22,7 @@
 
     <router-link class="nav-link" to="/">
       <v-toolbar-title>
-        Buildev
+        Tiimus
       </v-toolbar-title>
     </router-link>
 
