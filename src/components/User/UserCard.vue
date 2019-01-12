@@ -8,7 +8,7 @@
           size="95px"
         >
           <img 
-            :src="user.image" 
+            :src="user.avatar" 
             alt="avatar"
           />
         </v-avatar>

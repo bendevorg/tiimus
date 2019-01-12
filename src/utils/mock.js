@@ -30,7 +30,7 @@ export default axios => {
         name: 'Guilherme',
         email: 'guilherme@teste.com.br',
         lookingForProject: true,
-        image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+        avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
         skills: ['Developer'],
         projects: [
           { 
@@ -75,7 +75,7 @@ export default axios => {
         { 
           id: 'teste',
           name: 'Guilherme', 
-          image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', 
+          avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', 
           skills: ['Developer'],
           description: `pure dev build, 25`,
           rgb: '#7DD1F0'
@@ -83,7 +83,7 @@ export default axios => {
         { 
           id: 'teste',
           name: 'Leonardo', 
-          image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+          avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Artist'],
           description: `dex hybrid build, 45`,
           rgb: '#BA55DA'
@@ -91,7 +91,7 @@ export default axios => {
         { 
           id: 'teste',
           name: 'Lucas', 
-          image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+          avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Musician'],
           description: `milk, 25`,
           rgb: '#AA9900'
@@ -99,7 +99,7 @@ export default axios => {
         { 
           id: 'teste',
           name: 'Michel', 
-          image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+          avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Artist'],
           description: `bolicia hybrid build, 25`,
           rgb: '#F00'
@@ -107,7 +107,7 @@ export default axios => {
         { 
           id: 'teste',
           name: 'Siqueira', 
-          image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+          avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
           skills: ['Developer', 'Writer'],
           description: `25`,
           rgb: '#000000'
@@ -306,7 +306,7 @@ export default axios => {
             { 
               id: 'teste',
               name: 'Leonardo',
-              image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+              avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
               skills: ['Developer', 'Artist'],
               projects_users: {
                 role: 'owner'
@@ -315,7 +315,7 @@ export default axios => {
             { 
               id: 'teste',
               name: 'Lucas', 
-              image: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
+              avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg',
               skills: ['Developer', 'Musician'],
               projects_users: {
                 role: 'user'

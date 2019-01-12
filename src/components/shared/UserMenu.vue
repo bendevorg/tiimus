@@ -6,7 +6,7 @@
     <v-avatar
       color="grey lighten-4"
     >
-      <img :src=user.image alt="avatar">
+      <img :src=user.avatar alt="avatar">
     </v-avatar>
   </v-btn>
   <v-list>

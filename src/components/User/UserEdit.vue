@@ -19,7 +19,7 @@
                     size=200
                     color="grey lighten-4"
                   >
-                    <v-img :src="user.image">
+                    <v-img :src="user.avatar">
                       <v-layout pa-2 column fill-height>
                         <v-spacer></v-spacer>
                         <v-flex shrink>
@@ -133,8 +133,8 @@ export default {
 				const fileReader = new FileReader();
 				fileReader.readAsDataURL(files[0]);
 				fileReader.addEventListener('load', () => {
-					this.user.image = fileReader.result;
-					this.user.imageFile = files[0];
+					this.user.avatar = fileReader.result;
+					this.user.avatarFile = files[0];
 				});
 			} else {
 				this.imageName = '';
