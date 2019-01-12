@@ -240,10 +240,18 @@ export default axios => {
       .onGet('/tags')
       .reply(200, {
         msg: [
-          'Action',
-          'Strategy',
-          '2D',
-          '3D'
+          {
+            name: 'Action'
+          },
+          {
+            name: 'Strategy'
+          },
+          {
+            name: '2D'
+          },
+          {
+            name: '3D'
+          }
         ]
       });
 

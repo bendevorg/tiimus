@@ -1,21 +1,30 @@
 <template>
-  <v-container fluid grid-list-md>
-    <v-layout row wrap>
+  <v-container 
+    fluid 
+    grid-list-md
+  >
+    <v-layout 
+      row 
+      wrap
+    >
       <v-flex xs12>
         <h1>Tell us a little about your project</h1>
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
+    <v-layout 
+      row 
+      wrap
+    >
       <v-flex xs8>
         <v-text-field
           v-model="name"
-          label="Name" 
           :rules="nameRules"
           :validate-on-blur="true"
+          label="Name" 
           type="name"
+          required
           @blur="saveInfo"
-          required>
-        </v-text-field>
+        />
       </v-flex>
       <v-flex xs8>
         <v-combobox
@@ -25,30 +34,29 @@
           multiple
           chips
           @blur="saveInfo"
-        ></v-combobox>
+        />
       </v-flex>
       <v-flex xs8>
         <v-textarea
           v-model="description"
-          label="Description"
           :rules="descriptionRules"
-          rows=1
+          label="Description"
+          rows="1"
           validate-on-blur
           auto-grow
           required
           @blur="saveInfo"
-        ></v-textarea>
+        />
       </v-flex>
       <v-flex xs8>
-        <v-text-field 
+        <v-text-field
+          v-model="imageName" 
           label="Select Image" 
-          @click="pickFile"
           validate-on-blur
-          @blur="saveInfo"
-          v-model="imageName"
           prepend-icon="attach_file"
-        >
-        </v-text-field>
+          @click="pickFile"
+          @blur="saveInfo"
+        />
         <input
           ref="image"
           type="file"
@@ -88,6 +96,9 @@ export default {
       tags: state => state.tags
     })
   },
+  created() {
+    this.listTags();
+  },
   methods: {
     ...mapActions('tag', [
       'listTags'
@@ -106,7 +117,7 @@ export default {
       this.$refs.image.click();
     },
     onFilePicked(e) {
-			const files = e.target.files;
+			const { files } = e.target;
 			if(files[0] !== undefined) {
 				this.imageName = files[0].name;
 				if(this.imageName.lastIndexOf('.') <= 0) {
@@ -124,9 +135,6 @@ export default {
 				this.imageUrl = '';
 			}
 		}
-  },
-  created() {
-    this.listTags();
   }
 }
 </script>
