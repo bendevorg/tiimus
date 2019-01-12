@@ -1,85 +1,136 @@
 <template>
-
-    <v-dialog
-      v-model="dialog"
-      max-width="500px"
+  <v-dialog
+    v-model="dialog"
+    max-width="500px"
+  >
+    <v-btn
+      slot="activator"
+      flat
     >
-      <v-btn
-        flat
-        slot="activator"
-      >
-        Login
-      </v-btn>
-      <v-card>
-        <v-card-title>
-          <span class="headline">Login</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-form ref="form" v-model="valid" @submit="submit" lazy-validation>
-              <v-layout wrap>
-                <v-flex xs12>
-                  <v-alert
-                    :value="error"
-                    type="error"
-                  >
-                    {{ error }}
-                  </v-alert>
-                </v-flex>
-                <v-flex xs12 v-if="isSignUp">
-                  <v-text-field
+      Login
+    </v-btn>
+    <v-card>
+      <v-card-title>
+        <span class="headline">Login</span>
+      </v-card-title>
+      <v-card-text>
+        <v-container grid-list-md>
+          <v-form 
+            ref="form" 
+            v-model="valid" 
+            lazy-validation
+            @submit="submit"
+          >
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-alert
+                  :value="error"
+                  type="error"
+                >
+                  {{ error }}
+                </v-alert>
+              </v-flex>
+              <v-flex 
+                v-if="isSignUp"
+                xs12 
+              >
+                <v-text-field
                   v-model="name"
-                  label="First name"
                   :rules="nameRules"
+                  :validate-on-blur="true"
+                  label="First name"
                   type="name"
-                  :validate-on-blur=true
+                  required
                   @keyup.enter="submit"
-                  required></v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                  <v-text-field
+                />
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
                   v-model="email"
-                  label="Email"
                   :rules="emailRules"
+                  :validate-on-blur=true
+                  label="Email"
                   type="email"
-                  :validate-on-blur=true
+                  required
                   @keyup.enter="submit"
-                  required></v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                  <v-text-field
+                />
+              </v-flex>
+              <v-flex xs12>
+                <v-text-field
                   v-model="password"
-                  label="Password"
                   :rules="passwordRules"
+                  :validate-on-blur="true"
+                  label="Password"
                   type="password"
-                  :validate-on-blur=true
+                  required
                   @keyup.enter="submit"
-                  required></v-text-field>
-                </v-flex>
-                <v-flex xs12 v-if="isSignUp">
-                  <v-combobox
-                    v-model="selectedSkills"
-                    :items="skills"
-                    item-text="name"
-                    label="Select your skills"
-                    multiple
-                    chips
-                  ></v-combobox>
-                </v-flex>
-              </v-layout>
-            </v-form>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="blue darken-1" flat @click.native="isSignUp = true" v-if="!isSignUp">Sign up</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="isSignUp = false" v-if="isSignUp">Sign in</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat type="submit" @click.native="submit" :disabled="!valid" v-if="isSignUp">Sign up</v-btn>
-          <v-btn color="blue darken-1" flat type="submit" @click.native="submit" :disabled="!valid" v-if="!isSignUp">Sign in</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+                />
+              </v-flex>
+              <v-flex 
+                v-if="isSignUp" 
+                xs12
+              >
+                <v-combobox
+                  v-model="selectedSkills"
+                  :items="skills"
+                  item-text="name"
+                  label="Select your skills"
+                  multiple
+                  chips
+                />
+              </v-flex>
+            </v-layout>
+          </v-form>
+        </v-container>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+          v-if="!isSignUp"
+          color="blue darken-1" 
+          flat 
+          @click.native="isSignUp = true"
+        >
+          Sign up
+        </v-btn>
+        <v-btn 
+          v-if="isSignUp" 
+          color="blue darken-1" 
+          flat 
+          @click.native="isSignUp = false"
+        >
+          Sign in
+        </v-btn>
+        <v-spacer/>
+        <v-btn 
+          color="blue darken-1"
+          flat 
+          @click.native="dialog = false"
+        >
+          Close
+        </v-btn>
+        <v-btn 
+          v-if="isSignUp" 
+          :disabled="!valid" 
+          color="blue darken-1" 
+          flat 
+          type="submit" 
+          @click.native="submit"
+        >
+          Sign up
+        </v-btn>
+        <v-btn 
+          v-if="!isSignUp" 
+          :disabled="!valid"
+          color="blue darken-1" 
+          flat 
+          type="submit" 
+          @click.native="submit"
+        >
+          Sign in
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -111,6 +162,14 @@ export default {
       selectedSkills: []
     }
   },
+  computed: {
+    ...mapState('skill', {
+      skills: state => state.skills
+    })
+  },
+  created() {
+    this.listSkills();
+  },
   methods: {
     ...mapActions('auth', [
       'signIn',
@@ -126,7 +185,7 @@ export default {
         const body = this.isSignUp ? { name, email, password, selectedSkills } : { email, password };
         if (this.isSignUp) {
           this.signUp(body)
-            .then(response => {
+            .then(() => {
               this.dialog = false;
             })
             .catch(err => {
@@ -134,7 +193,7 @@ export default {
             });
         } else {
           this.signIn(body)
-            .then(response => {
+            .then(() => {
               this.dialog = false;
             })
             .catch(err => {
@@ -143,14 +202,6 @@ export default {
         }
       }
     }
-  },
-  computed: {
-    ...mapState('skill', {
-      skills: state => state.skills
-    })
-  },
-  created() {
-    this.listSkills();
   }
 }
 

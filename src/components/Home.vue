@@ -1,22 +1,22 @@
 <template>
   <div>
     <app-projects-list
-    title="Willing to join a project?"
-    :projects="projects"
-    noProject="There is no project looking for user at the moment"
+      :projects="projects"
+      title="Willing to join a project?"
+      no-project="There is no project looking for user at the moment"
     />
     <app-users-list
-      title="Looking for a skilled user?"
       :users="users"
-      noUsers="There is no users looking for a project right now"
+      title="Looking for a skilled user?"
+      no-users="There is no users looking for a project right now"
     />
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import ProjectsList from './Project/ProjectsList';
 import UsersList from './User/UsersList';
-import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Home',
@@ -32,6 +32,11 @@ export default {
       projects: state => state.projects.all
     })
   },
+  created() {
+    this.listSkills();
+    this.listProjects();
+    this.listUsers();
+  },
   methods: {
     ...mapActions('project', [
       'listProjects'
@@ -42,11 +47,6 @@ export default {
     ...mapActions('skill', [
       'listSkills'
     ])
-  },
-  created() {
-    this.listSkills();
-    this.listProjects();
-    this.listUsers();
   }
 }
 </script>
