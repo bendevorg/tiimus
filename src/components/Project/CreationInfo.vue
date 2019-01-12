@@ -127,7 +127,7 @@ export default {
 				fileReader.readAsDataURL(files[0]);
 				fileReader.addEventListener('load', () => {
 					this.imageUrl = fileReader.result;
-					this.imageFile = files[0];
+					[this.imageFile] = files;
 				});
 			} else {
 				this.imageName = '';

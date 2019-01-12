@@ -4,7 +4,10 @@
       align-center
       justify-center
     >
-      <v-flex sm12 md6>
+      <v-flex 
+        sm12 
+        md6
+      >
         <v-card>
           <v-form>
             <v-container fluid>
@@ -13,17 +16,30 @@
                 align-start
                 wrap
               >
-                <v-flex xs12 class="text-xs-center">
+                <v-flex 
+                  xs12 
+                  class="text-xs-center"
+                >
                   <v-avatar
-                    :tile=false
-                    size=200
+                    :tile="false"
+                    size="200"
                     color="grey lighten-4"
                   >
                     <v-img :src="user.avatar">
-                      <v-layout pa-2 column fill-height>
-                        <v-spacer></v-spacer>
+                      <v-layout 
+                        pa-2 
+                        column 
+                        fill-height
+                      >
+                        <v-spacer/>
                         <v-flex shrink>
-                          <v-btn fab dark small color="white" @click="pickFile">
+                          <v-btn 
+                            fab 
+                            dark 
+                            small 
+                            color="white" 
+                            @click="pickFile"
+                          >
                             <v-icon color="black">edit</v-icon>
                           </v-btn>
                         </v-flex>
@@ -36,21 +52,21 @@
                     v-model="user.name"
                     label="Name"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
                     v-model="user.email"
                     label="E-mail"
                     required
-                  ></v-text-field>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-checkbox
                     v-model="user.lookingForProject"
                     label="Are you open to join new projects?"
                     required
-                  ></v-checkbox>
+                  />
                 </v-flex>
                 <v-flex xs12>
                   <v-combobox
@@ -60,10 +76,14 @@
                     label="Select your skills"
                     multiple
                     chips
-                  ></v-combobox>
+                  />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="dialog = true">
+                  <v-btn 
+                    large 
+                    block 
+                    @click="dialog = true"
+                  >
                     Update my info
                   </v-btn>
                 </v-flex>
@@ -85,8 +105,7 @@
                   </v-card-text>
 
                   <v-card-actions>
-                    <v-spacer></v-spacer>
-
+                    <v-spacer/>
                     <v-btn
                       flat="flat"
                       @click="dialog = false"
@@ -113,36 +132,6 @@ export default {
       dialog: false
     }
   },
-  methods: {
-    ...mapActions('user', [
-      'loggedInfo'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ]),
-    pickFile() {
-      this.$refs.image.click();
-    },
-    onFilePicked(e) {
-			const files = e.target.files;
-			if(files[0] !== undefined) {
-				this.imageName = files[0].name;
-				if(this.imageName.lastIndexOf('.') <= 0) {
-					return;
-				}
-				const fileReader = new FileReader();
-				fileReader.readAsDataURL(files[0]);
-				fileReader.addEventListener('load', () => {
-					this.user.avatar = fileReader.result;
-					this.user.avatarFile = files[0];
-				});
-			} else {
-				this.imageName = '';
-				this.imageFile = '';
-				this.imageUrl = '';
-			}
-		}
-  },
   computed: {
     ...mapState('skill', {
       skills: state => state.skills
@@ -154,6 +143,36 @@ export default {
   created() {
     this.loggedInfo();
     this.listSkills();
+  },
+  methods: {
+    ...mapActions('user', [
+      'loggedInfo'
+    ]),
+    ...mapActions('skill', [
+      'listSkills'
+    ]),
+    pickFile() {
+      this.$refs.image.click();
+    },
+    onFilePicked(e) {
+			const { files } = e.target;
+			if(files[0] !== undefined) {
+				this.imageName = files[0].name;
+				if(this.imageName.lastIndexOf('.') <= 0) {
+					return;
+				}
+				const fileReader = new FileReader();
+				fileReader.readAsDataURL(files[0]);
+				fileReader.addEventListener('load', () => {
+					this.user.avatar = fileReader.result;
+					[this.user.avatarFile] = files;
+				});
+			} else {
+				this.imageName = '';
+				this.imageFile = '';
+				this.imageUrl = '';
+			}
+		}
   }
 }
 </script>
