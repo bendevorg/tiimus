@@ -68,7 +68,7 @@ export default {
     },
     reduced: {
       type: Boolean,
-      required: true,
+      required: false,
       default: false
     }
   },
