@@ -3,16 +3,23 @@
     fluid
     grid-list-md
   >
-    <v-layout row 
+    <v-layout 
+      row 
       align-center
       wrap
     >
-      <v-flex sm12 md4>
-        <v-layout column align-center>
+      <v-flex 
+        sm12 
+        md4
+      >
+        <v-layout 
+          column 
+          align-center
+        >
           <v-flex xs8>
             <v-avatar
-              color="grey lighten-4"
               :size="imageSize"
+              color="grey lighten-4"
               tile
             >
               <img :src="project.image">
@@ -23,21 +30,31 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex sm12 md8>
+      <v-flex 
+        sm12 
+        md8
+      >
         <app-skills-list
-          title="Needed skills"
           :skills="project.skills"
-          noSkills="This project does not need any skills at the moment."
+          title="Needed skills"
+          no-skills="This project does not need any skills at the moment."
         />
         <v-container>
           <v-layout 
+            v-if="!isUserInProject()(user.id)"
             row 
             justify-start
             align-start
-            v-if="!isUserInProject()(user.id)"
           >
-            <v-flex xs12 md6>
-              <v-btn large block @click="askToJoinProject()">
+            <v-flex 
+              xs12 
+              md6
+            >
+              <v-btn 
+                large 
+                block 
+                @click="askToJoinProject()"
+              >
                 ASK TO JOIN
               </v-btn>
             </v-flex>
@@ -45,13 +62,20 @@
         </v-container>
         <v-container>
           <v-layout 
+            v-if="user.id == project.ownerId"
             row 
             justify-start
             align-start
-            v-if="user.id == project.ownerId"
           >
-            <v-flex xs12 md6>
-              <v-btn large block :to="'/projects/' + project.id + '/edit'">
+            <v-flex 
+              xs12 
+              md6
+            >
+              <v-btn 
+                :to="'/projects/' + project.id + '/edit'"
+                large 
+                block 
+              >
                 EDIT PROJECT
               </v-btn>
             </v-flex>
@@ -68,8 +92,7 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-spacer></v-spacer>
-
+            <v-spacer/>
             <v-btn
               flat="flat"
               @click="dialog = false"
@@ -81,43 +104,27 @@
       </v-dialog>
     </v-layout>
     <app-users-list
-      title="Users in this project"
       :users="project.users"
-      noUsers="This project does not have any users yet"
+      title="Users in this project"
+      no-users="This project does not have any users yet"
     />
   </v-container>
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from 'vuex';
 import SkillsList from '../Skill/SkillsList';
 import UsersList from '../User/UsersList';
-import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ProjectPage',
-  data() {
-    return {
-      dialog: false
-    }
-  },
   components: {
     appSkillsList: SkillsList,
     appUsersList: UsersList
   },
-  methods: {
-    ...mapGetters('project', [
-      'isUserInProject'
-    ]),
-    ...mapActions('project', [
-      'projectInfo',
-      'askToJoin'
-    ]),
-    ...mapActions('user', [
-      'loggedInfo'
-    ]),
-    async askToJoinProject() {
-      await this.askToJoin(this.project.id);
-      this.dialog = true;
+  data() {
+    return {
+      dialog: false
     }
   },
   computed: {
@@ -134,6 +141,22 @@ export default {
   created() {
     this.loggedInfo();
     this.projectInfo(this.$route.params.id);
+  },
+  methods: {
+    ...mapGetters('project', [
+      'isUserInProject'
+    ]),
+    ...mapActions('project', [
+      'projectInfo',
+      'askToJoin'
+    ]),
+    ...mapActions('user', [
+      'loggedInfo'
+    ]),
+    async askToJoinProject() {
+      await this.askToJoin(this.project.id);
+      this.dialog = true;
+    }
   }
 }
 </script>

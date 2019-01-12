@@ -1,23 +1,28 @@
 <template>
   <v-container fluid>
-    <v-layout row wrap>
+    <v-layout 
+      row 
+      wrap
+    >
       <v-flex xs6>
         <h1>Which skills do you want?</h1>
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
+    <v-layout 
+      row 
+      wrap
+    >
       <v-flex
-        xs4
         v-for="skill in skills"
         :key="skill.name"
+        xs4
       >
         <v-checkbox
           v-model="selectedSkills"
-          :label=skill.name
-          :value=skill.name
+          :label="skill.name"
+          :value="skill.name"
           @click.native="saveInfo"
-        >
-        </v-checkbox>
+        />
       </v-flex>
     </v-layout>
   </v-container>  
@@ -37,6 +42,9 @@ export default {
       skills: state => state.skills
     })
   },
+  created() {
+    this.listSkills();
+  },
   methods: {
     ...mapActions('skill', [
       'listSkills'
@@ -47,9 +55,6 @@ export default {
       };
       this.$emit('update-project-info', creationInfo)
     }
-  },
-  created() {
-    this.listSkills();
   }
 }
 </script>

@@ -1,10 +1,28 @@
 <template>
-  <v-container fluid grid-list-md>
-    <v-layout row wrap>
-      <v-flex offset-md5 md6 xs12>
-        <img :src="imageUrl" height="150" v-if="imageUrl"/>
+  <v-container 
+    fluid 
+    grid-list-md
+  >
+    <v-layout 
+      row 
+      wrap
+    >
+      <v-flex 
+        offset-md5 
+        md6 
+        xs12
+      >
+        <img 
+          v-if="imageUrl"
+          :src="imageUrl" 
+          height="150" 
+        >
       </v-flex>
-      <v-flex offset-md5 md6 xs12>
+      <v-flex 
+        offset-md5 
+        md6 
+        xs12
+      >
         <h1>
           {{ name }}
         </h1>
@@ -16,21 +34,27 @@
         <h2>
           A game about
         </h2>
-        <v-chip v-for="tag in tags"
-          v-bind:key="tag"
+        <v-chip 
+          v-for="tag in tags"
+          :key="tag"
           :color="retrieveSkillColor()(tag)" 
           :text-color="retrieveSkillTextColor()(tag)" 
-          small>{{ tag }}
+          small
+        >
+          {{ tag }}
         </v-chip>
-        <br/>
+        <br>
         <h2>
           Is looking for 
         </h2>
-        <v-chip v-for="skill in skills"
-          v-bind:key="skill"
+        <v-chip 
+          v-for="skill in skills"
+          :key="skill"
           :color="retrieveSkillColor()(skill)" 
           :text-color="retrieveSkillTextColor()(skill)" 
-          small>{{ skill }}
+          small
+        >
+          {{ skill }}
         </v-chip>
       </v-flex>
     </v-layout>
@@ -38,10 +62,34 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
-  props: ['name', 'description', 'tags', 'skills', 'imageUrl'],
+  props: {
+    name: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    description: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    tags: {
+      type: Array,
+      required: true
+    },
+    skills: {
+      type: Array,
+      required: true
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+      default: ''
+    }
+  },
   methods: {
     ...mapGetters('skill', {
       retrieveSkillColor: 'retrieveSkillColor',

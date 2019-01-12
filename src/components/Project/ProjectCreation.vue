@@ -33,7 +33,7 @@
             :description="project.description"
             :skills="project.skills"
             :image="project.image"
-            :imageFile="project.imageFile"
+            :image-file="project.imageFile"
             :is="step.component"
             @update-project-info="updateProjectInfo"
           />

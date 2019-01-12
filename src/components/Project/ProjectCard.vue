@@ -3,24 +3,27 @@
     <v-img
       :src="project.image"
       height="200px"
-    >
-    </v-img>
+    />
 
     <v-card-title>
-      <div class='card-content'>
+      <div class="card-content">
         <h3>{{ project.name }}</h3>
         <div class="description">
           <div class="text-truncate">
             {{ project.description }}
           </div>
         </div>
-        <v-chip 
-          v-for="skill in project.skills"
-          v-if="!reduced"
-          :key="skill.name"
-          :color="retrieveSkillColor()(skill.name)" 
-          :text-color="retrieveSkillTextColor()(skill.name)" 
-          small>{{ skill.name }}</v-chip>
+        <div v-if="!reduced">
+          <v-chip 
+            v-for="skill in project.skills"
+            :key="skill.name"
+            :color="retrieveSkillColor()(skill.name)" 
+            :text-color="retrieveSkillTextColor()(skill.name)" 
+            small
+          >
+            {{ skill.name }}
+          </v-chip>
+        </div>
       </div>
     </v-card-title>
 <!--
@@ -44,11 +47,21 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ProjectCard',
-  props: ['project', 'reduced'],
+  props: {
+    project: {
+      type: Object,
+      required: true
+    },
+    reduced: {
+      type: Boolean,
+      required: true,
+      default: false
+    }
+  },
   data: () => ({
     show: false
   }),
