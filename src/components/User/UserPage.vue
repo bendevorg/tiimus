@@ -137,7 +137,7 @@ export default {
   },
   created() {
     this.loggedInfo();
-    this.userInfo('test');
+    this.userInfo(this.$route.params.id);
   }
 }
 </script>
