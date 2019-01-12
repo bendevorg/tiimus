@@ -2,16 +2,19 @@
   <v-card :to="'/users/' + user.id">
     <v-layout justify-center>
       <v-flex xs5>
-        <v-layout row align-center>
-        <v-avatar
-          color="grey lighten-4"
-          size="95px"
+        <v-layout 
+          row 
+          align-center
         >
-          <img 
-            :src="user.avatar" 
-            alt="avatar"
-          />
-        </v-avatar>
+          <v-avatar
+            color="grey lighten-4"
+            size="95px"
+          >
+            <img 
+              :src="user.avatar" 
+              alt="avatar"
+            >
+          </v-avatar>
         </v-layout>
       </v-flex>
       <v-flex xs7>
@@ -32,7 +35,7 @@
         </div> -->
       </v-flex>
     </v-layout>
-    <v-divider light></v-divider>
+    <v-divider light/>
     <v-card-actions>
       <div>
         <v-chip 
@@ -47,11 +50,16 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'UserCard',
-  props: ['user'],
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
   methods: {
     ...mapGetters('skill', {
       retrieveSkillColor: 'retrieveSkillColor',

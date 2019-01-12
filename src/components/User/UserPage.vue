@@ -3,18 +3,28 @@
     fluid
     grid-list-md
   >
-    <v-layout row 
+    <v-layout 
+      row 
       align-center
       wrap
     >
-      <v-flex sm12 md3>
-        <v-layout column align-center>
+      <v-flex 
+        sm12 
+        md3
+      >
+        <v-layout 
+          column 
+          align-center
+        >
           <v-flex xs8>
             <v-avatar
               color="grey lighten-4"
               size="250px"
             >
-              <img :src=user.avatar alt="avatar">
+              <img 
+                :src="user.avatar"
+                alt="avatar"
+              >
             </v-avatar>
           </v-flex>
           <v-flex xs4>
@@ -22,21 +32,31 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex sm12 md8>
+      <v-flex 
+        sm12 
+        md8
+      >
         <app-skills-list 
-          title="Skills" 
           :skills="user.skills"
-          noSkills="This user does not have any skills yet."
+          title="Skills" 
+          no-skills="This user does not have any skills yet."
         />
-          <v-container>
+        <v-container>
           <v-layout 
+            v-if="ownedProjects && ownedProjects.length > 0"
             row 
             justify-start
             align-start
-            v-if="ownedProjects && ownedProjects.length > 0"
           >
-            <v-flex xs12 md6>
-              <v-btn large block @click="dialog = true">
+            <v-flex 
+              xs12 
+              md6
+            >
+              <v-btn 
+                large 
+                block 
+                @click="dialog = true"
+              >
                 INVITE TO PROJECT
               </v-btn>
             </v-flex>
@@ -57,11 +77,10 @@
               label="Select which projects"
               multiple
               chips
-            ></v-combobox>
+            />
           </v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
-
+            <v-spacer/>
             <v-btn
               flat="flat"
               @click="sendInvites()"
@@ -76,7 +95,7 @@
             Invite sent!
           </v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer/>
             <v-btn
               flat="flat"
               @click="closeDialog()"
@@ -88,21 +107,25 @@
       </v-dialog>
     </v-layout>
     <app-projects-list
-      title="Projects"  
       :projects="user.projects"
-      noProjects="This user haven't joined a project yet"
-      reduced=true
+      title="Projects"
+      no-projects="This user haven't joined a project yet"
+      reduced="true"
     />
   </v-container>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import SkillsList from '../Skill/SkillsList';
 import ProjectsList from '../Project/ProjectsList';
-import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
+  components: {
+    appSkillsList: SkillsList,
+    appProjectsList: ProjectsList
+  },
   data() {
     return {
       dialog: false,
@@ -110,9 +133,15 @@ export default {
       projectInvites: []
     }
   },
-  components: {
-    appSkillsList: SkillsList,
-    appProjectsList: ProjectsList
+  computed: {
+    ...mapState('user', {
+      user: state => state.currentUser,
+      ownedProjects: state => state.loggedUser.ownedProjects
+    })
+  },
+  created() {
+    this.loggedInfo();
+    this.userInfo(this.$route.params.id);
   },
   methods: {
     ...mapActions('user', [
@@ -128,16 +157,6 @@ export default {
       this.dialog = false;
       this.step = 0;
     }
-  },
-  computed: {
-    ...mapState('user', {
-      user: state => state.currentUser,
-      ownedProjects: state => state.loggedUser.ownedProjects
-    })
-  },
-  created() {
-    this.loggedInfo();
-    this.userInfo(this.$route.params.id);
   }
 }
 </script>
