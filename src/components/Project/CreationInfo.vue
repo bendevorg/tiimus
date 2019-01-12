@@ -30,6 +30,7 @@
         <v-combobox
           v-model="selectedTags"
           :items="tags"
+          item-text="name"
           label="Some tags about your game"
           multiple
           chips
