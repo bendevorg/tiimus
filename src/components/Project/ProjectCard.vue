@@ -17,10 +17,10 @@
         <v-chip 
           v-for="skill in project.skills"
           v-if="!reduced"
-          :key="skill"
-          :color="retrieveSkillColor()(skill)" 
-          :text-color="retrieveSkillTextColor()(skill)" 
-          small>{{ skill }}</v-chip>
+          :key="skill.name"
+          :color="retrieveSkillColor()(skill.name)" 
+          :text-color="retrieveSkillTextColor()(skill.name)" 
+          small>{{ skill.name }}</v-chip>
       </div>
     </v-card-title>
 <!--
