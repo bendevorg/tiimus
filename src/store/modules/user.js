@@ -76,7 +76,7 @@ const actions = {
         projectIds.push(project.id);
       });
       API.post(`/users/${userId}/invite`, data)
-        .then(response => true)
+        .then(() => true)
         .catch(err => {
           //  TODO: Handle the error
         });
