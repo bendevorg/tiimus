@@ -32,6 +32,7 @@ const actions = {
       });
   },
   projectInfo({ commit }, projectId) {
+    console.log(`/projects/${projectId}`)
     API
       .get(`/projects/${projectId}`)
       .then(response => {
@@ -59,11 +60,13 @@ const mutations = {
     state.projects.all = projects;
   },
   setCurrentProject(state, project) {
+    console.log(1);
     let owner = project.users.find(user => {
       return user.projects_users.role === 'owner';
     });
     project.ownerId = owner ? owner.id : null;
     state.currentProject = project;
+    console.log(state.currentProject);
   }
 };
 

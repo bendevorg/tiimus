@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="'/projects/' + project.name">
+  <v-card :to="'/projects/' + project.id">
     <v-img
       :src="project.image"
       height="200px"

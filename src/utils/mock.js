@@ -203,7 +203,7 @@ export default axios => {
       });
 
     mock
-      .onGet('/users/test/projects')
+      .onGet(/\/users\/\w+\/projects/)
       .reply(200, {
         msg: [
           { 
@@ -238,11 +238,12 @@ export default axios => {
       });
 
     mock
-      .onGet('/users/test')
+      .onGet(/\/users\/\w+/)
       .reply(200, {
         msg: {
           name: 'Majimbo Monteiro',
           email: 'majimbo_monteiro@teste.com.br',
+          avatar: 'https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg', 
           skills: [
             {
               'name': 'Developer'
@@ -285,7 +286,7 @@ export default axios => {
       });
 
     mock
-      .onGet('/projects/test')
+      .onGet(/\/projects\/\w+/)
       .reply(200, {
         msg: {
           id: 'test',
