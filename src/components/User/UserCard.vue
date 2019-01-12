@@ -35,11 +35,12 @@
     <v-divider light></v-divider>
     <v-card-actions>
       <div>
-        <v-chip v-for="skill in user.skills"
-          v-bind:key="skill"
-          :color="retrieveSkillColor()(skill)" 
-          :text-color="retrieveSkillTextColor()(skill)" 
-          small>{{ skill }}</v-chip>
+        <v-chip 
+          v-for="skill in user.skills"
+          :key="skill.name"
+          :color="retrieveSkillColor()(skill.name)" 
+          :text-color="retrieveSkillTextColor()(skill.name)" 
+          small>{{ skill.name }}</v-chip>
       </div>
     </v-card-actions>
   </v-card>
