@@ -1,23 +1,27 @@
 <template>
   <v-menu offset-y>
-  <v-btn 
-  slot="activator"
-  flat>
-    <v-avatar
-      color="grey lighten-4"
+    <v-btn 
+      slot="activator"
+      flat
     >
-      <img :src=user.avatar alt="avatar">
-    </v-avatar>
-  </v-btn>
-  <v-list>
-    <v-list-tile
-      v-for="(item, index) in items"
-      :key="index"
-      @click=item.click
-    >
-      <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-    </v-list-tile>
-  </v-list>
+      <v-avatar
+        color="grey lighten-4"
+      >
+        <img 
+          :src="user.avatar" 
+          alt="avatar"
+        >
+      </v-avatar>
+    </v-btn>
+    <v-list>
+      <v-list-tile
+        v-for="(item, index) in items"
+        :key="index"
+        @click="item.click"
+      >
+        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+      </v-list-tile>
+    </v-list>
   </v-menu>
 </template>
 
@@ -44,6 +48,14 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState('user', {
+      user: state => state.loggedUser
+    })
+  },
+  mounted() {
+    this.loggedInfo();
+  },
   methods: {
     ...mapActions('auth', [
       'signOut'
@@ -57,14 +69,6 @@ export default {
     goToUserEdit() {
       this.$router.push({ name: 'User edit' });
     }
-  },
-  computed: {
-    ...mapState('user', {
-      user: state => state.loggedUser
-    })
-  },
-  mounted() {
-    this.loggedInfo();
   }
 }
 </script>

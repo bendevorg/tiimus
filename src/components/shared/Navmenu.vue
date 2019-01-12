@@ -5,7 +5,10 @@
       <v-list>
         <v-list-tile v-if="isLogged">
           <v-list-tile-content>
-            <router-link class="nav-link" to="/project/create">
+            <router-link 
+              to="/project/create"
+              class="nav-link" 
+            >
               <v-btn 
                 flat>Create a project
               </v-btn>
@@ -20,15 +23,21 @@
       </v-list>
     </v-menu>
 
-    <router-link class="nav-link" to="/">
+    <router-link 
+      to="/" 
+      class="nav-link"
+    >
       <v-toolbar-title>
         Tiimus
       </v-toolbar-title>
     </router-link>
 
-    <v-spacer></v-spacer>
+    <v-spacer/>
     <v-toolbar-items class="hidden-sm-and-down">
-      <router-link class="nav-link" to="/project/create">
+      <router-link 
+        to="/project/create"
+        class="nav-link"
+      >
         <v-btn 
           v-if="isLogged" 
           flat>Create a project
@@ -41,17 +50,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Login from '../Login';
 import UserMenu from './UserMenu';
-import { mapState } from 'vuex';
 
 export default {
   name: 'Navmenu',
-  data() {},
   components: {
     appLogin: Login,
     appUserMenu: UserMenu
   },
+  data() {},
   computed: {
     ...mapState('auth', {
       isLogged: state => state.isLogged
