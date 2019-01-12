@@ -33,7 +33,7 @@
             v-bind:tags="project.tags"
             v-bind:description="project.description"
             v-bind:skills="project.skills"
-            v-bind:imageUrl="project.imageUrl"
+            v-bind:image="project.image"
             v-bind:imageFile="project.imageFile"
             :is="step.component"/>
           <v-layout wrap>
@@ -100,7 +100,7 @@ export default {
         tags: [],
         description: '',
         skills: [],
-        imageUrl: '',
+        image: '',
         imageFile: ''
       }
     }
@@ -121,7 +121,7 @@ export default {
       this.project.tags = projectInfo.tags ? projectInfo.tags : this.project.tags;
       this.project.description = projectInfo.description ? projectInfo.description : this.project.description;
       this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
-      this.project.imageUrl = projectInfo.imageUrl ? projectInfo.imageUrl : this.project.imageUrl;
+      this.project.image = projectInfo.image ? projectInfo.image : this.project.image;
       this.project.imageFile = projectInfo.imageFile ? projectInfo.imageFile : this.project.imageFile;
     },
     createProject() {

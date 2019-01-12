@@ -15,7 +15,7 @@
               :size="imageSize"
               tile
             >
-              <img :src="project.src">
+              <img :src="project.image">
             </v-avatar>
           </v-flex>
           <v-flex xs4>

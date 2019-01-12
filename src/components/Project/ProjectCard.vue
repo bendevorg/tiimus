@@ -1,7 +1,7 @@
 <template>
   <v-card :to="'/projects/' + project.name">
     <v-img
-      :src="project.src"
+      :src="project.image"
       height="200px"
     >
     </v-img>

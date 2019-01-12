@@ -19,7 +19,7 @@
                     size=300
                     color="grey lighten-4"
                   >
-                    <img :src="project.src"/>
+                    <img :src="project.image"/>
                   </v-avatar>
                 </v-flex>
                 <v-flex xs12>
