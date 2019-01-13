@@ -20,7 +20,7 @@
           >
             <v-flex
               v-for="user in users"
-              :key="user.name"
+              :key="user.id"
               xs12
               sm6
               md3

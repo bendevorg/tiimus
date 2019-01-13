@@ -20,7 +20,7 @@
           >
             <v-flex
               v-for="project in projects"
-              :key="project.name"
+              :key="project.id"
               xs12
               sm6
               md3

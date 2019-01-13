@@ -40,7 +40,7 @@
       <div>
         <v-chip 
           v-for="skill in user.skills"
-          :key="skill.name"
+          :key="skill.id"
           :color="retrieveSkillColor()(skill.name)" 
           :text-color="retrieveSkillTextColor()(skill.name)" 
           small>{{ skill.name }}</v-chip>

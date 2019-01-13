@@ -16,7 +16,7 @@
         <div v-if="!reduced">
           <v-chip 
             v-for="skill in project.skills"
-            :key="skill.name"
+            :key="skill.id"
             :color="retrieveSkillColor()(skill.name)" 
             :text-color="retrieveSkillTextColor()(skill.name)" 
             small

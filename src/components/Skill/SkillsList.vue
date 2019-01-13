@@ -17,7 +17,7 @@
           >
             <v-flex
               v-for="skill in skills"
-              :key="skill.name"
+              :key="skill.id"
               xs12
               sm6
               md3

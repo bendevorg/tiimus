@@ -14,7 +14,7 @@
     >
       <v-flex
         v-for="skill in skills"
-        :key="skill.name"
+        :key="skill.id"
         xs4
       >
         <v-checkbox
