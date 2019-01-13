@@ -33,7 +33,7 @@
             :description="project.description"
             :skills="project.skills"
             :image="project.image"
-            :image-file="project.imageFile"
+            :image-url="project.imageUrl"
             :is="step.component"
             @update-project-info="updateProjectInfo"
           />
@@ -102,7 +102,7 @@ export default {
         description: '',
         skills: [],
         image: '',
-        imageFile: ''
+        imageUrl: ''
       }
     }
   },
@@ -122,11 +122,12 @@ export default {
       this.project.tags = projectInfo.tags ? projectInfo.tags : this.project.tags;
       this.project.description = projectInfo.description ? projectInfo.description : this.project.description;
       this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
-      this.project.image = projectInfo.imageUrl ? projectInfo.imageUrl : this.project.image;
-      this.project.imageFile = projectInfo.imageFile ? projectInfo.imageFile : this.project.imageFile;
+      this.project.image = projectInfo.imageFile ? projectInfo.imageFile : this.project.imageFile;
+      this.project.imageUrl = projectInfo.imageUrl ? projectInfo.imageUrl : this.project.image;
     },
     createProject() {
-      console.log('ae');
+      this.project.skills.map(skill => skill.id);
+      this.project.tags.map(tag => tag.id);
     }
   }
 }

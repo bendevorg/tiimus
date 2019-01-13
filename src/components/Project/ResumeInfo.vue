@@ -13,8 +13,8 @@
         xs12
       >
         <img 
-          v-if="image"
-          :src="image" 
+          v-if="imageUrl"
+          :src="imageUrl" 
           height="150" 
         >
       </v-flex>
@@ -84,7 +84,7 @@ export default {
       type: Array,
       required: true
     },
-    image: {
+    imageUrl: {
       type: String,
       required: true,
       default: ''
