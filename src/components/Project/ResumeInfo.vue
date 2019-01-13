@@ -36,7 +36,7 @@
         </h2>
         <v-chip 
           v-for="tag in tags"
-          :key="tag"
+          :key="tag.name"
           :color="retrieveSkillColor()(tag)" 
           :text-color="retrieveSkillTextColor()(tag)" 
           small
