@@ -37,11 +37,11 @@
         <v-chip 
           v-for="tag in tags"
           :key="tag.name"
-          :color="retrieveSkillColor()(tag)" 
-          :text-color="retrieveSkillTextColor()(tag)" 
+          :color="retrieveSkillColor()(tag.name)" 
+          :text-color="retrieveSkillTextColor()(tag.name)" 
           small
         >
-          {{ tag }}
+          {{ tag.name }}
         </v-chip>
         <br>
         <h2>
@@ -49,12 +49,12 @@
         </h2>
         <v-chip 
           v-for="skill in skills"
-          :key="skill"
-          :color="retrieveSkillColor()(skill)" 
-          :text-color="retrieveSkillTextColor()(skill)" 
+          :key="skill.id"
+          :color="retrieveSkillColor()(skill.name)" 
+          :text-color="retrieveSkillTextColor()(skill.name)" 
           small
         >
-          {{ skill }}
+          {{ skill.name }}
         </v-chip>
       </v-flex>
     </v-layout>

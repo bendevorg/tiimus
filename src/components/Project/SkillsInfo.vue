@@ -20,7 +20,7 @@
         <v-checkbox
           v-model="selectedSkills"
           :label="skill.name"
-          :value="skill.name"
+          :value="skill"
           @click.native="saveInfo"
         />
       </v-flex>
