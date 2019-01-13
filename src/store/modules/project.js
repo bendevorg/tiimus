@@ -57,16 +57,18 @@ const actions = {
 
 const mutations = {
   setProjects(state, projects) {
+    projects.forEach(project => {
+      project.image = process.env.BACKEND_HOST + project.image;
+    });
     state.projects.all = projects;
   },
   setCurrentProject(state, project) {
-    console.log(1);
     let owner = project.users.find(user => {
       return user.projects_users.role === 'owner';
     });
     project.ownerId = owner ? owner.id : null;
+    project.image = process.env.BACKEND_HOST + project.image;
     state.currentProject = project;
-    console.log(state.currentProject);
   }
 };
 

@@ -88,15 +88,23 @@ const actions = {
 
 const mutations = {
   setUsers(state, users) {
+    users.forEach(user => {
+      user.avatar = process.env.BACKEND_HOST + user.avatar;
+    });
     state.users.all = users;
   },
   setLoggedUser(state, user) {
+    user.avatar = process.env.BACKEND_HOST + user.avatar;
     state.loggedUser = user;
   },
   setCurrentUser(state, user) {
+    user.avatar = process.env.BACKEND_HOST + user.avatar;
     state.currentUser = user;
   },
   setProjects(state, projects) {
+    projects.forEach(project => {
+      project.image = process.env.BACKEND_HOST + project.image;
+    });
     state.projects.all = projects;
   },
   setSkills(state, skills) {
