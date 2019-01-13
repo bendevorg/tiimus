@@ -54,7 +54,8 @@ export default {
     },
     skills: {
       type: Array,
-      required: true
+      required: false,
+      default: () => []
     },
     noSkills: {
       type: String,

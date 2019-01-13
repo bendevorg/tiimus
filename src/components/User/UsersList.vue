@@ -56,7 +56,8 @@ export default {
     },
     users: {
       type: Array,
-      required: true
+      required: false,
+      default: () => []
     },
     noUsers: {
       type: String,

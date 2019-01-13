@@ -59,7 +59,8 @@ export default {
     },
     projects: {
       type: Array,
-      required: true
+      required: false,
+      default: () => []
     },
     noProjects: {
       type: String,
