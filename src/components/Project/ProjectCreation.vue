@@ -126,8 +126,6 @@ export default {
       this.project.imageFile = projectInfo.imageFile ? projectInfo.imageFile : this.project.imageFile;
     },
     createProject() {
-      console.log(this.project.image);
-      console.log(this.project.imageFile);
       console.log('ae');
     }
   }

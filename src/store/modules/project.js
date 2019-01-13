@@ -32,7 +32,6 @@ const actions = {
       });
   },
   projectInfo({ commit }, projectId) {
-    console.log(`/projects/${projectId}`)
     API
       .get(`/projects/${projectId}`)
       .then(response => {
