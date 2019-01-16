@@ -13,6 +13,7 @@ setup() {
   pm2 delete $2
   cd github/$1
   git pull
+  npm install
 }
 
 replace_dist() {
