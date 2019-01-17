@@ -70,23 +70,15 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import SkillsList from '../Skill/SkillsList';
 import UsersList from '../User/UsersList';
-import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
   components: {
     appSkillsList: SkillsList,
     appUsersList: UsersList
-  },
-  methods: {
-    ...mapActions('project', [
-      'projectInfo'
-    ]),
-    ...mapActions('user', [
-      'loggedInfo'
-    ])
   },
   computed: {
     ...mapState('project', {
@@ -102,6 +94,15 @@ export default {
   created() {
     this.loggedInfo();
     this.projectInfo('test');
-  }
+  },
+  methods: {
+    ...mapActions('project', [
+      'projectInfo'
+    ]),
+    ...mapActions('user', [
+      'loggedInfo'
+    ])
+  },
+
 }
 </script>

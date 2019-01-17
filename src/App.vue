@@ -17,11 +17,14 @@
 </template>
 
 <script>
-import Content from './components/shared/Content';
 import { mapActions } from 'vuex';
+import Content from './components/shared/Content';
 
 export default {
   name: 'App',
+  components: {
+    appContent: Content
+  },
   data() {
     return {
       loading: true,
@@ -39,9 +42,6 @@ export default {
       'checkSession'
     ])
   },
-  components: {
-    appContent: Content
-  }
 };
 </script>
 

@@ -40,6 +40,9 @@ export default {
       skills: state => state.skills
     })
   },
+  created() {
+    this.listSkills();
+  },
   methods: {
     ...mapActions('skill', [
       'listSkills'
@@ -51,9 +54,6 @@ export default {
       this.$emit('update-project-info', creationInfo)
     }
   },
-  created() {
-    this.listSkills();
-  }
 }
 </script>
 

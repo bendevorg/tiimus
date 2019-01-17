@@ -45,7 +45,24 @@ export default {
   components: {
     appProjectCard: ProjectCard
   },
-  props: ['title', 'projects', 'noProjects', 'reduced'],
+  props: {
+    title: {
+      type: String,
+      default: 'Projects'
+    },
+    projects: {
+      type: Object,
+      required: true,
+    },
+    noProjects: {
+      type: String,
+      default: ''
+    },
+    reduced: {
+      type: Boolean,
+      default: false
+    }
+  },
 }
 </script>
 

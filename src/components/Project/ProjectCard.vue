@@ -8,13 +8,14 @@
     <v-card-title>
       <div>
         <h3>{{ project.name }}</h3>
-        <v-chip 
-          v-for="skill in project.skills" 
-          v-if="!reduced"
-          :key="skill"
-          :color="retrieveSkillColor()(skill)" 
-          :text-color="retrieveSkillTextColor()(skill)" 
-          small>{{ skill }}</v-chip>
+        <template v-if="!reduced">
+          <v-chip 
+            v-for="skill in project.skills" 
+            :key="skill"
+            :color="retrieveSkillColor()(skill)" 
+            :text-color="retrieveSkillTextColor()(skill)" 
+            small>{{ skill }}</v-chip>
+        </template>
       </div>
     </v-card-title>
     <!--
@@ -38,11 +39,20 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ProjectCard',
-  props: ['project', 'reduced'],
+  props: {
+    project: {
+      type: Object,
+      required: true
+    },
+    reduced: {
+      type: Boolean,
+      default: false
+    },
+  },
   data: () => ({
     show: false
   }),

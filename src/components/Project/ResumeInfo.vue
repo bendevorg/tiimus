@@ -39,10 +39,27 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
-  props: ['name', 'description', 'tags', 'skills'],
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    tags: {
+      type: Array,
+      required: true
+    },
+    skills: {
+      type: Array,
+      required: true
+    },
+  },
   methods: {
     ...mapGetters('skill', {
       retrieveSkillColor: 'retrieveSkillColor',

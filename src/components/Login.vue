@@ -141,7 +141,7 @@ export default {
         const body = this.isSignUp ? { name, email, password } : { email, password };
         if (this.isSignUp) {
           this.signUp(body)
-            .then(response => {
+            .then(() => {
               this.dialog = false;
             })
             .catch(err => {
@@ -149,7 +149,7 @@ export default {
             });
         } else {
           this.signIn(body)
-            .then(response => {
+            .then(() => {
               this.dialog = false;
             })
             .catch(err => {

@@ -40,8 +40,7 @@
       </v-flex>
     </v-layout>
     <app-projects-list
-      :projects="user.projects"  
-      title="Projects"
+      :projects="user.projects"
       no-projects="This user haven't joined a project yet"
       reduced="true"
     />
@@ -49,20 +48,15 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import SkillsList from '../Skill/SkillsList';
 import ProjectsList from '../Project/ProjectsList';
-import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'UserPage',
   components: {
     appSkillsList: SkillsList,
     appProjectsList: ProjectsList
-  },
-  methods: {
-    ...mapActions('user', [
-      'userInfo'
-    ])
   },
   computed: {
     ...mapState('user', {
@@ -71,6 +65,12 @@ export default {
   },
   created() {
     this.userInfo('test');
-  }
+  },
+  methods: {
+    ...mapActions('user', [
+      'userInfo'
+    ])
+  },
+
 }
 </script>

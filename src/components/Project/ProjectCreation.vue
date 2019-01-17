@@ -72,9 +72,8 @@
 
 <script>
 import CreationInfo from './CreationInfo';
-import SkillsInfo from './SkillsInfo';
+  import SkillsInfo from './SkillsInfo';
 import ResumeInfo from './ResumeInfo';
-import API from '../../utils/API';
 
 export default {
   data() {
@@ -120,15 +119,15 @@ export default {
       this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
     },
     createProject() {
-      console.log('ae');
+      // TODO: Create project
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  >>> .nav-link {
-    text-decoration: none;
-    color: rgba(0,0,0,.87);
-  }
+>>> .nav-link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
 </style>

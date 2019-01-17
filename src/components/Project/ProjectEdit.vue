@@ -122,17 +122,6 @@ export default {
       dialog: false,
     }
   },
-  methods: {
-    ...mapActions('tag', [
-      'listTags'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ]),
-    ...mapActions('project', [
-      'projectInfo'
-    ])
-  },
   computed: {
     ...mapState('tag', {
       tags: state => state.tags
@@ -148,7 +137,18 @@ export default {
     this.listTags();
     this.listSkills();
     this.projectInfo('test');
-  }
+  },
+  methods: {
+    ...mapActions('tag', [
+      'listTags'
+    ]),
+    ...mapActions('skill', [
+      'listSkills'
+    ]),
+    ...mapActions('project', [
+      'projectInfo'
+    ])
+  },
 }
 </script>
 

@@ -29,6 +29,7 @@
           label="Some tags about your game"
           multiple
           chips
+          required
           @blur="saveInfo"
         />
       </v-flex>
@@ -72,6 +73,9 @@ export default {
       tags: state => state.tags
     })
   },
+  created() {
+    this.listTags();
+  },
   methods: {
     ...mapActions('tag', [
       'listTags'
@@ -85,8 +89,5 @@ export default {
       this.$emit('update-project-info', creationInfo)
     }
   },
-  created() {
-    this.listTags();
-  }
 }
 </script>
