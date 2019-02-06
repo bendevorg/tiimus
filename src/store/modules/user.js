@@ -99,6 +99,9 @@ const mutations = {
   },
   setCurrentUser(state, user) {
     user.avatar = process.env.BACKEND_HOST + user.avatar;
+    user.projects.forEach(project => {
+      project.image = process.env.BACKEND_HOST + project.image;
+    });
     state.currentUser = user;
   },
   setProjects(state, projects) {

@@ -67,6 +67,9 @@ const mutations = {
     });
     project.ownerId = owner ? owner.id : null;
     project.image = process.env.BACKEND_HOST + project.image;
+    project.users.forEach(user => {
+      user.avatar = process.env.BACKEND_HOST + user.avatar;
+    });
     state.currentProject = project;
   }
 };

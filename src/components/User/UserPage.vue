@@ -108,9 +108,9 @@
     </v-layout>
     <app-projects-list
       :projects="user.projects"
+      :reduced="true"
       title="Projects"
       no-projects="This user haven't joined a project yet"
-      reduced="true"
     />
   </v-container>
 </template>
