@@ -102,15 +102,7 @@ export default {
   data() {
     return {
       dialog: false
-    }
-  },
-  methods: {
-    ...mapActions('user', [
-      'loggedInfo'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ])
+    };
   },
   computed: {
     ...mapState('skill', {
@@ -123,10 +115,13 @@ export default {
   created() {
     this.loggedInfo();
     this.listSkills();
+  },
+  methods: {
+    ...mapActions('user', ['loggedInfo']),
+    ...mapActions('skill', ['listSkills'])
   }
-}
+};
 </script>
 
 <style>
-
 </style>

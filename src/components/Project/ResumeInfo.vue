@@ -58,7 +58,7 @@ export default {
     skills: {
       type: Array,
       required: true
-    },
+    }
   },
   methods: {
     ...mapGetters('skill', {
@@ -66,6 +66,6 @@ export default {
       retrieveSkillTextColor: 'retrieveSkillTextColor'
     })
   }
-}
+};
 </script>
 

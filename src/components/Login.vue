@@ -120,25 +120,25 @@ export default {
       name: '',
       nameRules: [
         v => !!v || 'First name is required',
-        v => (v && v.length <= 20) || 'First name must be less than 20 characters'
+        v =>
+          (v && v.length <= 20) || 'First name must be less than 20 characters'
       ],
       password: '',
       passwordRules: [
         v => !!v || 'Password is required',
         v => (v && v.length >= 5) || 'Password must have at least 5 characters'
       ]
-    }
+    };
   },
   methods: {
-    ...mapActions('auth', [
-      'signIn',
-      'signUp'
-    ]),
-    submit () {
+    ...mapActions('auth', ['signIn', 'signUp']),
+    submit() {
       if (this.$refs.form.validate()) {
         this.error = false;
         const { name, email, password } = this;
-        const body = this.isSignUp ? { name, email, password } : { email, password };
+        const body = this.isSignUp
+          ? { name, email, password }
+          : { email, password };
         if (this.isSignUp) {
           this.signUp(body)
             .then(() => {
@@ -159,12 +159,11 @@ export default {
       }
     }
   }
-}
-
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .v-dialog__activator {
-    height: 100%
-  }
+>>> .v-dialog__activator {
+  height: 100%;
+}
 </style>

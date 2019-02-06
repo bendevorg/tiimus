@@ -72,7 +72,7 @@
 
 <script>
 import CreationInfo from './CreationInfo';
-  import SkillsInfo from './SkillsInfo';
+import SkillsInfo from './SkillsInfo';
 import ResumeInfo from './ResumeInfo';
 
 export default {
@@ -86,8 +86,8 @@ export default {
         },
         {
           name: 'Skills',
-          component: SkillsInfo 
-        }, 
+          component: SkillsInfo
+        },
         {
           name: 'Resume',
           component: ResumeInfo
@@ -99,30 +99,38 @@ export default {
         description: '',
         skills: []
       }
-    }
+    };
   },
   methods: {
-    nextStep (n) {
+    nextStep(n) {
       if (n === this.steps.length) {
-        this.e1 = 1
+        this.e1 = 1;
       } else {
-        this.e1 = n + 1
+        this.e1 = n + 1;
       }
     },
     previousPage() {
       this.$router.go(-1);
     },
     updateProjectInfo(projectInfo) {
-      this.project.name = projectInfo.name ? projectInfo.name : this.project.name;
-      this.project.tags = projectInfo.tags ? projectInfo.tags : this.project.tags;
-      this.project.description = projectInfo.description ? projectInfo.description : this.project.description;
-      this.project.skills = projectInfo.skills ? projectInfo.skills : this.project.skills;
+      this.project.name = projectInfo.name
+        ? projectInfo.name
+        : this.project.name;
+      this.project.tags = projectInfo.tags
+        ? projectInfo.tags
+        : this.project.tags;
+      this.project.description = projectInfo.description
+        ? projectInfo.description
+        : this.project.description;
+      this.project.skills = projectInfo.skills
+        ? projectInfo.skills
+        : this.project.skills;
     },
     createProject() {
       // TODO: Create project
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

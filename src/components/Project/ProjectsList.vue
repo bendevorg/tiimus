@@ -52,7 +52,7 @@ export default {
     },
     projects: {
       type: Object,
-      required: true,
+      required: true
     },
     noProjects: {
       type: String,
@@ -62,12 +62,12 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-}
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .headline {
-    margin-bottom: 24px;
-  }
+>>> .headline {
+  margin-bottom: 24px;
+}
 </style>

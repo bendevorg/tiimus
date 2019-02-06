@@ -8,13 +8,11 @@ const state = {
   currentProject: {}
 };
 
-const getters = {
-};
+const getters = {};
 
 const actions = {
   listProjects({ commit }) {
-    API
-      .get('/projects')
+    API.get('/projects')
       .then(response => {
         commit('setProjects', response.data.msg);
       })
@@ -23,10 +21,9 @@ const actions = {
       });
   },
   projectInfo({ commit }, projectId) {
-    API
-      .get(`/projects/${projectId}`)
+    API.get(`/projects/${projectId}`)
       .then(response => {
-        commit('setCurrentProject', response.data.msg)
+        commit('setCurrentProject', response.data.msg);
       })
       .catch(error => {
         //  TODO: Handle the error
@@ -39,7 +36,9 @@ const mutations = {
     state.projects.all = projects;
   },
   setCurrentProject(state, project) {
-    const owner = project.users.find(user => user.projects_users.role === 'owner');
+    const owner = project.users.find(
+      user => user.projects_users.role === 'owner'
+    );
     project.ownerId = owner ? owner.id : null;
     state.currentProject = project;
   }

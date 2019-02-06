@@ -37,8 +37,7 @@ export default {
     appLogin: Login,
     appUserMenu: UserMenu
   },
-  data() {
-  },
+  data() {},
   computed: {
     ...mapState('auth', {
       isLogged: state => state.isLogged
@@ -48,14 +47,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  >>> .nav-link {
-    text-decoration: none;
-    color: rgba(0,0,0,.87);
-  }
-  >>> .v-toolbar__title {
-    margin-left: 20px
-  }
-  >>> .v-btn--flat {
-    height: 100%;
-  }
+>>> .nav-link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+>>> .v-toolbar__title {
+  margin-left: 20px;
+}
+
+>>> .v-btn--flat {
+  height: 100%;
+}
 </style>

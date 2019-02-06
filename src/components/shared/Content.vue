@@ -18,5 +18,5 @@ export default {
     appNavmenu: Navmenu,
     appFooter: Footer
   }
-}
+};
 </script>

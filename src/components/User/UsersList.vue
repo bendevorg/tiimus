@@ -43,12 +43,12 @@ export default {
   components: {
     appUserCard: UserCard
   },
-  props: ['title', 'users', 'noUsers'],
-}
+  props: ['title', 'users', 'noUsers']
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .headline {
-    margin-bottom: 24px;
-  }
+>>> .headline {
+  margin-bottom: 24px;
+}
 </style>

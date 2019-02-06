@@ -38,15 +38,9 @@ export default {
     this.listUsers();
   },
   methods: {
-    ...mapActions('project', [
-      'listProjects'
-    ]),
-    ...mapActions('user', [
-      'listUsers'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ])
-  },
-}
+    ...mapActions('project', ['listProjects']),
+    ...mapActions('user', ['listUsers']),
+    ...mapActions('skill', ['listSkills'])
+  }
+};
 </script>

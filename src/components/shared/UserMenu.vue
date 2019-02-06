@@ -44,21 +44,7 @@ export default {
           click: this.signOut
         }
       ]
-    }
-  },
-  methods: {
-    ...mapActions('auth', [
-      'signOut'
-    ]),
-    ...mapActions('user', [
-      'loggedInfo'
-    ]),
-    goToUserPage() {
-      this.$router.push({ name: 'User page', params: { id: this.user.id } });
-    },
-    goToUserEdit() {
-      this.$router.push({ name: 'User edit' });
-    }
+    };
   },
   computed: {
     ...mapState('user', {
@@ -67,6 +53,16 @@ export default {
   },
   mounted() {
     this.loggedInfo();
+  },
+  methods: {
+    ...mapActions('auth', ['signOut']),
+    ...mapActions('user', ['loggedInfo']),
+    goToUserPage() {
+      this.$router.push({ name: 'User page', params: { id: this.user.id } });
+    },
+    goToUserEdit() {
+      this.$router.push({ name: 'User edit' });
+    }
   }
-}
+};
 </script>

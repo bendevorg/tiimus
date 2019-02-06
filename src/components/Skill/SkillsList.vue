@@ -43,19 +43,17 @@ export default {
     appSkillCard: SkillCard
   },
   props: ['title', 'skills', 'noSkills'],
-  methods: {
-    ...mapActions('skill', [
-      'listSkills'
-    ])
-  },
   mounted() {
     this.listSkills();
+  },
+  methods: {
+    ...mapActions('skill', ['listSkills'])
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .headline {
-    margin-bottom: 24px;
-  }
+>>> .headline {
+  margin-bottom: 24px;
+}
 </style>

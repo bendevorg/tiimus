@@ -88,7 +88,7 @@ export default {
       user: state => state.loggedUser
     }),
     imageSize() {
-      return this.$vuetify.breakpoint.smAndDown ? '250px' : '450px'
+      return this.$vuetify.breakpoint.smAndDown ? '250px' : '450px';
     }
   },
   created() {
@@ -96,13 +96,8 @@ export default {
     this.projectInfo('test');
   },
   methods: {
-    ...mapActions('project', [
-      'projectInfo'
-    ]),
-    ...mapActions('user', [
-      'loggedInfo'
-    ])
-  },
-
-}
+    ...mapActions('project', ['projectInfo']),
+    ...mapActions('user', ['loggedInfo'])
+  }
+};
 </script>

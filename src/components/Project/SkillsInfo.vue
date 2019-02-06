@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       selectedSkills: []
-    }
+    };
   },
   computed: {
     ...mapState('skill', {
@@ -44,16 +44,14 @@ export default {
     this.listSkills();
   },
   methods: {
-    ...mapActions('skill', [
-      'listSkills'
-    ]),
+    ...mapActions('skill', ['listSkills']),
     saveInfo() {
       const creationInfo = {
         skills: this.selectedSkills
       };
-      this.$emit('update-project-info', creationInfo)
+      this.$emit('update-project-info', creationInfo);
     }
-  },
-}
+  }
+};
 </script>
 

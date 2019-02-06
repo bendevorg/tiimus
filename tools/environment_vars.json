@@ -1,15 +1,15 @@
 {
-  "mock":{
+  "mock": {
     "NODE_ENV": "'\"mock\"'",
     "PORT": 3341,
     "BACKEND_HOST": "'\"http://localhost:3342/\"'"
   },
-  "development":{
+  "development": {
     "NODE_ENV": "'\"development\"'",
     "PORT": 3341,
     "BACKEND_HOST": "'\"http://localhost:3342/\"'"
   },
-  "production":{
+  "production": {
     "NODE_ENV": "'\"production\"'",
     "PORT": 3341
   }

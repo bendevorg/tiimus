@@ -110,17 +110,20 @@ export default {
     return {
       nameRules: [
         v => !!v || 'Project name is required',
-        v => (v && v.length >= 3) || 'Project name must have at least 3 characters'
+        v =>
+          (v && v.length >= 3) || 'Project name must have at least 3 characters'
       ],
       descriptionRules: [
         v => !!v || 'Project description is required',
-        v => (v && v.length >= 5) || 'Project name must have at least than 5 characters'
+        v =>
+          (v && v.length >= 5) ||
+          'Project name must have at least than 5 characters'
       ],
       name: '',
       selectedTags: [],
       description: '',
-      dialog: false,
-    }
+      dialog: false
+    };
   },
   computed: {
     ...mapState('tag', {
@@ -131,7 +134,7 @@ export default {
     }),
     ...mapState('project', {
       project: state => state.currentProject
-    }),
+    })
   },
   created() {
     this.listTags();
@@ -139,19 +142,12 @@ export default {
     this.projectInfo('test');
   },
   methods: {
-    ...mapActions('tag', [
-      'listTags'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ]),
-    ...mapActions('project', [
-      'projectInfo'
-    ])
-  },
-}
+    ...mapActions('tag', ['listTags']),
+    ...mapActions('skill', ['listSkills']),
+    ...mapActions('project', ['projectInfo'])
+  }
+};
 </script>
 
 <style>
-
 </style>

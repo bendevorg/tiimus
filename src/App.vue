@@ -38,10 +38,8 @@ export default {
     this.post = true;
   },
   methods: {
-    ...mapActions('auth', [
-      'checkSession'
-    ])
-  },
+    ...mapActions('auth', ['checkSession'])
+  }
 };
 </script>
 

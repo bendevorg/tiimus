@@ -24,6 +24,6 @@ export default {
       retrieveSkillIcon: 'retrieveSkillIcon'
     })
   }
-}
+};
 </script>
 

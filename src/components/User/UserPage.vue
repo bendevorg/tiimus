@@ -67,10 +67,7 @@ export default {
     this.userInfo('test');
   },
   methods: {
-    ...mapActions('user', [
-      'userInfo'
-    ])
-  },
-
-}
+    ...mapActions('user', ['userInfo'])
+  }
+};
 </script>

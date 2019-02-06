@@ -51,7 +51,7 @@ export default {
     reduced: {
       type: Boolean,
       default: false
-    },
+    }
   },
   data: () => ({
     show: false
@@ -62,6 +62,6 @@ export default {
       retrieveSkillTextColor: 'retrieveSkillTextColor'
     })
   }
-}
+};
 </script>
 

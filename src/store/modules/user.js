@@ -17,13 +17,11 @@ const state = {
   currentUser: {}
 };
 
-const getters = {
-};
+const getters = {};
 
 const actions = {
   listUsers({ commit }) {
-    API
-      .get('/users')
+    API.get('/users')
       .then(response => {
         commit('setUsers', response.data.msg);
       })
@@ -32,8 +30,7 @@ const actions = {
       });
   },
   loggedInfo({ commit }) {
-    API
-      .get('/user')
+    API.get('/user')
       .then(response => {
         commit('setLoggedUser', response.data.msg);
       })
@@ -42,8 +39,7 @@ const actions = {
       });
   },
   userInfo({ commit }, userId) {
-    API
-      .get(`/users/${userId}`)
+    API.get(`/users/${userId}`)
       .then(response => {
         commit('setCurrentUser', response.data.msg);
       })
@@ -52,8 +48,7 @@ const actions = {
       });
   },
   listProjects({ commit }, userId) {
-    API
-      .get(`/users/${userId}/projects`)
+    API.get(`/users/${userId}/projects`)
       .then(response => {
         commit('setProjects', response.data.msg);
       })
@@ -71,12 +66,12 @@ const mutations = {
     state.loggedUser = user;
   },
   setCurrentUser(state, user) {
-    state.currentUser = user
+    state.currentUser = user;
   },
   setProjects(state, projects) {
     state.projects.all = projects;
   },
-  setSkills(state, skills) { 
+  setSkills(state, skills) {
     state.skills.all = skills;
   }
 };
