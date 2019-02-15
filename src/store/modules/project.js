@@ -41,6 +41,27 @@ const actions = {
         //  TODO: Handle the error
       });
   },
+  createProject({ commit }, project) {
+    return new Promise((resolve, reject) => {
+      API
+      .post(
+        '/projects',
+        project,
+        {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
+      )
+      .then(response => {
+        return resolve(response.data.msg);
+      })
+      .catch(err => {
+        //  TODO: Handle the error
+        return reject(err);
+      });
+    });
+  },
   askToJoin({ commit }, projectId) {
     API
       .post(`/projects/${projectId}/ask_join`)

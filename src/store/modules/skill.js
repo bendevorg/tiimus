@@ -21,6 +21,9 @@ const getters = {
 
 const actions = {
   listSkills({ commit }) {
+    if (state.skills.length > 0) {
+      return;
+    } 
     API
       .get('/skills')
       .then(response => {
