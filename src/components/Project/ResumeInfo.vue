@@ -60,11 +60,13 @@ export default {
     },
     tags: {
       type: Array,
-      required: true
+      required: true,
+      default: () => []
     },
     skills: {
       type: Array,
-      required: true
+      required: true,
+      default: () => []
     },
     imageUrl: {
       type: String,

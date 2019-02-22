@@ -41,7 +41,7 @@
             >
               Continue
             </v-btn>
-            <v-btn v-else color="primary" @click="createProject">
+            <v-btn v-else color="primary" @click="sendProject">
               Create
             </v-btn>
             <v-btn v-if="index > 0" flat @click="nextStep(index - 1)">
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import CreationInfo from './CreationInfo';
 import SkillsInfo from './SkillsInfo';
 import ResumeInfo from './ResumeInfo';
@@ -92,6 +93,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('project', ['createProject']),
     nextStep(n) {
       if (n === this.steps.length) {
         this.e1 = 1;
@@ -106,25 +108,36 @@ export default {
       this.project.name = projectInfo.name
         ? projectInfo.name
         : this.project.name;
-      this.project.tags = projectInfo.tags
-        ? projectInfo.tags
-        : this.project.tags;
       this.project.description = projectInfo.description
         ? projectInfo.description
         : this.project.description;
+      this.project.tags = projectInfo.tags
+        ? projectInfo.tags
+        : this.project.tags;
       this.project.skills = projectInfo.skills
         ? projectInfo.skills
         : this.project.skills;
       this.project.image = projectInfo.imageFile
         ? projectInfo.imageFile
-        : this.project.imageFile;
+        : this.project.image;
       this.project.imageUrl = projectInfo.imageUrl
         ? projectInfo.imageUrl
-        : this.project.image;
+        : this.project.imageUrl;
     },
-    createProject() {
-      this.project.skills.map(skill => skill.id);
-      this.project.tags.map(tag => tag.id);
+    sendProject() {
+      const projectData = new FormData();
+      projectData.append('name', this.project.name);
+      projectData.append('description', this.project.description);
+      projectData.append('tags', this.project.tags.map(tag => tag.id));
+      projectData.append('skills', this.project.skills.map(skill => skill.id));
+      projectData.append('image', this.project.image);
+      this.createProject(projectData)
+        .then(project => {
+          this.$router.push({ path: `/projects/${project.id}` });
+        })
+        .catch(err => {
+          // TODO: Handle error
+        });
     }
   }
 };
