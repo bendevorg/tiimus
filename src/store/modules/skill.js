@@ -19,7 +19,7 @@ const getters = {
   },
   retrieveSkillIcon: state => skill => {
     const skillIndex = state.skills.findIndex(
-      currentSkill => currentSkill.name == skill
+      currentSkill => currentSkill.name === skill
     );
     return skillIndex !== -1 ? state.skills[skillIndex].icon : 'help_outline';
   }
