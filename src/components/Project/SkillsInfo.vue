@@ -1,29 +1,21 @@
 <template>
   <v-container fluid>
-    <v-layout 
-      row 
-      wrap>
+    <v-layout row wrap>
       <v-flex xs6>
         <h1>Which skills do you want?</h1>
       </v-flex>
     </v-layout>
-    <v-layout 
-      row 
-      wrap>
-      <v-flex
-        v-for="skill in skills"
-        :key="skill.name"
-        xs4
-      >
+    <v-layout row wrap>
+      <v-flex v-for="skill in skills" :key="skill.id" xs4>
         <v-checkbox
           v-model="selectedSkills"
           :label="skill.name"
-          :value="skill.name"
+          :value="skill"
           @click.native="saveInfo"
         />
       </v-flex>
     </v-layout>
-  </v-container>  
+  </v-container>
 </template>
 
 <script>

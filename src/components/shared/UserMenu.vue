@@ -1,14 +1,8 @@
 <template>
   <v-menu offset-y>
-    <v-btn 
-      slot="activator"
-      flat>
-      <v-avatar
-        color="grey lighten-4"
-      >
-        <img 
-          :src="user.image" 
-          alt="avatar">
+    <v-btn slot="activator" flat>
+      <v-avatar color="grey lighten-4">
+        <img :src="user.avatar" alt="avatar" />
       </v-avatar>
     </v-btn>
     <v-list>

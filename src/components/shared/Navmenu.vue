@@ -1,35 +1,44 @@
 <template>
   <v-toolbar>
-    <v-toolbar-side-icon/>
+    <v-menu class="hidden-md-and-up">
+      <v-toolbar-side-icon slot="activator" />
+      <v-list>
+        <v-list-tile v-if="isLogged">
+          <v-list-tile-content>
+            <router-link to="/project/create" class="nav-link">
+              <v-btn flat>Create a project </v-btn>
+            </router-link>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-else>
+          <v-list-tile-content>
+            <app-login />
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
 
-    <router-link 
-      class="nav-link" 
-      to="/">
+    <router-link to="/" class="nav-link">
       <v-toolbar-title>
-        Buildev
+        Tiimus
       </v-toolbar-title>
     </router-link>
 
-    <v-spacer/>
+    <v-spacer />
     <v-toolbar-items class="hidden-sm-and-down">
-      <router-link 
-        class="nav-link" 
-        to="/project/create">
-        <v-btn 
-          v-if="isLogged" 
-          flat>Create a project
-        </v-btn>
+      <router-link to="/project/create" class="nav-link">
+        <v-btn v-if="isLogged" flat>Create a project </v-btn>
       </router-link>
-      <app-user-menu v-if="isLogged"/>
-      <app-login v-else/>
+      <app-user-menu v-if="isLogged" />
+      <app-login v-else />
     </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Login from '../Login';
 import UserMenu from './UserMenu';
-import { mapState } from 'vuex';
 
 export default {
   name: 'Navmenu',
@@ -57,6 +66,6 @@ export default {
 }
 
 >>> .v-btn--flat {
-  height: 100%;
+  height: 100% !important;
 }
 </style>

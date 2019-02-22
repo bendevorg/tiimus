@@ -8,7 +8,19 @@ const state = {
   currentProject: {}
 };
 
-const getters = {};
+const getters = {
+  isUserInProject: state => userId => {
+    if (userId && state.currentProject.users) {
+      const userInProject = state.currentProject.users.includes(
+        user => userId === user.id
+      );
+      return !userInProject
+        ? userId === state.currentProject.ownerId
+        : userInProject;
+    }
+    return false;
+  }
+};
 
 const actions = {
   listProjects({ commit }) {
@@ -28,11 +40,23 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
+  },
+  askToJoin({ commit }, projectId) {
+    API.post(`/projects/${projectId}/ask_join`)
+      .then(response => true)
+      .catch(
+        err =>
+          //   TOOD: Handle the error
+          false
+      );
   }
 };
 
 const mutations = {
   setProjects(state, projects) {
+    projects.forEach(project => {
+      project.image = process.env.BACKEND_HOST + project.image;
+    });
     state.projects.all = projects;
   },
   setCurrentProject(state, project) {
@@ -40,6 +64,10 @@ const mutations = {
       user => user.projects_users.role === 'owner'
     );
     project.ownerId = owner ? owner.id : null;
+    project.image = process.env.BACKEND_HOST + project.image;
+    project.users.forEach(user => {
+      user.avatar = process.env.BACKEND_HOST + user.avatar;
+    });
     state.currentProject = project;
   }
 };

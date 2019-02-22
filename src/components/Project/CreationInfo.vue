@@ -1,31 +1,27 @@
 <template>
-  <v-container 
-    fluid 
-    grid-list-md>
-    <v-layout 
-      row 
-      wrap>
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
       <v-flex xs12>
         <h1>Tell us a little about your project</h1>
       </v-flex>
     </v-layout>
-    <v-layout 
-      row 
-      wrap>
+    <v-layout row wrap>
       <v-flex xs8>
         <v-text-field
           v-model="name"
-          :rules="nameRules" 
+          :rules="nameRules"
           :validate-on-blur="true"
           label="Name"
           type="name"
           required
-          @blur="saveInfo"/>
+          @blur="saveInfo"
+        />
       </v-flex>
       <v-flex xs8>
         <v-combobox
           v-model="selectedTags"
           :items="tags"
+          item-text="name"
           label="Some tags about your game"
           multiple
           chips
@@ -43,6 +39,23 @@
           auto-grow
           required
           @blur="saveInfo"
+        />
+      </v-flex>
+      <v-flex xs8>
+        <v-text-field
+          v-model="imageName"
+          label="Select Image"
+          validate-on-blur
+          prepend-icon="attach_file"
+          @click="pickFile"
+          @blur="saveInfo"
+        />
+        <input
+          ref="image"
+          type="file"
+          style="display: none"
+          accept="image/*"
+          @change="onFilePicked"
         />
       </v-flex>
     </v-layout>
@@ -68,7 +81,10 @@ export default {
       ],
       name: '',
       selectedTags: [],
-      description: ''
+      description: '',
+      imageName: '',
+      imageFile: '',
+      imageUrl: ''
     };
   },
   computed: {
@@ -85,9 +101,33 @@ export default {
       const creationInfo = {
         name: this.name,
         tags: this.selectedTags,
-        description: this.description
+        description: this.description,
+        imageUrl: this.imageUrl,
+        imageFile: this.imageFile
       };
       this.$emit('update-project-info', creationInfo);
+    },
+    pickFile() {
+      this.$refs.image.click();
+    },
+    onFilePicked(e) {
+      const { files } = e.target;
+      if (files[0] !== undefined) {
+        this.imageName = files[0].name;
+        if (this.imageName.lastIndexOf('.') <= 0) {
+          return;
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result;
+          [this.imageFile] = files;
+        });
+      } else {
+        this.imageName = '';
+        this.imageFile = '';
+        this.imageUrl = '';
+      }
     }
   }
 };

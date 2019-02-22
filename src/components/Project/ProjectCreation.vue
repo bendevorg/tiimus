@@ -1,5 +1,4 @@
 <template @update-project-create-form="test">
-
   <v-container fluid>
     <v-stepper v-model="e1">
       <v-stepper-header>
@@ -13,10 +12,7 @@
             {{ step.name }}
           </v-stepper-step>
 
-          <v-divider
-            v-if="index + 1 !== steps.length"
-            :key="index + 1"
-          />
+          <v-divider v-if="index + 1 !== steps.length" :key="index + 1" />
         </template>
       </v-stepper-header>
 
@@ -26,14 +22,17 @@
           :key="`${index + 1}-content`"
           :step="index + 1"
         >
-          <component 
+          <component
             v-if="true"
             :name="project.name"
             :tags="project.tags"
             :description="project.description"
             :skills="project.skills"
+            :image="project.image"
+            :image-url="project.imageUrl"
             :is="step.component"
-            @update-project-info="updateProjectInfo"/>
+            @update-project-info="updateProjectInfo"
+          />
           <v-layout wrap>
             <v-btn
               v-if="index < steps.length - 1"
@@ -42,25 +41,14 @@
             >
               Continue
             </v-btn>
-            <v-btn
-              v-else
-              color="primary"
-              @click="createProject"
-            >
+            <v-btn v-else color="primary" @click="createProject">
               Create
             </v-btn>
-            <v-btn
-              v-if="index > 0"
-              flat
-              @click="nextStep(index - 1)"
-            >
+            <v-btn v-if="index > 0" flat @click="nextStep(index - 1)">
               Previous
             </v-btn>
-            <v-spacer/>
-            <v-btn 
-              flat
-              @click="previousPage"
-            >
+            <v-spacer />
+            <v-btn flat @click="previousPage">
               Cancel
             </v-btn>
           </v-layout>
@@ -97,7 +85,9 @@ export default {
         name: '',
         tags: [],
         description: '',
-        skills: []
+        skills: [],
+        image: '',
+        imageUrl: ''
       }
     };
   },
@@ -125,9 +115,16 @@ export default {
       this.project.skills = projectInfo.skills
         ? projectInfo.skills
         : this.project.skills;
+      this.project.image = projectInfo.imageFile
+        ? projectInfo.imageFile
+        : this.project.imageFile;
+      this.project.imageUrl = projectInfo.imageUrl
+        ? projectInfo.imageUrl
+        : this.project.image;
     },
     createProject() {
-      // TODO: Create project
+      this.project.skills.map(skill => skill.id);
+      this.project.tags.map(tag => tag.id);
     }
   }
 };

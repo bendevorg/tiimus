@@ -1,37 +1,18 @@
 <template>
-  <v-layout 
-    row 
-    justify-center
-    align-center>
-    <v-flex 
-      xs12 
-      sm12>
-
-      <v-container
-        fluid
-        grid-list-md
-      >
+  <v-layout row justify-center align-center>
+    <v-flex xs12 sm12>
+      <v-container fluid grid-list-md>
         <div class="headline">{{ title }}</div>
         <div v-if="projects && projects.length > 0">
-          <v-layout 
-            row 
-            wrap>
-            <v-flex
-              v-for="project in projects"
-              :key="project.name"
-              xs12
-              sm6
-              md3
-            >
-              <app-project-card 
-                :project="project" 
-                :reduced="reduced"/>   
+          <v-layout row wrap>
+            <v-flex v-for="project in projects" :key="project.id" xs12 sm6 md3>
+              <app-project-card :project="project" :reduced="reduced" />
             </v-flex>
           </v-layout>
         </div>
-        <div 
-          v-else 
-          class="title">{{ noProjects }}</div>
+        <div v-else class="title">
+          {{ noProjects }}
+        </div>
       </v-container>
     </v-flex>
   </v-layout>
@@ -48,18 +29,22 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Projects'
+      required: true,
+      default: ''
     },
     projects: {
-      type: Object,
-      required: true
+      type: Array,
+      required: false,
+      default: () => []
     },
     noProjects: {
       type: String,
-      default: ''
+      required: true,
+      default: 'No projects'
     },
     reduced: {
       type: Boolean,
+      required: false,
       default: false
     }
   }

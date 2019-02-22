@@ -1,37 +1,42 @@
 <template>
-  <v-container 
-    fluid 
-    grid-list-md>
-    <v-layout 
-      row 
-      wrap>
-      <v-flex xs8>
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
+      <v-flex offset-md5 md6 xs12>
+        <img v-if="imageUrl" :src="imageUrl" height="150" />
+      </v-flex>
+      <v-flex offset-md5 md6 xs12>
         <h1>
           {{ name }}
         </h1>
+      </v-flex>
+      <v-flex xs8>
         <p>
           {{ description }}
         </p>
         <h2>
           A game about
         </h2>
-        <v-chip 
+        <v-chip
           v-for="tag in tags"
-          :key="tag"
-          :color="retrieveSkillColor()(tag)" 
-          :text-color="retrieveSkillTextColor()(tag)" 
-          small>{{ tag }}
+          :key="tag.id"
+          :color="retrieveSkillColor()(tag.name)"
+          :text-color="retrieveSkillTextColor()(tag.name)"
+          small
+        >
+          {{ tag.name }}
         </v-chip>
-        <br>
+        <br />
         <h2>
-          Is looking for 
+          Is looking for
         </h2>
-        <v-chip 
+        <v-chip
           v-for="skill in skills"
-          :key="skill"
-          :color="retrieveSkillColor()(skill)" 
-          :text-color="retrieveSkillTextColor()(skill)" 
-          small>{{ skill }}
+          :key="skill.id"
+          :color="retrieveSkillColor()(skill.name)"
+          :text-color="retrieveSkillTextColor()(skill.name)"
+          small
+        >
+          {{ skill.name }}
         </v-chip>
       </v-flex>
     </v-layout>
@@ -45,10 +50,12 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
+      default: ''
     },
     description: {
       type: String,
+      required: true,
       default: ''
     },
     tags: {
@@ -58,6 +65,11 @@ export default {
     skills: {
       type: Array,
       required: true
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+      default: ''
     }
   },
   methods: {

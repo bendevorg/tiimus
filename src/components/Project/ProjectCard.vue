@@ -1,21 +1,26 @@
 <template>
-  <v-card :to="'/projects/' + project.name">
-    <v-card-media
-      :src="project.src"
-      height="200px"
-    />
+  <v-card :to="'/projects/' + project.id">
+    <v-img :src="project.image" height="200px" />
 
     <v-card-title>
-      <div>
+      <div class="card-content">
         <h3>{{ project.name }}</h3>
-        <template v-if="!reduced">
-          <v-chip 
-            v-for="skill in project.skills" 
-            :key="skill"
-            :color="retrieveSkillColor()(skill)" 
-            :text-color="retrieveSkillTextColor()(skill)" 
-            small>{{ skill }}</v-chip>
-        </template>
+        <div class="description">
+          <div class="text-truncate">
+            {{ project.description }}
+          </div>
+        </div>
+        <div v-if="!reduced">
+          <v-chip
+            v-for="skill in project.skills"
+            :key="skill.id"
+            :color="retrieveSkillColor()(skill.name)"
+            :text-color="retrieveSkillTextColor()(skill.name)"
+            small
+          >
+            {{ skill.name }}
+          </v-chip>
+        </div>
       </div>
     </v-card-title>
     <!--
@@ -34,7 +39,6 @@
       </v-slide-y-transition>
     </div>
     !-->
-
   </v-card>
 </template>
 
@@ -50,6 +54,7 @@ export default {
     },
     reduced: {
       type: Boolean,
+      required: false,
       default: false
     }
   },
@@ -64,4 +69,10 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+.card-content {
+  width: 100%;
+}
+</style>
 

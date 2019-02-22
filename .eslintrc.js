@@ -56,6 +56,15 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-multi-assign': 0,
-    'no-plusplus': 0
+    'no-plusplus': 0,
+    'vue/max-attributes-per-line': 0,
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'any'
+        }
+      }
+    ]
   }
 };

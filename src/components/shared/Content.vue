@@ -1,10 +1,10 @@
 <template>
   <v-content>
-    <app-navmenu/>
+    <app-navmenu />
     <v-container fluid>
-      <router-view/>
+      <router-view />
     </v-container>
-    <app-footer/>
+    <app-footer />
   </v-content>
 </template>
 

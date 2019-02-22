@@ -32,7 +32,17 @@ const actions = {
   loggedInfo({ commit }) {
     API.get('/user')
       .then(response => {
-        commit('setLoggedUser', response.data.msg);
+        let userInfo = response.data.msg;
+        if (userInfo && userInfo.projects) {
+          const ownedProjects = [];
+          userInfo.projects.forEach(project => {
+            if (project.projects_users.role === 'owner') {
+              ownedProjects.push(project);
+            }
+          });
+          userInfo = { ...userInfo, ownedProjects };
+        }
+        commit('setLoggedUser', userInfo);
       })
       .catch(err => {
         //  TODO: Handle the error
@@ -55,20 +65,49 @@ const actions = {
       .catch(error => {
         //  TODO: Handle the error
       });
+  },
+  inviteUserToProject({ commit }, userId, projects) {
+    if (typeof projects === Array) {
+      const projectIds = [];
+      const data = {
+        projects: projectIds
+      };
+      projects.forEach(project => {
+        projectIds.push(project.id);
+      });
+      API.post(`/users/${userId}/invite`, data)
+        .then(() => true)
+        .catch(err => {
+          //  TODO: Handle the error
+        });
+    }
+    //  TODO: Throw error
+    return false;
   }
 };
 
 const mutations = {
   setUsers(state, users) {
+    users.forEach(user => {
+      user.avatar = process.env.BACKEND_HOST + user.avatar;
+    });
     state.users.all = users;
   },
   setLoggedUser(state, user) {
+    user.avatar = process.env.BACKEND_HOST + user.avatar;
     state.loggedUser = user;
   },
   setCurrentUser(state, user) {
+    user.avatar = process.env.BACKEND_HOST + user.avatar;
+    user.projects.forEach(project => {
+      project.image = process.env.BACKEND_HOST + project.image;
+    });
     state.currentUser = user;
   },
   setProjects(state, projects) {
+    projects.forEach(project => {
+      project.image = process.env.BACKEND_HOST + project.image;
+    });
     state.projects.all = projects;
   },
   setSkills(state, skills) {
