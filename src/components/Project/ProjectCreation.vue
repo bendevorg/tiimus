@@ -133,8 +133,9 @@ export default {
       const projectData = new FormData();
       projectData.append('name', this.project.name);
       projectData.append('description', this.project.description);
-      projectData.append('tags', this.project.tags.map(tag => tag.id));
-      projectData.append('skills', this.project.skills.map(skill => skill.id));
+
+      this.project.tags.forEach(tag => projectData.append('tags', tag.id));
+      this.project.skills.forEach(skill => projectData.append('skills', skill.id));
       projectData.append('image', this.project.image);
       this
         .createProject(projectData)
