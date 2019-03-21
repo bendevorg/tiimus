@@ -119,7 +119,6 @@ export default {
         v => (v && v.length >= 5) || 'Project name must have at least than 5 characters'
       ],
       name: '',
-      selectedTags: [],
       description: '',
       dialog: false,
     }
@@ -138,7 +137,7 @@ export default {
   created() {
     this.listTags();
     this.listSkills();
-    this.projectInfo('test');
+    this.projectInfo(this.$route.params.id);
   },
   methods: {
     ...mapActions('tag', [
@@ -149,7 +148,24 @@ export default {
     ]),
     ...mapActions('project', [
       'projectInfo'
-    ])
+    ]),
+    sendProject() {
+      const projectData = new FormData();
+      projectData.append('name', this.project.name);
+      projectData.append('description', this.project.description);
+
+      this.project.tags.forEach(tag => projectData.append('tags', tag.id));
+      this.project.skills.forEach(skill => projectData.append('skills', skill.id));
+      projectData.append('image', this.project.image);
+      this
+        .editProject(projectData)
+        .then(project => {
+          this.$router.push({ path: `/projects/${project.id}` });
+        })
+        .catch(err => {
+          // TODO: Handle error
+        });
+    }
   }
 }
 </script>

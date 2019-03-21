@@ -62,6 +62,27 @@ const actions = {
       });
     });
   },
+  editProject({ commit }, project) {
+    return new Promise((resolve, reject) => {
+      API
+      .patch(
+        `/projects/${project.id}`,
+        project,
+        {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
+      )
+      .then(response => {
+        return resolve(response.data.msg);
+      })
+      .catch(err => {
+        //  TODO: Handle the error
+        return reject(err);
+      });
+    });
+  },
   askToJoin({ commit }, projectId) {
     API
       .post(`/projects/${projectId}/ask_join`)
