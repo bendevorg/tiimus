@@ -1,30 +1,11 @@
 <template>
-  <v-container
-    fluid
-    grid-list-md
-  >
-    <v-layout 
-      row 
-      align-center
-      wrap
-    >
-      <v-flex 
-        sm12 
-        md3
-      >
-        <v-layout 
-          column 
-          align-center
-        >
+  <v-container fluid grid-list-md>
+    <v-layout row align-center wrap>
+      <v-flex sm12 md3>
+        <v-layout column align-center>
           <v-flex xs8>
-            <v-avatar
-              color="grey lighten-4"
-              size="250px"
-            >
-              <img 
-                :src="user.avatar"
-                alt="avatar"
-              >
+            <v-avatar color="grey lighten-4" size="250px">
+              <img :src="user.avatar" alt="avatar" />
             </v-avatar>
           </v-flex>
           <v-flex xs4>
@@ -32,31 +13,21 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex 
-        sm12 
-        md8
-      >
-        <app-skills-list 
+      <v-flex sm12 md8>
+        <app-skills-list
           :skills="user.skills"
-          title="Skills" 
+          title="Skills"
           no-skills="This user does not have any skills yet."
         />
         <v-container>
-          <v-layout 
+          <v-layout
             v-if="ownedProjects && ownedProjects.length > 0"
-            row 
+            row
             justify-start
             align-start
           >
-            <v-flex 
-              xs12 
-              md6
-            >
-              <v-btn 
-                large 
-                block 
-                @click="dialog = true"
-              >
+            <v-flex xs12 md6>
+              <v-btn large block @click="dialog = true">
                 INVITE TO PROJECT
               </v-btn>
             </v-flex>
@@ -68,7 +39,7 @@
         max-width="290"
         @input="v => v || closeDialog()"
       >
-        <v-card v-if="step == 0" >
+        <v-card v-if="step == 0">
           <v-card-text class="headline">
             <v-combobox
               v-model="projectInvites"
@@ -80,11 +51,8 @@
             />
           </v-card-text>
           <v-card-actions>
-            <v-spacer/>
-            <v-btn
-              flat="flat"
-              @click="sendInvites()"
-            >
+            <v-spacer />
+            <v-btn flat="flat" @click="sendInvites()">
               Invite
             </v-btn>
           </v-card-actions>
@@ -95,23 +63,21 @@
             Invite sent!
           </v-card-text>
           <v-card-actions>
-            <v-spacer/>
-            <v-btn
-              flat="flat"
-              @click="closeDialog()"
-            >
+            <v-spacer />
+            <v-btn flat="flat" @click="closeDialog()">
               Done
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </v-layout>
-    <app-projects-list
+    <app-projects-list :reduced="true" title="Projects" />
+    <!-- <app-projects-list
       :projects="user.projects"
       :reduced="true"
       title="Projects"
       no-projects="This user haven't joined a project yet"
-    />
+    /> -->
   </v-container>
 </template>
 
@@ -131,7 +97,7 @@ export default {
       dialog: false,
       step: 0,
       projectInvites: []
-    }
+    };
   },
   computed: {
     ...mapState('user', {
@@ -144,11 +110,7 @@ export default {
     this.userInfo(this.$route.params.id);
   },
   methods: {
-    ...mapActions('user', [
-      'loggedInfo',
-      'userInfo',
-      'inviteUserToProject'
-    ]),
+    ...mapActions('user', ['loggedInfo', 'userInfo', 'inviteUserToProject']),
     sendInvites() {
       this.inviteUserToProject(this.user.Id, this.projectInvites);
       this.step = 1;
@@ -158,5 +120,5 @@ export default {
       this.step = 0;
     }
   }
-}
+};
 </script>

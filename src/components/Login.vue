@@ -1,12 +1,6 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    max-width="500px"
-  >
-    <v-btn
-      slot="activator"
-      flat
-    >
+  <v-dialog v-model="dialog" max-width="500px">
+    <v-btn slot="activator" flat>
       Login
     </v-btn>
     <v-card>
@@ -15,25 +9,14 @@
       </v-card-title>
       <v-card-text>
         <v-container grid-list-md>
-          <v-form 
-            ref="form" 
-            v-model="valid" 
-            lazy-validation
-            @submit="submit"
-          >
+          <v-form ref="form" v-model="valid" lazy-validation @submit="submit">
             <v-layout wrap>
               <v-flex xs12>
-                <v-alert
-                  :value="error"
-                  type="error"
-                >
+                <v-alert :value="error" type="error">
                   {{ error }}
                 </v-alert>
               </v-flex>
-              <v-flex 
-                v-if="isSignUp"
-                xs12 
-              >
+              <v-flex v-if="isSignUp" xs12>
                 <v-text-field
                   v-model="name"
                   :rules="nameRules"
@@ -48,7 +31,7 @@
                 <v-text-field
                   v-model="email"
                   :rules="emailRules"
-                  :validate-on-blur=true
+                  :validate-on-blur="true"
                   label="Email"
                   type="email"
                   required
@@ -66,10 +49,7 @@
                   @keyup.enter="submit"
                 />
               </v-flex>
-              <v-flex 
-                v-if="isSignUp" 
-                xs12
-              >
+              <v-flex v-if="isSignUp" xs12>
                 <v-combobox
                   v-model="selectedSkills"
                   :items="skills"
@@ -86,44 +66,40 @@
       <v-card-actions>
         <v-btn
           v-if="!isSignUp"
-          color="blue darken-1" 
-          flat 
+          color="blue darken-1"
+          flat
           @click.native="isSignUp = true"
         >
           Sign up
         </v-btn>
-        <v-btn 
-          v-if="isSignUp" 
-          color="blue darken-1" 
-          flat 
+        <v-btn
+          v-if="isSignUp"
+          color="blue darken-1"
+          flat
           @click.native="isSignUp = false"
         >
           Sign in
         </v-btn>
-        <v-spacer/>
-        <v-btn 
-          color="blue darken-1"
-          flat 
-          @click.native="dialog = false"
-        >
+        <v-spacer />
+        <v-btn color="blue darken-1" flat @click.native="dialog = false">
           Close
         </v-btn>
-        <v-btn 
-          v-if="isSignUp" 
-          :disabled="!valid" 
-          color="blue darken-1" 
-          flat 
-          type="submit" 
+        <v-btn
+          v-if="isSignUp"
+          :disabled="!valid"
+          color="blue darken-1"
+          flat
+          type="submit"
           @click.native="submit"
         >
           Sign up
         </v-btn>
-        <v-btn 
-          v-if="!isSignUp" 
+        <v-btn
+          v-if="!isSignUp"
           :disabled="!valid"
-          color="blue darken-1" 
-          flat 
-          type="submit" 
+          color="blue darken-1"
+          flat
+          type="submit"
           @click.native="submit"
         >
           Sign in
@@ -152,7 +128,8 @@ export default {
       name: '',
       nameRules: [
         v => !!v || 'First name is required',
-        v => (v && v.length <= 20) || 'First name must be less than 20 characters'
+        v =>
+          (v && v.length <= 20) || 'First name must be less than 20 characters'
       ],
       password: '',
       passwordRules: [
@@ -160,7 +137,7 @@ export default {
         v => (v && v.length >= 5) || 'Password must have at least 5 characters'
       ],
       selectedSkills: []
-    }
+    };
   },
   computed: {
     ...mapState('skill', {
@@ -171,18 +148,15 @@ export default {
     this.listSkills();
   },
   methods: {
-    ...mapActions('auth', [
-      'signIn',
-      'signUp'
-    ]),
-    ...mapActions('skill', [
-      'listSkills'
-    ]),
-    submit () {
+    ...mapActions('auth', ['signIn', 'signUp']),
+    ...mapActions('skill', ['listSkills']),
+    submit() {
       if (this.$refs.form.validate()) {
         this.error = false;
         const { name, email, password, selectedSkills } = this;
-        const body = this.isSignUp ? { name, email, password, selectedSkills } : { email, password };
+        const body = this.isSignUp
+          ? { name, email, password, selectedSkills }
+          : { email, password };
         if (this.isSignUp) {
           this.signUp(body)
             .then(() => {
@@ -203,12 +177,11 @@ export default {
       }
     }
   }
-}
-
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .v-dialog__activator {
-    height: 100%
-  }
+>>> .v-dialog__activator {
+  height: 100%;
+}
 </style>

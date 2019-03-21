@@ -2,24 +2,20 @@ import API from '../../utils/API';
 
 const state = {
   isLogged: false
-}
+};
 
 const getters = {
   isLogged: state => state.isLogged
-}
+};
 
 const actions = {
   checkSession({ commit }, session) {
     return commit('setLogin', session != null && session !== '');
   },
   signIn({ commit }, userData) {
-    return new Promise((resolve, reject)  => {
+    return new Promise((resolve, reject) => {
       const path = '/auth/sign_in';
-      API
-        .post(
-          path,
-          userData
-        )
+      API.post(path, userData)
         .then(response => {
           commit('setLogin', true);
           return resolve(response);
@@ -33,13 +29,9 @@ const actions = {
     });
   },
   signUp({ commit }, userData) {
-    return new Promise((resolve, reject)  => {
+    return new Promise((resolve, reject) => {
       const path = '/auth/sign_up';
-      API
-        .post(
-          path,
-          userData
-        )
+      API.post(path, userData)
         .then(response => {
           commit('setLogin', true);
           return resolve(response);
@@ -55,10 +47,7 @@ const actions = {
   signOut({ commit }) {
     return new Promise((resolve, reject) => {
       const path = '/auth/sign_out';
-      API
-        .get(
-          path
-        )
+      API.get(path)
         .then(response => {
           commit('setLogin', false);
           return resolve(response);
@@ -69,15 +58,15 @@ const actions = {
           }
           return reject(err);
         });
-    })
+    });
   }
-}
+};
 
 const mutations = {
   setLogin(state, isLogged) {
     state.isLogged = isLogged;
   }
-}
+};
 
 export default {
   namespaced: true,
@@ -85,4 +74,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

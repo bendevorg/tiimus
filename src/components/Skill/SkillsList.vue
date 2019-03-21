@@ -1,35 +1,16 @@
 <template>
-  <v-layout 
-    row 
-    justify-center
-    align-center
-  >
+  <v-layout row justify-center align-center>
     <v-flex xs12>
-      <v-container
-        fluid
-        grid-list-md
-      >
+      <v-container fluid grid-list-md>
         <div class="headline">{{ title }}</div>
         <div v-if="skills && skills.length > 0">
-          <v-layout 
-            row 
-            wrap
-          >
-            <v-flex
-              v-for="skill in skills"
-              :key="skill.id"
-              xs12
-              sm6
-              md3
-            >
-              <app-skill-card :skill="skill"/>   
+          <v-layout row wrap>
+            <v-flex v-for="skill in skills" :key="skill.id" xs12 sm6 md3>
+              <app-skill-card :skill="skill" />
             </v-flex>
           </v-layout>
         </div>
-        <div 
-          v-else 
-          class="title"
-        >
+        <div v-else class="title">
           {{ noSkills }}
         </div>
       </v-container>
@@ -67,15 +48,13 @@ export default {
     this.listSkills();
   },
   methods: {
-    ...mapActions('skill', [
-      'listSkills'
-    ])
+    ...mapActions('skill', ['listSkills'])
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .headline {
-    margin-bottom: 24px;
-  }
+>>> .headline {
+  margin-bottom: 24px;
+}
 </style>

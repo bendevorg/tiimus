@@ -11,10 +11,12 @@ const state = {
 const getters = {
   isUserInProject: state => userId => {
     if (userId && state.currentProject.users) {
-      const userInProject = state.currentProject.users.includes(user => {
-        return userId === user.id;
-      });
-      return !userInProject ? userId === state.currentProject.ownerId : userInProject;
+      const userInProject = state.currentProject.users.includes(
+        user => userId === user.id
+      );
+      return !userInProject
+        ? userId === state.currentProject.ownerId
+        : userInProject;
     }
     return false;
   }
@@ -22,8 +24,7 @@ const getters = {
 
 const actions = {
   listProjects({ commit }) {
-    API
-      .get('/projects')
+    API.get('/projects')
       .then(response => {
         commit('setProjects', response.data.msg);
       })
@@ -32,10 +33,9 @@ const actions = {
       });
   },
   projectInfo({ commit }, projectId) {
-    API
-      .get(`/projects/${projectId}`)
+    API.get(`/projects/${projectId}`)
       .then(response => {
-        commit('setCurrentProject', response.data.msg)
+        commit('setCurrentProject', response.data.msg);
       })
       .catch(error => {
         //  TODO: Handle the error
@@ -84,15 +84,13 @@ const actions = {
     });
   },
   askToJoin({ commit }, projectId) {
-    API
-      .post(`/projects/${projectId}/ask_join`)
-      .then(response => {
-        return true;
-      })
-      .catch(err => {
-        //   TOOD: Handle the error
-        return false;
-      })
+    API.post(`/projects/${projectId}/ask_join`)
+      .then(response => true)
+      .catch(
+        err =>
+          //   TOOD: Handle the error
+          false
+      );
   }
 };
 
@@ -104,9 +102,9 @@ const mutations = {
     state.projects.all = projects;
   },
   setCurrentProject(state, project) {
-    let owner = project.users.find(user => {
-      return user.projects_users.role === 'owner';
-    });
+    const owner = project.users.find(
+      user => user.projects_users.role === 'owner'
+    );
     project.ownerId = owner ? owner.id : null;
     project.image = process.env.BACKEND_HOST + project.image;
     project.users.forEach(user => {
