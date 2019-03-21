@@ -4,13 +4,11 @@ const state = {
   tags: []
 };
 
-const getters = {
-};
+const getters = {};
 
 const actions = {
   listTags({ commit }) {
-    API
-      .get('/tags')
+    API.get('/tags')
       .then(response => {
         commit('setTags', response.data.msg);
       })

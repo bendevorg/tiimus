@@ -1,41 +1,16 @@
 <template>
-  <v-layout 
-    row 
-    justify-center
-    align-center
-  >
-    <v-flex 
-      xs12 
-      sm12
-    >
-      <v-container
-        fluid
-        grid-list-md
-      >
+  <v-layout row justify-center align-center>
+    <v-flex xs12 sm12>
+      <v-container fluid grid-list-md>
         <div class="headline">{{ title }}</div>
         <div v-if="projects && projects.length > 0">
-          <v-layout 
-            row 
-            wrap
-          >
-            <v-flex
-              v-for="project in projects"
-              :key="project.id"
-              xs12
-              sm6
-              md3
-            >
-              <app-project-card 
-                :project="project" 
-                :reduced="reduced"
-              />   
+          <v-layout row wrap>
+            <v-flex v-for="project in projects" :key="project.id" xs12 sm6 md3>
+              <app-project-card :project="project" :reduced="reduced" />
             </v-flex>
           </v-layout>
         </div>
-        <div 
-          v-else
-          class="title" 
-        >
+        <div v-else class="title">
           {{ noProjects }}
         </div>
       </v-container>
@@ -72,12 +47,12 @@ export default {
       required: false,
       default: false
     }
-  },
-}
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
-  >>> .headline {
-    margin-bottom: 24px;
-  }
+>>> .headline {
+  margin-bottom: 24px;
+}
 </style>

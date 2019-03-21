@@ -6,15 +6,21 @@ const state = {
 
 const getters = {
   retrieveSkillColor: state => skill => {
-    const skillIndex = state.skills.findIndex(currentSkill => currentSkill.name === skill);
+    const skillIndex = state.skills.findIndex(
+      currentSkill => currentSkill.name === skill
+    );
     return skillIndex !== -1 ? state.skills[skillIndex].color : 'black';
   },
   retrieveSkillTextColor: state => skill => {
-    const skillIndex = state.skills.findIndex(currentSkill => currentSkill.name === skill);
+    const skillIndex = state.skills.findIndex(
+      currentSkill => currentSkill.name === skill
+    );
     return skillIndex !== -1 ? state.skills[skillIndex].text : 'white';
   },
   retrieveSkillIcon: state => skill => {
-    const skillIndex = state.skills.findIndex(currentSkill => currentSkill.name == skill);
+    const skillIndex = state.skills.findIndex(
+      currentSkill => currentSkill.name === skill
+    );
     return skillIndex !== -1 ? state.skills[skillIndex].icon : 'help_outline';
   }
 };
@@ -23,9 +29,8 @@ const actions = {
   listSkills({ commit }) {
     if (state.skills.length > 0) {
       return;
-    } 
-    API
-      .get('/skills')
+    }
+    API.get('/skills')
       .then(response => {
         commit('setSkills', response.data.msg);
       })

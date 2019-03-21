@@ -1,28 +1,11 @@
 <template>
-  <v-container
-    fluid
-    grid-list-md
-  >
-    <v-layout 
-      row 
-      align-center
-      wrap
-    >
-      <v-flex 
-        sm12 
-        md4
-      >
-        <v-layout 
-          column 
-          align-center
-        >
+  <v-container fluid grid-list-md>
+    <v-layout row align-center wrap>
+      <v-flex sm12 md4>
+        <v-layout column align-center>
           <v-flex xs8>
-            <v-avatar
-              :size="imageSize"
-              color="grey lighten-4"
-              tile
-            >
-              <img :src="project.image">
+            <v-avatar :size="imageSize" color="grey lighten-4" tile>
+              <img :src="project.image" />
             </v-avatar>
           </v-flex>
           <v-flex xs4>
@@ -30,73 +13,51 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex 
-        sm12 
-        md8
-      >
+      <v-flex sm12 md8>
         <app-skills-list
           :skills="project.skills"
           title="Needed skills"
           no-skills="This project does not need any skills at the moment."
         />
         <v-container>
-          <v-layout 
+          <v-layout
             v-if="!isUserInProject()(user.id)"
-            row 
+            row
             justify-start
             align-start
           >
-            <v-flex 
-              xs12 
-              md6
-            >
-              <v-btn 
-                large 
-                block 
-                @click="askToJoinProject()"
-              >
+            <v-flex xs12 md6>
+              <v-btn large block @click="askToJoinProject()">
                 ASK TO JOIN
               </v-btn>
             </v-flex>
           </v-layout>
         </v-container>
         <v-container>
-          <v-layout 
+          <v-layout
             v-if="user.id == project.ownerId"
-            row 
+            row
             justify-start
             align-start
           >
-            <v-flex 
-              xs12 
-              md6
-            >
-              <v-btn 
-                :to="'/projects/' + project.id + '/edit'"
-                large 
-                block 
-              >
+            <v-flex xs12 md6>
+              <v-btn :to="'/projects/' + project.id + '/edit'" large block>
                 EDIT PROJECT
               </v-btn>
             </v-flex>
           </v-layout>
         </v-container>
       </v-flex>
-      <v-dialog
-        v-model="dialog"
-        max-width="400"
-      >
+      <v-dialog v-model="dialog" max-width="400">
         <v-card>
           <v-card-text class="headline">
-            The project owner has received your request! Now you just have to wait for the owner approval
+            The project owner has received your request! Now you just have to
+            wait for the owner approval
           </v-card-text>
 
           <v-card-actions>
-            <v-spacer/>
-            <v-btn
-              flat="flat"
-              @click="dialog = false"
-            >
+            <v-spacer />
+            <v-btn flat="flat" @click="dialog = false">
               Done
             </v-btn>
           </v-card-actions>
@@ -125,7 +86,7 @@ export default {
   data() {
     return {
       dialog: false
-    }
+    };
   },
   computed: {
     ...mapState('project', {
@@ -135,7 +96,7 @@ export default {
       user: state => state.loggedUser
     }),
     imageSize() {
-      return this.$vuetify.breakpoint.smAndDown ? '250px' : '450px'
+      return this.$vuetify.breakpoint.smAndDown ? '250px' : '450px';
     }
   },
   created() {
@@ -143,20 +104,13 @@ export default {
     this.projectInfo(this.$route.params.id);
   },
   methods: {
-    ...mapGetters('project', [
-      'isUserInProject'
-    ]),
-    ...mapActions('project', [
-      'projectInfo',
-      'askToJoin'
-    ]),
-    ...mapActions('user', [
-      'loggedInfo'
-    ]),
+    ...mapGetters('project', ['isUserInProject']),
+    ...mapActions('project', ['projectInfo', 'askToJoin']),
+    ...mapActions('user', ['loggedInfo']),
     async askToJoinProject() {
       await this.askToJoin(this.project.id);
       this.dialog = true;
     }
   }
-}
+};
 </script>

@@ -1,9 +1,6 @@
 <template>
   <v-card :to="'/projects/' + project.id">
-    <v-img
-      :src="project.image"
-      height="200px"
-    />
+    <v-img :src="project.image" height="200px" />
 
     <v-card-title>
       <div class="card-content">
@@ -14,11 +11,11 @@
           </div>
         </div>
         <div v-if="!reduced">
-          <v-chip 
+          <v-chip
             v-for="skill in project.skills"
             :key="skill.id"
-            :color="retrieveSkillColor()(skill.name)" 
-            :text-color="retrieveSkillTextColor()(skill.name)" 
+            :color="retrieveSkillColor()(skill.name)"
+            :text-color="retrieveSkillTextColor()(skill.name)"
             small
           >
             {{ skill.name }}
@@ -26,7 +23,7 @@
         </div>
       </div>
     </v-card-title>
-<!--
+    <!--
     <div v-if="!reduced">
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -42,7 +39,6 @@
       </v-slide-y-transition>
     </div>
     !-->
-
   </v-card>
 </template>
 
@@ -71,12 +67,12 @@ export default {
       retrieveSkillTextColor: 'retrieveSkillTextColor'
     })
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-  .card-content{
-    width: 100%
-  }
+.card-content {
+  width: 100%;
+}
 </style>
 

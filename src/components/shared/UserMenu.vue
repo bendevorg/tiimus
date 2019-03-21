@@ -1,16 +1,8 @@
 <template>
   <v-menu offset-y>
-    <v-btn 
-      slot="activator"
-      flat
-    >
-      <v-avatar
-        color="grey lighten-4"
-      >
-        <img 
-          :src="user.avatar" 
-          alt="avatar"
-        >
+    <v-btn slot="activator" flat>
+      <v-avatar color="grey lighten-4">
+        <img :src="user.avatar" alt="avatar" />
       </v-avatar>
     </v-btn>
     <v-list>
@@ -46,7 +38,7 @@ export default {
           click: this.signOut
         }
       ]
-    }
+    };
   },
   computed: {
     ...mapState('user', {
@@ -57,12 +49,8 @@ export default {
     this.loggedInfo();
   },
   methods: {
-    ...mapActions('auth', [
-      'signOut'
-    ]),
-    ...mapActions('user', [
-      'loggedInfo'
-    ]),
+    ...mapActions('auth', ['signOut']),
+    ...mapActions('user', ['loggedInfo']),
     goToUserPage() {
       this.$router.push({ name: 'User page', params: { id: this.user.id } });
     },
@@ -70,5 +58,5 @@ export default {
       this.$router.push({ name: 'User edit' });
     }
   }
-}
+};
 </script>

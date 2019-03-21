@@ -13,7 +13,8 @@
     "server_production": "node -r dotenv/config tools/startServer.js",
     "env_setup_development": "node tools/setupEnv.js development",
     "env_setup_mock": "node tools/setupEnv.js mock",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.vue src{{#unit}} test/unit{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}"
   },
   "repository": {
     "type": "git",
@@ -69,6 +70,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
+    "prettier": "1.16.4",
     "rimraf": "^2.6.0",
     "semver": "5.6.0",
     "shelljs": "^0.7.6",

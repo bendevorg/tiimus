@@ -1,17 +1,13 @@
 <template>
   <v-app>
-    <div 
-      v-if="loading" 
-      class="loading">
+    <div v-if="loading" class="loading">
       Loading...
     </div>
-    <div 
-      v-if="error" 
-      class="error">
+    <div v-if="error" class="error">
       {{ error }}
     </div>
     <div v-if="post">
-      <app-content/>
+      <app-content />
     </div>
   </v-app>
 </template>
@@ -38,9 +34,7 @@ export default {
     this.post = true;
   },
   methods: {
-    ...mapActions('auth', [
-      'checkSession'
-    ])
+    ...mapActions('auth', ['checkSession'])
   }
 };
 </script>

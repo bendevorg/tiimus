@@ -1,26 +1,17 @@
 <template>
-  <v-container 
-    fluid 
-    grid-list-md
-  >
-    <v-layout 
-      row 
-      wrap
-    >
+  <v-container fluid grid-list-md>
+    <v-layout row wrap>
       <v-flex xs12>
         <h1>Tell us a little about your project</h1>
       </v-flex>
     </v-layout>
-    <v-layout 
-      row 
-      wrap
-    >
+    <v-layout row wrap>
       <v-flex xs8>
         <v-text-field
           v-model="name"
           :rules="nameRules"
           :validate-on-blur="true"
-          label="Name" 
+          label="Name"
           type="name"
           required
           @blur="saveInfo"
@@ -34,6 +25,7 @@
           label="Some tags about your game"
           multiple
           chips
+          required
           @blur="saveInfo"
         />
       </v-flex>
@@ -51,8 +43,8 @@
       </v-flex>
       <v-flex xs8>
         <v-text-field
-          v-model="imageName" 
-          label="Select Image" 
+          v-model="imageName"
+          label="Select Image"
           validate-on-blur
           prepend-icon="attach_file"
           @click="pickFile"
@@ -64,7 +56,7 @@
           style="display: none"
           accept="image/*"
           @change="onFilePicked"
-        >
+        />
       </v-flex>
     </v-layout>
   </v-container>
@@ -78,11 +70,14 @@ export default {
     return {
       nameRules: [
         v => !!v || 'Project name is required',
-        v => (v && v.length >= 3) || 'Project name must have at least 3 characters'
+        v =>
+          (v && v.length >= 3) || 'Project name must have at least 3 characters'
       ],
       descriptionRules: [
         v => !!v || 'Project description is required',
-        v => (v && v.length >= 5) || 'Project name must have at least than 5 characters'
+        v =>
+          (v && v.length >= 5) ||
+          'Project name must have at least than 5 characters'
       ],
       name: '',
       selectedTags: [],
@@ -90,7 +85,7 @@ export default {
       imageName: '',
       imageFile: '',
       imageUrl: ''
-    }
+    };
   },
   computed: {
     ...mapState('tag', {
@@ -101,9 +96,7 @@ export default {
     this.listTags();
   },
   methods: {
-    ...mapActions('tag', [
-      'listTags'
-    ]),
+    ...mapActions('tag', ['listTags']),
     saveInfo() {
       const creationInfo = {
         name: this.name,
@@ -112,30 +105,30 @@ export default {
         imageUrl: this.imageUrl,
         imageFile: this.imageFile
       };
-      this.$emit('update-project-info', creationInfo)
+      this.$emit('update-project-info', creationInfo);
     },
     pickFile() {
       this.$refs.image.click();
     },
     onFilePicked(e) {
-			const { files } = e.target;
-			if(files[0] !== undefined) {
-				this.imageName = files[0].name;
-				if(this.imageName.lastIndexOf('.') <= 0) {
-					return;
-				}
-				const fileReader = new FileReader();
-				fileReader.readAsDataURL(files[0]);
-				fileReader.addEventListener('load', () => {
-					this.imageUrl = fileReader.result;
-					[this.imageFile] = files;
-				});
-			} else {
-				this.imageName = '';
-				this.imageFile = '';
-				this.imageUrl = '';
-			}
-		}
+      const { files } = e.target;
+      if (files[0] !== undefined) {
+        this.imageName = files[0].name;
+        if (this.imageName.lastIndexOf('.') <= 0) {
+          return;
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+        fileReader.addEventListener('load', () => {
+          this.imageUrl = fileReader.result;
+          [this.imageFile] = files;
+        });
+      } else {
+        this.imageName = '';
+        this.imageFile = '';
+        this.imageUrl = '';
+      }
+    }
   }
-}
+};
 </script>
