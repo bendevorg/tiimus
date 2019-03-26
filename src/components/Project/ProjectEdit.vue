@@ -8,7 +8,16 @@
               <v-layout row align-start wrap>
                 <v-flex xs12 class="text-xs-center">
                   <v-avatar :tile="true" size="300" color="grey lighten-4">
-                    <img :src="project.image" />
+                    <v-img :src="project.image">
+                      <v-layout pa-2 column fill-height>
+                        <v-spacer />
+                        <v-flex shrink>
+                          <v-btn fab dark small color="white" @click="pickFile">
+                            <v-icon color="black">edit</v-icon>
+                          </v-btn>
+                        </v-flex>
+                      </v-layout>
+                    </v-img>
                   </v-avatar>
                 </v-flex>
                 <v-flex xs12>
@@ -66,6 +75,13 @@
                 </v-card>
               </v-dialog>
             </v-container>
+            <input
+              ref="image"
+              type="file"
+              style="display: none"
+              accept="image/*"
+              @change="onFilePicked"
+            />
           </v-form>
         </v-card>
       </v-flex>
@@ -115,16 +131,39 @@ export default {
     ...mapActions('tag', ['listTags']),
     ...mapActions('skill', ['listSkills']),
     ...mapActions('project', ['projectInfo']),
+    pickFile() {
+      this.$refs.image.click();
+    },
+    onFilePicked(e) {
+      const { files } = e.target;
+      if (files[0] !== undefined) {
+        this.imageName = files[0].name;
+        if (this.imageName.lastIndexOf('.') <= 0) {
+          return;
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+        fileReader.addEventListener('load', () => {
+          this.project.image = fileReader.result;
+          [this.project.imageFile] = files;
+        });
+      } else {
+        this.imageName = '';
+        this.imageFile = '';
+        this.imageUrl = '';
+      }
+    },
     sendProject() {
       const projectData = new FormData();
       projectData.append('name', this.project.name);
       projectData.append('description', this.project.description);
 
       this.project.tags.forEach(tag => projectData.append('tags', tag.id));
-      this.project.skills.forEach(skill => projectData.append('skills', skill.id));
+      this.project.skills.forEach(skill =>
+        projectData.append('skills', skill.id)
+      );
       projectData.append('image', this.project.image);
-      this
-        .editProject(projectData)
+      this.editProject(projectData)
         .then(project => {
           this.$router.push({ path: `/projects/${project.id}` });
         })
