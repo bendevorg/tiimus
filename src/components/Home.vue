@@ -3,7 +3,7 @@
     <app-projects-list
       :projects="projects"
       title="Willing to join a project?"
-      no-projects="There is no project looking for user at the moment"
+      no-projects="There is no projects looking for users at the moment"
     />
     <app-users-list
       :users="users"
