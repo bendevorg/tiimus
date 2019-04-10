@@ -163,10 +163,9 @@ export default {
       this.project.skills.forEach(skill =>
         project.formData.append('skills', skill.id)
       );
-      project.formData.append('image', this.project.image);
+      project.formData.append('image', this.project.imageFile);
       this.editProject(project)
         .then(project => {
-          console.log('project :', project);
           this.$router.push({ path: `/projects/${project.id}` });
         })
         .catch(err => {
