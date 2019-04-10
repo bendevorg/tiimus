@@ -74,8 +74,8 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
-import SkillsList from '../Skill/SkillsList';
-import UsersList from '../User/UsersList';
+import SkillsList from '../skill/SkillsList';
+import UsersList from '../user/UsersList';
 
 export default {
   name: 'ProjectPage',

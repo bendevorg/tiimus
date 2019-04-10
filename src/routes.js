@@ -1,9 +1,9 @@
 import Home from './components/Home';
-import UserPage from './components/User/UserPage';
-import UserEdit from './components/User/UserEdit';
-import ProjectCreation from './components/Project/ProjectCreation';
-import ProjectPage from './components/Project/ProjectPage';
-import ProjectEdit from './components/Project/ProjectEdit';
+import UserPage from './components/user/UserPage';
+import UserEdit from './components/user/UserEdit';
+import ProjectCreation from './components/project/ProjectCreation';
+import ProjectPage from './components/project/ProjectPage';
+import ProjectEdit from './components/project/ProjectEdit';
 
 const routes = [
   {

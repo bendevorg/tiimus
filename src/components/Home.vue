@@ -3,7 +3,7 @@
     <app-projects-list
       :projects="projects"
       title="Willing to join a project?"
-      no-projects="There is no project looking for user at the moment"
+      no-projects="There is no projects looking for users at the moment"
     />
     <app-users-list
       :users="users"
@@ -15,8 +15,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import ProjectsList from './Project/ProjectsList';
-import UsersList from './User/UsersList';
+import ProjectsList from './project/ProjectsList';
+import UsersList from './user/UsersList';
 
 export default {
   name: 'Home',
