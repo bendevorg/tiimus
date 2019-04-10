@@ -39,7 +39,7 @@ export default {
     },
     noProjects: {
       type: String,
-      required: true,
+      required: false,
       default: 'No projects'
     },
     reduced: {

@@ -55,7 +55,7 @@
                   />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="dialog = true">
+                  <v-btn large block @click="sendProject()">
                     Update project
                   </v-btn>
                 </v-flex>
@@ -130,7 +130,7 @@ export default {
   methods: {
     ...mapActions('tag', ['listTags']),
     ...mapActions('skill', ['listSkills']),
-    ...mapActions('project', ['projectInfo']),
+    ...mapActions('project', ['projectInfo', 'editProject']),
     pickFile() {
       this.$refs.image.click();
     },
@@ -154,17 +154,19 @@ export default {
       }
     },
     sendProject() {
-      const projectData = new FormData();
-      projectData.append('name', this.project.name);
-      projectData.append('description', this.project.description);
+      const { project } = this;
+      project.formData = new FormData();
+      project.formData.append('name', this.project.name);
+      project.formData.append('description', this.project.description);
 
-      this.project.tags.forEach(tag => projectData.append('tags', tag.id));
+      this.project.tags.forEach(tag => project.formData.append('tags', tag.id));
       this.project.skills.forEach(skill =>
-        projectData.append('skills', skill.id)
+        project.formData.append('skills', skill.id)
       );
-      projectData.append('image', this.project.image);
-      this.editProject(projectData)
+      project.formData.append('image', this.project.image);
+      this.editProject(project)
         .then(project => {
+          console.log('project :', project);
           this.$router.push({ path: `/projects/${project.id}` });
         })
         .catch(err => {

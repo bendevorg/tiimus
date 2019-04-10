@@ -71,20 +71,19 @@
         </v-card>
       </v-dialog>
     </v-layout>
-    <app-projects-list :reduced="true" title="Projects" />
-    <!-- <app-projects-list
+    <app-projects-list
       :projects="user.projects"
       :reduced="true"
       title="Projects"
       no-projects="This user haven't joined a project yet"
-    /> -->
+    />
   </v-container>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import SkillsList from '../skill/SkillsList';
-import ProjectsList from '../project/ProjectsList';
+import SkillsList from '../skill/SkillsList.vue';
+import ProjectsList from '../project/ProjectsList.vue';
 
 export default {
   name: 'UserPage',

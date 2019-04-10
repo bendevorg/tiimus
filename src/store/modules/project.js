@@ -63,11 +63,12 @@ const actions = {
     });
   },
   editProject({ commit }, project) {
+    console.log('project :', project);
     return new Promise((resolve, reject) => {
       API
       .patch(
         `/projects/${project.id}`,
-        project,
+        project.formData,
         {
           headers: {
             'content-type': 'multipart/form-data'
@@ -75,6 +76,7 @@ const actions = {
         }
       )
       .then(response => {
+        console.log('response.data.msg :', response.data.msg);
         return resolve(response.data.msg);
       })
       .catch(err => {
@@ -105,6 +107,7 @@ const mutations = {
     const owner = project.users.find(
       user => user.projects_users.role === 'owner'
     );
+    console.log('project :', project);
     project.ownerId = owner ? owner.id : null;
     project.image = process.env.BACKEND_HOST + project.image;
     project.users.forEach(user => {

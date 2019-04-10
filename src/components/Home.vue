@@ -15,8 +15,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import ProjectsList from './project/ProjectsList';
-import UsersList from './user/UsersList';
+import ProjectsList from './project/ProjectsList.vue';
+import UsersList from './user/UsersList.vue';
 
 export default {
   name: 'Home',
