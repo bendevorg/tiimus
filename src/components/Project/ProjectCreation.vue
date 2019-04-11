@@ -129,8 +129,10 @@ export default {
       projectData.append('name', this.project.name);
       projectData.append('description', this.project.description);
 
-      this.project.tags.forEach(tag => projectData.append('tags', tag.id));
-      this.project.skills.forEach(skill => projectData.append('skills', skill.id));
+      this.project.tags.forEach((tag, index) => projectData.append(`tags[${index}]`, tag.id));
+      this.project.skills.forEach((skill, index) =>
+        projectData.append(`skills[${index}]`, skill.id)
+      );
       projectData.append('image', this.project.image);
       this.createProject(projectData)
         .then(project => {
