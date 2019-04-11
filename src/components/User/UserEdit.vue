@@ -44,7 +44,7 @@
                   />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="dialog = true">
+                  <v-btn large block @click="sendUser()">
                     Update my info
                   </v-btn>
                 </v-flex>
@@ -100,7 +100,7 @@ export default {
     this.listSkills();
   },
   methods: {
-    ...mapActions('user', ['loggedInfo']),
+    ...mapActions('user', ['loggedInfo', 'editUser']),
     ...mapActions('skill', ['listSkills']),
     pickFile() {
       this.$refs.image.click();
@@ -123,6 +123,23 @@ export default {
         this.imageFile = '';
         this.imageUrl = '';
       }
+    },
+    sendUser() {
+      const { user } = this;
+      user.formData = new FormData();
+      user.formData.append('name', this.user.name);
+      user.formData.append('lookingForProject', this.user.lookingForProject);
+      this.user.skills.forEach(skill =>
+        user.formData.append('skills', skill.id)
+      );
+      user.formData.append('avatar', this.user.avatarFile);
+      this.editUser(user)
+        .then(user => {
+          this.$router.push({ path: `/users/${user.id}` });
+        })
+        .catch(err => {
+          // TODO: Handle error
+        });
     }
   }
 };

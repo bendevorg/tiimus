@@ -66,6 +66,27 @@ const actions = {
         //  TODO: Handle the error
       });
   },
+  editUser({ commit }, user) {
+    return new Promise((resolve, reject) => {
+      API
+      .patch(
+        `/user`,
+        user.formData,
+        {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
+      )
+      .then(response => {
+        return resolve(response.data.msg);
+      })
+      .catch(err => {
+        //  TODO: Handle the error
+        return reject(err);
+      });
+    });
+  },
   inviteUserToProject({ commit }, userId, projects) {
     if (typeof projects === Array) {
       const projectIds = [];
