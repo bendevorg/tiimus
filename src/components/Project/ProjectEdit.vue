@@ -159,9 +159,9 @@ export default {
       project.formData.append('name', this.project.name);
       project.formData.append('description', this.project.description);
 
-      this.project.tags.forEach(tag => project.formData.append('tags', tag.id));
-      this.project.skills.forEach(skill =>
-        project.formData.append('skills', skill.id)
+      this.project.tags.forEach((tag, index) => project.formData.append(`tags[${index}]`, tag.id));
+      this.project.skills.forEach((skill, index) =>
+        project.formData.append(`skills[${index}]`, skill.id)
       );
       project.formData.append('image', this.project.imageFile);
       this.editProject(project)

@@ -129,8 +129,8 @@ export default {
       user.formData = new FormData();
       user.formData.append('name', this.user.name);
       user.formData.append('lookingForProject', this.user.lookingForProject);
-      this.user.skills.forEach(skill =>
-        user.formData.append('skills', skill.id)
+      this.user.skills.forEach((skill, index) =>
+        user.formData.append(`skills[${index}]`, skill.id)
       );
       user.formData.append('avatar', this.user.avatarFile);
       this.editUser(user)
