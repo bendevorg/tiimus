@@ -26,20 +26,22 @@
         </div> -->
       </v-flex>
     </v-layout>
-    <v-divider light />
-    <v-card-actions>
-      <div>
-        <v-chip
-          v-for="skill in user.skills"
-          :key="skill.id"
-          :color="retrieveSkillColor()(skill.name)"
-          :text-color="retrieveSkillTextColor()(skill.name)"
-          small
-        >
-          {{ skill.name }}
-        </v-chip>
-      </div>
-    </v-card-actions>
+    <div v-if="user.skills.length > 0">
+      <v-divider light />
+      <v-card-actions>
+        <div>
+          <v-chip
+            v-for="skill in user.skills"
+            :key="skill.id"
+            :color="retrieveSkillColor()(skill.name)"
+            :text-color="retrieveSkillTextColor()(skill.name)"
+            small
+          >
+            {{ skill.name }}
+          </v-chip>
+        </div>
+      </v-card-actions>
+    </div>
   </v-card>
 </template>
 
