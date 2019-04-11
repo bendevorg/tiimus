@@ -129,6 +129,9 @@ export default {
       user.formData = new FormData();
       user.formData.append('name', this.user.name);
       user.formData.append('lookingForProject', this.user.lookingForProject);
+      if (this.user.skills.length === 0) {
+        user.formData.append('skills[]', []);
+      }
       this.user.skills.forEach((skill, index) =>
         user.formData.append(`skills[${index}]`, skill.id)
       );
