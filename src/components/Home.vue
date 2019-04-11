@@ -34,8 +34,8 @@ export default {
   },
   created() {
     this.listSkills();
-    this.listProjects({ lookingForProject: true });
-    this.listUsers();
+    this.listProjects({ lookingForUser: true });
+    this.listUsers({ lookingForProject: true });
   },
   methods: {
     ...mapActions('project', ['listProjects']),

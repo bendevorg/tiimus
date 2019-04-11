@@ -24,7 +24,7 @@ const getters = {
 
 const actions = {
   listProjects({ commit }, filters) {
-    API.get(`/projects?lookingForUser=${filters.lookingForProject}`)
+    API.get(`/projects?lookingForUser=${filters.lookingForUser}`)
       .then(response => {
         commit('setProjects', response.data.msg);
       })
