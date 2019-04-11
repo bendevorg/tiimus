@@ -34,7 +34,7 @@ export default {
   },
   created() {
     this.listSkills();
-    this.listProjects();
+    this.listProjects({ lookingForProject: true });
     this.listUsers();
   },
   methods: {
