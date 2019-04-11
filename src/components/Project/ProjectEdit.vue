@@ -159,10 +159,18 @@ export default {
       project.formData.append('name', this.project.name);
       project.formData.append('description', this.project.description);
 
+      if (this.project.tags.length === 0) {
+        project.formData.append('tags[]', []);
+      }
       this.project.tags.forEach((tag, index) => project.formData.append(`tags[${index}]`, tag.id));
+
+      if (this.project.skills.length === 0) {
+        project.formData.append('skills[]', []);
+      }
       this.project.skills.forEach((skill, index) =>
         project.formData.append(`skills[${index}]`, skill.id)
       );
+      
       project.formData.append('image', this.project.imageFile);
       this.editProject(project)
         .then(project => {
