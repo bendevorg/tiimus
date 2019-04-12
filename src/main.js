@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import VueCookie from 'vue-cookie';
 import AsyncComputed from 'vue-async-computed';
+import VueAnalytics from 'vue-analytics';
 import Vuetify from 'vuetify';
 import App from './App';
 import routes from './routes';
@@ -16,6 +17,9 @@ Vue.use(VueCookie);
 Vue.use(VueResource);
 Vue.use(Vuex);
 Vue.use(AsyncComputed);
+Vue.use(VueAnalytics, {
+  id: 'UA-138249475-1'
+});
 
 const router = new VueRouter({
   routes,

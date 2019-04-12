@@ -31,6 +31,7 @@
     "dotenv": "^5.0.1",
     "express": "4.16.4",
     "vue": "2.5.17",
+    "vue-analytics": "5.16.4",
     "vue-async-computed": "3.4.1",
     "vue-cookie": "1.1.4",
     "vue-resource": "^1.5.0",
