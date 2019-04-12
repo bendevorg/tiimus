@@ -12,6 +12,7 @@
         <v-card-title primary-title>
           <div>
             <div class="headline">{{ user.name }}</div>
+            <span v-if="showEmail" class="grey--text">{{ user.email }}</span>
           </div>
         </v-card-title>
       </v-flex>
@@ -44,7 +45,12 @@ export default {
     user: {
       type: Object,
       required: true
-    }
+    },
+    showEmail: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
   },
   methods: {
     ...mapGetters('skill', {

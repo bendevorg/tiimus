@@ -68,6 +68,7 @@
       :users="project.users"
       title="Users in this project"
       no-users="This project does not have any users yet"
+      :show-email="isUserInProject()(user.id)"
     />
   </v-container>
 </template>

@@ -6,7 +6,10 @@
         <div v-if="users && users.length > 0">
           <v-layout row wrap>
             <v-flex v-for="index in cardsToShow" :key="users[index - 1].id" xs12 sm6 md3>
-              <app-user-card :user="users[index - 1]"/>
+              <app-user-card 
+                :user="users[index - 1]"
+                :show-email="showEmail"
+              />
             </v-flex>
             <v-flex xs12 class="text-xs-center">
               <v-btn 
@@ -49,6 +52,11 @@ export default {
       type: String,
       required: true,
       default: 'No users'
+    },
+    showEmail: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     amountToShow: {
       type: Number,
