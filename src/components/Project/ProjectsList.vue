@@ -63,13 +63,21 @@ export default {
   },
   data() {
     return {
-      cardsToShow: this.amountToShow
+      moreCards: 0
     };
+  },
+  computed: {
+    cardsToShow: function() {
+      return this.projects ? 
+        (this.projects.length > this.amountToShow + this.moreCards ?
+        this.amountToShow + this.moreCards : this.projects.length)
+        : 0;
+    }
   },
   methods: {
     showMoreCards() {
-      this.cardsToShow = this.cardsToShow + this.amountToShow < this.projects.length ?
-        this.cardsToShow + this.amountToShow : this.projects.length;
+      this.moreCards = this.moreCards + this.cardsToShow + this.amountToShow < this.projects.length ?
+        this.moreCards + this.amountToShow : this.projects.length;
     }
   }
 };
