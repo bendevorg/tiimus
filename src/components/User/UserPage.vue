@@ -27,7 +27,7 @@
             align-start
           >
             <v-flex xs12 md6>
-              <v-btn large block @click="dialog = true">
+              <v-btn large block @click="openInvite()">
                 INVITE TO PROJECT
               </v-btn>
             </v-flex>
@@ -112,7 +112,12 @@ export default {
   },
   methods: {
     ...mapActions('user', ['loggedInfo', 'userInfo', 'inviteUserToProject']),
+    openInvite() {
+      this.$ga.event('User', 'Open invite dialog');
+      this.dialog = true;
+    },
     sendInvites() {
+      this.$ga.event('User', 'Send invite');
       const payload = {
         param: this.user.id,
         body: {

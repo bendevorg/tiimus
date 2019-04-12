@@ -154,6 +154,7 @@ export default {
       }
     },
     sendProject() {
+      this.$ga.event('Project', 'Edit');
       const { project } = this;
       project.formData = new FormData();
       project.formData.append('name', this.project.name);

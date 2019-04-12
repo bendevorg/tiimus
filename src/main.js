@@ -17,13 +17,15 @@ Vue.use(VueCookie);
 Vue.use(VueResource);
 Vue.use(Vuex);
 Vue.use(AsyncComputed);
-Vue.use(VueAnalytics, {
-  id: 'UA-138249475-1'
-});
 
 const router = new VueRouter({
   routes,
   mode: 'history'
+});
+
+Vue.use(VueAnalytics, {
+  id: 'UA-138249475-1',
+  router
 });
 
 /* eslint-disable no-new */

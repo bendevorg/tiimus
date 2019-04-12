@@ -95,6 +95,7 @@ export default {
   methods: {
     ...mapActions('project', ['createProject']),
     nextStep(n) {
+      this.$ga.event('Project', 'Creation continue');
       if (n === this.steps.length) {
         this.e1 = 1;
       } else {
@@ -102,6 +103,7 @@ export default {
       }
     },
     previousPage() {
+      this.$ga.event('Project', 'Creation back');
       this.$router.go(-1);
     },
     updateProjectInfo(projectInfo) {
@@ -125,6 +127,7 @@ export default {
         : this.project.imageUrl;
     },
     sendProject() {
+      this.$ga.event('Project', 'Create');
       const projectData = new FormData();
       projectData.append('name', this.project.name);
       projectData.append('description', this.project.description);

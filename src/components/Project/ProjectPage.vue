@@ -109,6 +109,7 @@ export default {
     ...mapActions('project', ['projectInfo', 'askToJoin']),
     ...mapActions('user', ['loggedInfo']),
     async askToJoinProject() {
+      this.$ga.event('Project', 'Ask to join');
       await this.askToJoin(this.project.id);
       this.dialog = true;
     }

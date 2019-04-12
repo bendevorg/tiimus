@@ -158,6 +158,7 @@ export default {
           ? { name, email, password, selectedSkills }
           : { email, password };
         if (this.isSignUp) {
+          this.$ga.event('User', 'Sign up');
           this.signUp(body)
             .then(() => {
               this.dialog = false;
@@ -166,6 +167,7 @@ export default {
               this.error = err;
             });
         } else {
+          this.$ga.event('Project', 'Sign in');
           this.signIn(body)
             .then(() => {
               this.dialog = false;

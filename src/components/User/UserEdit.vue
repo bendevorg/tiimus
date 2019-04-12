@@ -125,6 +125,7 @@ export default {
       }
     },
     sendUser() {
+      this.$ga.event('User', 'Edit');
       const { user } = this;
       user.formData = new FormData();
       user.formData.append('name', this.user.name);

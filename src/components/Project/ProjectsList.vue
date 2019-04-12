@@ -76,6 +76,7 @@ export default {
   },
   methods: {
     showMoreCards() {
+      this.$ga.event('Project', 'Show more');
       this.moreCards = this.moreCards + this.cardsToShow + this.amountToShow < this.projects.length ?
         this.moreCards + this.amountToShow : this.projects.length;
     }

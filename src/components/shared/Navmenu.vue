@@ -27,7 +27,7 @@
     <v-spacer />
     <v-toolbar-items class="hidden-sm-and-down">
       <router-link to="/project/create" class="nav-link">
-        <v-btn v-if="isLogged" flat>Create a project </v-btn>
+        <v-btn v-if="isLogged" flat>Create a project</v-btn>
       </router-link>
       <app-user-menu v-if="isLogged" />
       <app-login v-else />

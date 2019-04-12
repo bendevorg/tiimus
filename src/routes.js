@@ -8,7 +8,7 @@ import ProjectEdit from './components/project/ProjectEdit';
 const routes = [
   {
     path: '/',
-    name: 'Default',
+    name: 'Home',
     components: {
       default: Home
     }
