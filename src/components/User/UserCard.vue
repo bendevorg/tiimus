@@ -11,7 +11,7 @@
       <v-flex xs7>
         <v-card-title primary-title>
           <div>
-            <div class="headline">{{ user.name }}</div>
+            <h3 class="headline" :class="showEmail ? 'mb-1': ''">{{ user.name }}</h3>
             <span v-if="showEmail" class="grey--text">{{ user.email }}</span>
           </div>
         </v-card-title>
