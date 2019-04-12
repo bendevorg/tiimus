@@ -42,7 +42,7 @@
         <v-card v-if="step == 0">
           <v-card-text class="headline">
             <v-combobox
-              v-model="projectInvites"
+              v-model="projectInvite"
               :items="ownedProjects"
               item-text="name"
               label="Select a project"
@@ -50,7 +50,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn flat="flat" @click="sendInvites()">
+            <v-btn 
+              flat="flat"
+              :disabled="!projectInvite"
+              @click="sendInvites()"
+            >
               Invite
             </v-btn>
           </v-card-actions>
@@ -93,7 +97,7 @@ export default {
     return {
       dialog: false,
       step: 0,
-      projectInvites: []
+      projectInvite: null
     };
   },
   computed: {
@@ -109,7 +113,13 @@ export default {
   methods: {
     ...mapActions('user', ['loggedInfo', 'userInfo', 'inviteUserToProject']),
     sendInvites() {
-      this.inviteUserToProject(this.user.Id, this.projectInvites);
+      const payload = {
+        param: this.user.id,
+        body: {
+          projectId: this.projectInvite.id
+        }
+      };
+      this.inviteUserToProject(payload);
       this.step = 1;
     },
     closeDialog() {

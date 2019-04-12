@@ -87,16 +87,9 @@ const actions = {
       });
     });
   },
-  inviteUserToProject({ commit }, userId, projects) {
-    if (typeof projects === Array) {
-      const projectIds = [];
-      const data = {
-        projects: projectIds
-      };
-      projects.forEach(project => {
-        projectIds.push(project.id);
-      });
-      API.post(`/users/${userId}/invite`, data)
+  inviteUserToProject({ commit }, data) {
+    if (data) {
+      API.post(`/users/${data.param}/invite_to_join`, data.body)
         .then(() => true)
         .catch(err => {
           //  TODO: Handle the error
