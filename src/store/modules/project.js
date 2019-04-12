@@ -11,7 +11,7 @@ const state = {
 const getters = {
   isUserInProject: state => userId => {
     if (userId && state.currentProject.users) {
-      const userInProject = state.currentProject.users.includes(
+      const userInProject = state.currentProject.users.some(
         user => userId === user.id
       );
       return !userInProject
