@@ -14,19 +14,9 @@
             <div class="headline">{{ user.name }}</div>
           </div>
         </v-card-title>
-        <!-- <div>
-          <v-icon
-            small
-            :color=user.rgb>
-            sentiment_satisfied
-          </v-icon>
-          <span>
-            {{ user.description }}
-          </span>
-        </div> -->
       </v-flex>
     </v-layout>
-    <div v-if="user.skills.length > 0">
+    <div v-if="user.skills && user.skills.length > 0">
       <v-divider light />
       <v-card-actions>
         <div>
