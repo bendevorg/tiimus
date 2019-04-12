@@ -45,9 +45,7 @@
               v-model="projectInvites"
               :items="ownedProjects"
               item-text="name"
-              label="Select which projects"
-              multiple
-              chips
+              label="Select a project"
             />
           </v-card-text>
           <v-card-actions>
