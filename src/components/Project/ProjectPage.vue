@@ -21,7 +21,7 @@
         />
         <v-container>
           <v-layout
-            v-if="!isUserInProject()(user.id)"
+            v-if="user.id && !isUserInProject()(user.id)"
             row
             justify-start
             align-start

@@ -84,7 +84,7 @@ const actions = {
     });
   },
   askToJoin({ commit }, projectId) {
-    API.post(`/projects/${projectId}/ask_join`)
+    API.post(`/projects/${projectId}/ask_to_join`)
       .then(response => true)
       .catch(
         err =>
