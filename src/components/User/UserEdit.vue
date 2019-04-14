@@ -44,7 +44,7 @@
                   />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="sendUser()">
+                  <v-btn large block :loading=loading @click="sendUser()">
                     Update my info
                   </v-btn>
                 </v-flex>
@@ -84,7 +84,8 @@ import { mapState, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      dialog: false
+      dialog: false,
+      loading: false
     };
   },
   computed: {
@@ -126,6 +127,7 @@ export default {
     },
     sendUser() {
       this.$ga.event('User', 'Edit');
+      this.loading = true;
       const { user } = this;
       user.formData = new FormData();
       user.formData.append('name', this.user.name);
@@ -139,9 +141,11 @@ export default {
       user.formData.append('avatar', this.user.avatarFile);
       this.editUser(user)
         .then(user => {
+          this.loading = false;
           this.$router.push({ path: `/users/${user.id}` });
         })
         .catch(err => {
+          this.loading = false;
           // TODO: Handle error
         });
     }
