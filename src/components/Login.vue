@@ -43,10 +43,12 @@
                   v-model="password"
                   :rules="passwordRules"
                   :validate-on-blur="true"
+                  :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                  :type="showPassword ? 'text' : 'password'"
                   label="Password"
-                  type="password"
                   required
                   @keyup.enter="submit"
+                  @click:append="showPassword = !showPassword"
                 />
               </v-flex>
               <v-flex v-if="isSignUp" xs12>
@@ -139,6 +141,7 @@ export default {
         v => (v && v.length >= 5) || 'Password must have at least 5 characters'
       ],
       selectedSkills: [],
+      showPassword: false,
       loading: false
     };
   },
