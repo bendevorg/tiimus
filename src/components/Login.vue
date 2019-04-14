@@ -87,6 +87,7 @@
         <v-btn
           v-if="isSignUp"
           :disabled="!valid"
+          :loading="loading"
           color="blue darken-1"
           flat
           type="submit"
@@ -97,6 +98,7 @@
         <v-btn
           v-if="!isSignUp"
           :disabled="!valid"
+          :loading="loading"
           color="blue darken-1"
           flat
           type="submit"
@@ -136,7 +138,8 @@ export default {
         v => !!v || 'Password is required',
         v => (v && v.length >= 5) || 'Password must have at least 5 characters'
       ],
-      selectedSkills: []
+      selectedSkills: [],
+      loading: false
     };
   },
   computed: {
@@ -159,20 +162,26 @@ export default {
           : { email, password };
         if (this.isSignUp) {
           this.$ga.event('User', 'Sign up');
+          this.loading = true;
           this.signUp(body)
             .then(() => {
+              this.loading = false;
               this.dialog = false;
             })
             .catch(err => {
+              this.loading = false;
               this.error = err;
             });
         } else {
           this.$ga.event('Project', 'Sign in');
+          this.loading = true;
           this.signIn(body)
             .then(() => {
+              this.loading = false;
               this.dialog = false;
             })
             .catch(err => {
+              this.loading = false;
               this.error = err;
             });
         }
