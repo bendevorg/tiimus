@@ -14,6 +14,7 @@
   "production": {
     "NODE_ENV": "'\"production\"'",
     "HOST": "0.0.0.0",
-    "PORT": 3341
+    "PORT": 3341,
+    "BACKEND_HOST": "'\"http://backend.tiimus.com\"'"
   }
 }
