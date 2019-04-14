@@ -66,6 +66,9 @@ export default {
   margin-top: 7px;
   margin-left: 18px;
 }
+.v-card {
+  margin-bottom: 8px;
+}
 </style>
 
 
