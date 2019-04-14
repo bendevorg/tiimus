@@ -68,7 +68,7 @@
       <v-card-actions>
         <v-btn
           v-if="!isSignUp"
-          color="blue darken-1"
+          color="primary"
           flat
           @click.native="isSignUp = true"
         >
@@ -76,22 +76,21 @@
         </v-btn>
         <v-btn
           v-if="isSignUp"
-          color="blue darken-1"
+          color="primary"
           flat
           @click.native="isSignUp = false"
         >
           Log in
         </v-btn>
         <v-spacer />
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">
+        <v-btn color="primary" flat @click.native="dialog = false">
           Close
         </v-btn>
         <v-btn
           v-if="isSignUp"
           :disabled="!valid"
           :loading="loading"
-          color="blue darken-1"
-          dark
+          color="primary"
           type="submit"
           @click.native="submit"
         >
@@ -101,8 +100,7 @@
           v-if="!isSignUp"
           :disabled="!valid"
           :loading="loading"
-          color="blue darken-1"
-          dark
+          color="primary"
           type="submit"
           @click.native="submit"
         >
