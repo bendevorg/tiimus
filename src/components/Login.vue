@@ -1,11 +1,11 @@
 <template>
   <v-dialog v-model="dialog" max-width="500px">
     <v-btn slot="activator" flat>
-      Login
+      {{ isSignUp ? 'Sign up' : 'Log in' }}
     </v-btn>
     <v-card>
       <v-card-title>
-        <span class="headline">Login</span>
+        <span class="headline">{{ isSignUp ? 'Sign up' : 'Log in' }}</span>
       </v-card-title>
       <v-card-text>
         <v-container grid-list-md>
@@ -78,7 +78,7 @@
           flat
           @click.native="isSignUp = false"
         >
-          Sign in
+          Log in
         </v-btn>
         <v-spacer />
         <v-btn color="blue darken-1" flat @click.native="dialog = false">
@@ -104,7 +104,7 @@
           type="submit"
           @click.native="submit"
         >
-          Sign in
+          Log in
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -151,7 +151,7 @@ export default {
     this.listSkills();
   },
   methods: {
-    ...mapActions('auth', ['signIn', 'signUp']),
+    ...mapActions('auth', ['logIn', 'signUp']),
     ...mapActions('skill', ['listSkills']),
     submit() {
       if (this.$refs.form.validate()) {
@@ -173,9 +173,9 @@ export default {
               this.error = err;
             });
         } else {
-          this.$ga.event('Project', 'Sign in');
+          this.$ga.event('Project', 'Log in');
           this.loading = true;
-          this.signIn(body)
+          this.logIn(body)
             .then(() => {
               this.loading = false;
               this.dialog = false;

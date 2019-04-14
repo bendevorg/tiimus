@@ -12,7 +12,7 @@ const actions = {
   checkSession({ commit }, session) {
     return commit('setLogin', session != null && session !== '');
   },
-  signIn({ commit }, userData) {
+  logIn({ commit }, userData) {
     return new Promise((resolve, reject) => {
       const path = '/auth/sign_in';
       API.post(path, userData)
