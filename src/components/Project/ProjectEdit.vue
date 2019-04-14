@@ -55,7 +55,7 @@
                   />
                 </v-flex>
                 <v-flex xs12>
-                  <v-btn large block @click="sendProject()">
+                  <v-btn large block :loading="loading" @click="sendProject()">
                     Update project
                   </v-btn>
                 </v-flex>
@@ -108,7 +108,8 @@ export default {
       ],
       name: '',
       description: '',
-      dialog: false
+      dialog: false,
+      loading: false
     };
   },
   computed: {
@@ -155,6 +156,7 @@ export default {
     },
     sendProject() {
       this.$ga.event('Project', 'Edit');
+      this.loading = true;
       const { project } = this;
       project.formData = new FormData();
       project.formData.append('name', this.project.name);
@@ -175,9 +177,11 @@ export default {
       project.formData.append('image', this.project.imageFile);
       this.editProject(project)
         .then(project => {
+          this.loading = false;
           this.$router.push({ path: `/projects/${project.id}` });
         })
         .catch(err => {
+          this.loading = false;
           // TODO: Handle error
         });
     }
