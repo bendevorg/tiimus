@@ -91,7 +91,7 @@
           :disabled="!valid"
           :loading="loading"
           color="blue darken-1"
-          flat
+          dark
           type="submit"
           @click.native="submit"
         >
@@ -102,7 +102,7 @@
           :disabled="!valid"
           :loading="loading"
           color="blue darken-1"
-          flat
+          dark
           type="submit"
           @click.native="submit"
         >
