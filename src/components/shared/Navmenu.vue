@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Drawer :drawer="drawer" :is-logged="isLogged" @close="drawer = false" />
+    <!-- <Drawer :drawer="drawer" :is-logged="isLogged" @close="drawer = false" /> -->
     <v-toolbar>
       <v-menu class="hidden-md-and-up">
-        <v-toolbar-side-icon slot="activator" @click.stop="drawer = true" />
+        <v-toolbar-side-icon slot="activator" />
         <v-list>
           <v-list-tile v-if="isLogged">
             <v-list-tile-content>
@@ -40,7 +40,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import Drawer from './Drawer.vue';
+// import Drawer from './Drawer.vue';
 import Login from '../Login';
 import UserMenu from './UserMenu';
 
@@ -49,7 +49,7 @@ export default {
   components: {
     appLogin: Login,
     appUserMenu: UserMenu,
-    Drawer
+    // Drawer
   },
   data() {
     return {
