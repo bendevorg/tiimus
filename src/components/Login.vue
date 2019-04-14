@@ -43,10 +43,12 @@
                   v-model="password"
                   :rules="passwordRules"
                   :validate-on-blur="true"
+                  :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                  :type="showPassword ? 'text' : 'password'"
                   label="Password"
-                  type="password"
                   required
                   @keyup.enter="submit"
+                  @click:append="showPassword = !showPassword"
                 />
               </v-flex>
               <v-flex v-if="isSignUp" xs12>
@@ -66,7 +68,7 @@
       <v-card-actions>
         <v-btn
           v-if="!isSignUp"
-          color="blue darken-1"
+          color="primary"
           flat
           @click.native="isSignUp = true"
         >
@@ -74,22 +76,21 @@
         </v-btn>
         <v-btn
           v-if="isSignUp"
-          color="blue darken-1"
+          color="primary"
           flat
           @click.native="isSignUp = false"
         >
           Log in
         </v-btn>
         <v-spacer />
-        <v-btn color="blue darken-1" flat @click.native="dialog = false">
+        <v-btn color="primary" flat @click.native="dialog = false">
           Close
         </v-btn>
         <v-btn
           v-if="isSignUp"
           :disabled="!valid"
           :loading="loading"
-          color="blue darken-1"
-          flat
+          color="primary"
           type="submit"
           @click.native="submit"
         >
@@ -99,8 +100,7 @@
           v-if="!isSignUp"
           :disabled="!valid"
           :loading="loading"
-          color="blue darken-1"
-          flat
+          color="primary"
           type="submit"
           @click.native="submit"
         >
@@ -139,6 +139,7 @@ export default {
         v => (v && v.length >= 5) || 'Password must have at least 5 characters'
       ],
       selectedSkills: [],
+      showPassword: false,
       loading: false
     };
   },
