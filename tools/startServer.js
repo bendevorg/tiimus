@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app =
-  process.env.NODE_ENV == 'production' ? require('./serverProduction') : null;
+  process.env.NODE_ENV == '"production"' ? require('./serverProduction') : null;
 
 const PORT = process.env.PORT;
 
