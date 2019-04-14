@@ -13,6 +13,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
+
       <v-flex sm12 md8>
         <app-skills-list
           :skills="project.skills"
@@ -21,7 +22,19 @@
         />
         <v-container>
           <v-layout
-            v-if="user.id && !isUserInProject()(user.id)"
+            row
+            justify-start
+            align-start
+          >
+            <v-flex xs12 md10>
+              <div class="subheading">
+                {{ project.description }}
+              </div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+        <v-container v-if="user.id && !isUserInProject()(user.id)">
+          <v-layout
             row
             justify-start
             align-start
@@ -33,9 +46,8 @@
             </v-flex>
           </v-layout>
         </v-container>
-        <v-container>
+        <v-container v-if="user.id == project.ownerId">
           <v-layout
-            v-if="user.id == project.ownerId"
             row
             justify-start
             align-start
