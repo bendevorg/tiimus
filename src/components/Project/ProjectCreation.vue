@@ -41,7 +41,7 @@
             >
               Continue
             </v-btn>
-            <v-btn v-else color="primary" @click="sendProject">
+            <v-btn v-else color="primary" :loading="loading" @click="sendProject">
               Create
             </v-btn>
             <v-btn v-if="index > 0" flat @click="nextStep(index - 1)">
@@ -89,7 +89,8 @@ export default {
         skills: [],
         image: '',
         imageUrl: ''
-      }
+      },
+      loading: false
     };
   },
   methods: {
@@ -128,6 +129,7 @@ export default {
     },
     sendProject() {
       this.$ga.event('Project', 'Create');
+      this.loading = true;
       const projectData = new FormData();
       projectData.append('name', this.project.name);
       projectData.append('description', this.project.description);
@@ -139,9 +141,11 @@ export default {
       projectData.append('image', this.project.image);
       this.createProject(projectData)
         .then(project => {
+          this.loading = false;
           this.$router.push({ path: `/projects/${project.id}` });
         })
         .catch(err => {
+          this.loading = false;
           // TODO: Handle error
         });
     }
