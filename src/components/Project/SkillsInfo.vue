@@ -1,12 +1,16 @@
 <template>
   <v-container fluid>
     <v-layout row wrap>
-      <v-flex xs6>
+      <v-flex xs12 md6>
         <h1>Which skills do you want?</h1>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex v-for="skill in skills" :key="skill.id" xs4>
+      <v-flex 
+        v-for="skill in skills" :key="skill.id"
+        v-bind="{[`xs${12 / skillsPerLine()}`]: true}"
+        sm6
+        md4>
         <v-checkbox
           v-model="selectedSkills"
           :label="skill.name"
@@ -42,6 +46,9 @@ export default {
         skills: this.selectedSkills
       };
       this.$emit('update-project-info', creationInfo);
+    },
+    skillsPerLine() {
+      return window.innerWidth >= 360 ? 2 : 1;
     }
   }
 };

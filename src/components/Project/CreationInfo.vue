@@ -6,7 +6,7 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex xs8>
+      <v-flex xs12 md8>
         <v-text-field
           v-model="name"
           :rules="nameRules"
@@ -17,7 +17,7 @@
           @blur="saveInfo"
         />
       </v-flex>
-      <v-flex xs8>
+      <v-flex xs12 md8>
         <v-combobox
           v-model="selectedTags"
           :items="tags"
@@ -29,7 +29,7 @@
           @blur="saveInfo"
         />
       </v-flex>
-      <v-flex xs8>
+      <v-flex xs12 md8>
         <v-textarea
           v-model="description"
           :rules="descriptionRules"
@@ -41,7 +41,7 @@
           @blur="saveInfo"
         />
       </v-flex>
-      <v-flex xs8>
+      <v-flex xs12 md8>
         <v-text-field
           v-model="imageName"
           label="Select Image"

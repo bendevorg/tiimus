@@ -9,7 +9,7 @@
           {{ name }}
         </h1>
       </v-flex>
-      <v-flex xs8>
+      <v-flex xs12 md8>
         <p>
           {{ description }}
         </p>
