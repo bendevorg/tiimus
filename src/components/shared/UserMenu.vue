@@ -72,3 +72,10 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+  >>> .v-menu {
+    height: 100% !important;
+  }
+</style>
+
