@@ -33,9 +33,21 @@ export default {
     })
   },
   created() {
-    this.listSkills();
-    this.listProjects({ lookingForUser: true });
-    this.listUsers({ lookingForProject: true });
+    this.listSkills()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.listProjects({ lookingForUser: true })
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.listUsers({ lookingForProject: true })
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('project', ['listProjects']),

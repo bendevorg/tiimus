@@ -107,8 +107,16 @@ export default {
     })
   },
   created() {
-    this.loggedInfo();
-    this.userInfo(this.$route.params.id);
+    this.loggedInfo()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.userInfo(this.$route.params.id)
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('user', ['loggedInfo', 'userInfo', 'inviteUserToProject']),

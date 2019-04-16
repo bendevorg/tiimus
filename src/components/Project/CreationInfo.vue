@@ -93,7 +93,11 @@ export default {
     })
   },
   created() {
-    this.listTags();
+    this.listTags()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('tag', ['listTags']),

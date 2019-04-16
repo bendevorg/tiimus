@@ -113,8 +113,16 @@ export default {
     }
   },
   created() {
-    this.loggedInfo();
-    this.projectInfo(this.$route.params.id);
+    this.loggedInfo()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.projectInfo(this.$route.params.id)
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapGetters('project', ['isUserInProject']),

@@ -149,7 +149,11 @@ export default {
     })
   },
   created() {
-    this.listSkills();
+    this.listSkills()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('auth', ['logIn', 'signUp']),
@@ -170,6 +174,7 @@ export default {
               this.dialog = false;
             })
             .catch(err => {
+              this.$ga.event('Error', err);
               this.loading = false;
               this.error = err;
             });
@@ -182,6 +187,7 @@ export default {
               this.dialog = false;
             })
             .catch(err => {
+              this.$ga.event('Error', err);
               this.loading = false;
               this.error = err;
             });

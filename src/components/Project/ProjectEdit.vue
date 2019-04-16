@@ -124,9 +124,21 @@ export default {
     })
   },
   created() {
-    this.listTags();
-    this.listSkills();
-    this.projectInfo(this.$route.params.id);
+    this.listTags()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.listSkills()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.projectInfo(this.$route.params.id)
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('tag', ['listTags']),
@@ -181,6 +193,7 @@ export default {
           this.$router.push({ path: `/projects/${project.id}` });
         })
         .catch(err => {
+          this.$ga.event('Error', err);
           this.loading = false;
           // TODO: Handle error
         });

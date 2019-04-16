@@ -145,6 +145,7 @@ export default {
           this.$router.push({ path: `/projects/${project.id}` });
         })
         .catch(err => {
+          this.$ga.event('Error', err);
           this.loading = false;
           // TODO: Handle error
         });

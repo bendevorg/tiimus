@@ -97,8 +97,16 @@ export default {
     })
   },
   created() {
-    this.loggedInfo();
-    this.listSkills();
+    this.loggedInfo()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
+    this.listSkills()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('user', ['loggedInfo', 'editUser']),
@@ -145,6 +153,7 @@ export default {
           this.$router.push({ path: `/users/${user.id}` });
         })
         .catch(err => {
+          this.$ga.event('Error', err);
           this.loading = false;
           // TODO: Handle error
         });

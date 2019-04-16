@@ -37,7 +37,11 @@ export default {
     })
   },
   created() {
-    this.listSkills();
+    this.listSkills()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('skill', ['listSkills']),

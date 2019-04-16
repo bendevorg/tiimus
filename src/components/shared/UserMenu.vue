@@ -58,7 +58,11 @@ export default {
     })
   },
   mounted() {
-    this.loggedInfo();
+    this.loggedInfo()
+      .then(() => null)
+      .catch(err => {
+        this.$ga.event('Error', err);
+      });
   },
   methods: {
     ...mapActions('auth', ['signOut']),
