@@ -21,11 +21,7 @@
           no-skills="This project does not need any skills at the moment."
         />
         <v-container>
-          <v-layout
-            row
-            justify-start
-            align-start
-          >
+          <v-layout row justify-start align-start>
             <v-flex xs12 md10>
               <div class="subheading">
                 {{ project.description }}
@@ -34,11 +30,7 @@
           </v-layout>
         </v-container>
         <v-container v-if="user.id && !isUserInProject()(user.id)">
-          <v-layout
-            row
-            justify-start
-            align-start
-          >
+          <v-layout row justify-start align-start>
             <v-flex xs12 md6>
               <v-btn large block @click="askToJoinProject()">
                 ASK TO JOIN
@@ -47,11 +39,7 @@
           </v-layout>
         </v-container>
         <v-container v-if="user.id == project.ownerId">
-          <v-layout
-            row
-            justify-start
-            align-start
-          >
+          <v-layout row justify-start align-start>
             <v-flex xs12 md6>
               <v-btn :to="'/projects/' + project.id + '/edit'" large block>
                 EDIT PROJECT
@@ -78,9 +66,9 @@
     </v-layout>
     <app-users-list
       :users="project.users"
-      title="Users in this project"
-      no-users="This project does not have any users yet"
       :show-email="isUserInProject()(user.id)"
+      title="Users in this project"
+      no-users="This project does not have any users yet."
     />
   </v-container>
 </template>

@@ -50,9 +50,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn 
-              flat="flat"
+            <v-btn
               :disabled="!projectInvite"
+              flat="flat"
               @click="sendInvites()"
             >
               Invite
@@ -77,7 +77,7 @@
       :projects="user.projects"
       :reduced="true"
       title="Projects"
-      no-projects="This user haven't joined a project yet"
+      no-projects="This user haven't joined a project yet."
     />
   </v-container>
 </template>
