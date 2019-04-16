@@ -5,7 +5,7 @@
         <h1>Which skills do you want?</h1>
       </v-flex>
     </v-layout>
-    <v-layout row wrap>
+    <v-layout row wrap align-center>
       <v-flex 
         v-for="skill in skills" :key="skill.id"
         v-bind="{[`xs${12 / skillsPerLine()}`]: true}"
