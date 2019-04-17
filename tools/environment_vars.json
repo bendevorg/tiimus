@@ -15,6 +15,6 @@
     "NODE_ENV": "'\"production\"'",
     "HOST": "0.0.0.0",
     "PORT": 3341,
-    "BACKEND_HOST": "'\"https://gateway.bendev.com.br/tiimus\"'"
+    "BACKEND_HOST": "'\"https://gateway.tiimus.com/tiimus\"'"
   }
 }
