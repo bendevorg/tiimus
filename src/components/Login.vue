@@ -179,7 +179,7 @@ export default {
               this.error = err;
             });
         } else {
-          this.$ga.event('Project', 'Log in');
+          this.$ga.event('User', 'Log in');
           this.loading = true;
           this.logIn(body)
             .then(() => {
