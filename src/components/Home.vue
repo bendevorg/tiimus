@@ -3,12 +3,12 @@
     <app-projects-list
       :projects="projects"
       title="Willing to join a project?"
-      no-projects="There is no projects looking for users at the moment"
+      no-projects="There are no projects looking for users at the moment."
     />
     <app-users-list
       :users="users"
       title="Looking for a skilled user?"
-      no-users="There is no users looking for a project right now"
+      no-users="There are no users looking for a project right now."
     />
   </div>
 </template>
