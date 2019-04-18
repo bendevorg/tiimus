@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" max-width="500px">
-    <v-btn slot="activator" flat>
+    <v-btn slot="activator" flat @click="onOpenAuthModal()">
       {{ isSignUp ? 'Sign up' : 'Log in' }}
     </v-btn>
     <v-card>
@@ -70,7 +70,7 @@
           v-if="!isSignUp"
           color="primary"
           flat
-          @click.native="isSignUp = true"
+          @click.native="setIsSignUp(true)"
         >
           Sign up
         </v-btn>
@@ -78,7 +78,7 @@
           v-if="isSignUp"
           color="primary"
           flat
-          @click.native="isSignUp = false"
+          @click.native="setIsSignUp(false)"
         >
           Log in
         </v-btn>
@@ -159,6 +159,8 @@ export default {
     ...mapActions('auth', ['logIn', 'signUp']),
     ...mapActions('skill', ['listSkills']),
     submit() {
+      this.$ga.event('Auth', 'Submit', this.isSignUp ? 'Sign up' : 'Log in');
+
       if (this.$refs.form.validate()) {
         this.error = false;
         const { name, email, password, selectedSkills } = this;
@@ -193,6 +195,14 @@ export default {
             });
         }
       }
+    },
+    setIsSignUp(isSignUp) {
+      this.isSignUp = isSignUp;
+      this.$ga.event('Auth', 'Toggle', isSignUp ? 'Sign up' : 'Log in');
+      this.$ga.event('Auth', 'View form', this.isSignUp ? 'Sign up' : 'Log in');
+    },
+    onOpenAuthModal() {
+      this.$ga.event('Auth', 'View form', this.isSignUp ? 'Sign up' : 'Log in');
     }
   }
 };
